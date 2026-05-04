@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: electricity-demand-mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: electricity_demand
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - electricity-network
+
+volumes:
+  mongo_data:
+
+networks:
+  electricity-network:
+    driver: bridge
