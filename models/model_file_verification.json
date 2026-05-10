@@ -1,0 +1,27 @@
+{
+  "profile_scaler.pkl": {
+    "exists": true,
+    "purpose": "Standardizes 96-point daily demand profiles",
+    "input_features": 96,
+    "trained_on_daily_profiles": XXXX
+  },
+  "kmeans_model.pkl": {
+    "exists": true,
+    "purpose": "Clusters similar daily demand profiles",
+    "best_k": X,
+    "silhouette_score": X,
+    "davies_bouldin_index": X
+  },
+  "dbscan_model.pkl": {
+    "exists": true,
+    "purpose": "Density-based clustering and noise detection",
+    "cluster_count": X,
+    "noise_count": X
+  },
+  "isolation_forest_model.pkl": {
+    "exists": true,
+    "purpose": "Anomaly detection for abnormal demand days",
+    "anomaly_count": X,
+    "anomaly_percentage": X
+  }
+}

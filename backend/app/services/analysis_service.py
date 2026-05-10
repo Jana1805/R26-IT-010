@@ -1,6 +1,6 @@
 import pandas as pd
 
-from app.core.config import DATA_PROCESSED_DIR
+from backend.app.core.config import DATA_PROCESSED_DIR
 
 _ALL_LABELS = [
     "Normal Weekday Demand",

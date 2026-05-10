@@ -1,0 +1,22 @@
+{
+  "best_k": 2,
+  "silhouette_score": 0.0097,
+  "davies_bouldin_index": 9.7934,
+  "cluster_distribution": {
+    "0": 1043,
+    "1": 935
+  },
+  "dbscan_noise_count": 1978,
+  "dbscan_cluster_distribution": {},
+  "k_silhouette_scores": {
+    "2": 0.0097,
+    "3": 0.0085,
+    "4": 0.0085,
+    "5": 0.0085,
+    "6": 0.0081,
+    "7": 0.0083,
+    "8": 0.0085,
+    "9": 0.0087,
+    "10": 0.0083
+  }
+}

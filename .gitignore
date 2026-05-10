@@ -143,7 +143,6 @@ data/processed/*.json
 data/processed/*.parquet
 
 # Trained models
-models/*.joblib
 models/*.pkl
 models/*.h5
 models/*.pt

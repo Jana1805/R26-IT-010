@@ -1,18 +1,18 @@
-from app.core.config import (
+from backend.app.core.config import (
     DATA_PROCESSED_DIR,
     DATA_RAW_DIR,
     MODELS_DIR,
     RAW_DATASET_FILENAME,
 )
-from app.ml.anomaly_detection import run_anomaly_detection_pipeline
-from app.ml.behavior_labeling import generate_behavior_labels_from_csv
-from app.ml.behavior_prediction import predict_future_behavior
-from app.ml.clustering import run_clustering_pipeline
-from app.ml.daily_profile import to_daily_profiles
-from app.ml.data_loader import load_raw_dataset
-from app.ml.peak_detection import detect_peak_days
-from app.ml.preprocessing import preprocess_timeseries
-from app.services import analysis_service
+from backend.app.ml.anomaly_detection import run_anomaly_detection_pipeline
+from backend.app.ml.behavior_labeling import generate_behavior_labels_from_csv
+from backend.app.ml.behavior_prediction import predict_future_behavior
+from backend.app.ml.clustering import run_clustering_pipeline
+from backend.app.ml.daily_profile import to_daily_profiles
+from backend.app.ml.data_loader import load_raw_dataset
+from backend.app.ml.peak_detection import detect_peak_days
+from backend.app.ml.preprocessing import preprocess_timeseries
+from backend.app.services import analysis_service
 
 
 def run_generate_daily_profiles() -> dict:
@@ -23,7 +23,7 @@ def run_generate_daily_profiles() -> dict:
 
         df_raw, ts_col, demand_col = load_raw_dataset(DATA_RAW_DIR / RAW_DATASET_FILENAME)
         df_clean = preprocess_timeseries(df_raw, ts_col, demand_col)
-        df_clean.to_csv(DATA_PROCESSED_DIR / "cleaned.csv", index=False)
+        df_clean.to_csv(DATA_PROCESSED_DIR / "cleaned_data.csv", index=False)
 
         daily_profiles = to_daily_profiles(df_clean)
         daily_profiles.to_csv(DATA_PROCESSED_DIR / "daily_profiles.csv", index=False)
@@ -47,7 +47,7 @@ def run_clustering() -> dict:
         result = run_clustering_pipeline(
             daily_profiles_path=DATA_PROCESSED_DIR / "daily_profiles.csv",
             models_dir=MODELS_DIR,
-            output_path=DATA_PROCESSED_DIR / "cluster_results.csv",
+            output_path=DATA_PROCESSED_DIR / "clustering_results.csv",
         )
         return {"success": True, "message": "Clustering completed successfully.", "data": result}
     except Exception as e:
@@ -59,7 +59,7 @@ def run_anomaly_detection() -> dict:
     try:
         result = run_anomaly_detection_pipeline(
             daily_profiles_path=DATA_PROCESSED_DIR / "daily_profiles.csv",
-            cluster_results_path=DATA_PROCESSED_DIR / "cluster_results.csv",
+            cluster_results_path=DATA_PROCESSED_DIR / "clustering_results.csv",
             models_dir=MODELS_DIR,
             output_path=DATA_PROCESSED_DIR / "anomaly_results.csv",
         )

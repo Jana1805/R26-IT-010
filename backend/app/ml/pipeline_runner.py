@@ -1,13 +1,13 @@
 from pathlib import Path
 
-from app.core.config import RAW_DATASET_FILENAME
-from app.ml.anomaly_detection import run_anomaly_detection_pipeline
-from app.ml.behavior_labeling import generate_behavior_labels_from_csv
-from app.ml.clustering import run_clustering_pipeline
-from app.ml.daily_profile import to_daily_profiles
-from app.ml.data_loader import load_raw_dataset
-from app.ml.peak_detection import detect_peak_days
-from app.ml.preprocessing import preprocess_timeseries
+from backend.app.core.config import RAW_DATASET_FILENAME
+from backend.app.ml.anomaly_detection import run_anomaly_detection_pipeline
+from backend.app.ml.behavior_labeling import generate_behavior_labels_from_csv
+from backend.app.ml.clustering import run_clustering_pipeline
+from backend.app.ml.daily_profile import to_daily_profiles
+from backend.app.ml.data_loader import load_raw_dataset
+from backend.app.ml.peak_detection import detect_peak_days
+from backend.app.ml.preprocessing import preprocess_timeseries
 
 
 def run_full_pipeline(
@@ -36,7 +36,7 @@ def run_full_pipeline(
     df_raw, ts_col, demand_col = load_raw_dataset(raw_path)
     df_clean = preprocess_timeseries(df_raw, ts_col, demand_col)
 
-    cleaned_path = data_processed_dir / "cleaned.csv"
+    cleaned_path = data_processed_dir / "cleaned_data.csv"
     df_clean.to_csv(cleaned_path, index=False)
 
     daily_profiles = to_daily_profiles(df_clean)
@@ -50,7 +50,7 @@ def run_full_pipeline(
     }
 
     # --- Stage 2 ---
-    cluster_output = data_processed_dir / "cluster_results.csv"
+    cluster_output = data_processed_dir / "clustering_results.csv"
     stage2 = run_clustering_pipeline(
         daily_profiles_path=profiles_path,
         models_dir=models_dir,

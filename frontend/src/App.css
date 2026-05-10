@@ -126,6 +126,28 @@ body {
 .badge-risk-low    { background: #3b82f6; }
 .badge-risk-normal { background: #22c55e; }
 
+/* ── Anomaly chart helpers ── */
+.chart-legend-note {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.legend-dot {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.no-data-msg {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  padding: 40px 0;
+}
+
 /* ── Tables ── */
 .section-title { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 12px; }
 .table-wrapper { overflow-x: auto; }

@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   PieChart, Pie, Cell,
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  LineChart, Line, ResponsiveContainer,
+  LineChart, Line, ReferenceLine, ResponsiveContainer,
 } from 'recharts';
 import FutureBehaviorPrediction from './FutureBehaviorPrediction';
 import './App.css';
@@ -43,6 +43,13 @@ function LabelBadge({ label }) {
   return <span className={`badge badge-label-${key}`}>{label || '—'}</span>;
 }
 
+/* Custom dot for anomaly trend — only renders a visible dot on anomalous days */
+function AnomalyDot(props) {
+  const { cx, cy, payload } = props;
+  if (!payload.isAbnormal) return null;
+  return <circle key={payload.date} cx={cx} cy={cy} r={4} fill="#ef4444" stroke="#fff" strokeWidth={1} />;
+}
+
 export default function BehaviorIntelligenceDashboard() {
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -75,7 +82,12 @@ export default function BehaviorIntelligenceDashboard() {
     axios
       .get(`${BASE_URL}/api/get-day-profile?date=${selectedDay.date}`)
       .then((res) => {
-        setDayProfile(res.data.data);
+        /* Only store profile data when the API succeeded AND profile_points exist */
+        if (res.data.success && res.data.data && res.data.data.profile_points) {
+          setDayProfile(res.data.data);
+        } else {
+          setDayProfile(null);
+        }
         setProfileLoading(false);
       })
       .catch(() => setProfileLoading(false));
@@ -95,7 +107,7 @@ export default function BehaviorIntelligenceDashboard() {
       <div className="error-screen">
         <h2>Cannot connect to backend</h2>
         <p>Backend not running. Start with:</p>
-        <code>uvicorn app.main:app --reload --port 8001</code>
+        <code>python -m uvicorn backend.app.main:app --reload --port 8001</code>
       </div>
     );
   }
@@ -105,6 +117,26 @@ export default function BehaviorIntelligenceDashboard() {
   const lineColor = selectedDay
     ? (LABEL_COLORS[selectedDay.behavior_label] || '#6366f1')
     : '#6366f1';
+
+  /* Top anomalous days — for the bar chart */
+  const topAnomalyDays = (dashboardData.all_days || [])
+    .filter(d => d.isolation_anomaly_score != null && d.isolation_anomaly_score > 0)
+    .sort((a, b) => b.isolation_anomaly_score - a.isolation_anomaly_score)
+    .slice(0, 15)
+    .map(d => ({
+      date: d.date,
+      score: parseFloat(d.isolation_anomaly_score.toFixed(4)),
+      behavior_label: d.behavior_label,
+    }));
+
+  /* Last 180 days anomaly trend */
+  const anomalyTrend = (dashboardData.all_days || [])
+    .slice(-180)
+    .map(d => ({
+      date: d.date,
+      score: d.isolation_anomaly_score != null ? parseFloat(d.isolation_anomaly_score.toFixed(4)) : 0,
+      isAbnormal: d.behavior_label === 'Abnormal Demand Day',
+    }));
 
   return (
     <div className="app">
@@ -139,7 +171,7 @@ export default function BehaviorIntelligenceDashboard() {
           </div>
         </section>
 
-        {/* ── Charts Row ── */}
+        {/* ── Label & Risk Charts ── */}
         <section className="charts-row">
           <div className="chart-card">
             <h3 className="chart-title">Behaviour Label Distribution</h3>
@@ -152,13 +184,10 @@ export default function BehaviorIntelligenceDashboard() {
                   cx="50%"
                   cy="50%"
                   outerRadius={90}
-                  label={({ label, percentage }) => `${percentage}%`}
+                  label={({ percentage }) => `${percentage}%`}
                 >
                   {dashboardData.label_distribution.map((entry) => (
-                    <Cell
-                      key={entry.label}
-                      fill={LABEL_COLORS[entry.label] || '#94a3b8'}
-                    />
+                    <Cell key={entry.label} fill={LABEL_COLORS[entry.label] || '#94a3b8'} />
                   ))}
                 </Pie>
                 <Tooltip
@@ -166,9 +195,7 @@ export default function BehaviorIntelligenceDashboard() {
                     [`${value} days (${props.payload.percentage}%)`, props.payload.label]
                   }
                 />
-                <Legend
-                  formatter={(value, entry) => entry.payload.label}
-                />
+                <Legend formatter={(value, entry) => entry.payload.label} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -188,6 +215,89 @@ export default function BehaviorIntelligenceDashboard() {
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
+          </div>
+        </section>
+
+        {/* ── Anomaly Detection Analysis ── */}
+        <section className="charts-row">
+          <div className="chart-card">
+            <h3 className="chart-title">Top 15 Most Anomalous Days (Isolation Forest Score)</h3>
+            {topAnomalyDays.length === 0 ? (
+              <p className="no-data-msg">No anomaly data available.</p>
+            ) : (
+              <ResponsiveContainer width="100%" height={260}>
+                <BarChart
+                  data={topAnomalyDays}
+                  margin={{ top: 10, right: 20, left: 10, bottom: 50 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                  <XAxis
+                    dataKey="date"
+                    tick={{ fontSize: 10 }}
+                    angle={-40}
+                    textAnchor="end"
+                    interval={0}
+                  />
+                  <YAxis
+                    tick={{ fontSize: 11 }}
+                    label={{ value: 'Anomaly Score', angle: -90, position: 'insideLeft', offset: 5, style: { fontSize: 11 } }}
+                  />
+                  <Tooltip
+                    formatter={(v, name, props) => [
+                      v.toFixed(4),
+                      `Score (${props.payload.behavior_label})`,
+                    ]}
+                  />
+                  <Bar dataKey="score" radius={[3, 3, 0, 0]}>
+                    {topAnomalyDays.map((entry) => (
+                      <Cell
+                        key={entry.date}
+                        fill={entry.behavior_label === 'Abnormal Demand Day' ? '#ef4444' : '#f97316'}
+                      />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            )}
+          </div>
+
+          <div className="chart-card">
+            <h3 className="chart-title">Anomaly Score Trend — Last 180 Days</h3>
+            {anomalyTrend.length === 0 ? (
+              <p className="no-data-msg">No trend data available.</p>
+            ) : (
+              <>
+                <p className="chart-legend-note">
+                  <span className="legend-dot" style={{ background: '#ef4444' }} /> Red dots = Abnormal Demand Days
+                </p>
+                <ResponsiveContainer width="100%" height={240}>
+                  <LineChart
+                    data={anomalyTrend}
+                    margin={{ top: 10, right: 20, left: 10, bottom: 5 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                    <XAxis dataKey="date" tick={false} />
+                    <YAxis
+                      tick={{ fontSize: 11 }}
+                      label={{ value: 'Anomaly Score', angle: -90, position: 'insideLeft', offset: 5, style: { fontSize: 11 } }}
+                    />
+                    <Tooltip
+                      formatter={(v) => [v.toFixed(4), 'Anomaly Score']}
+                      labelFormatter={(label) => `Date: ${label}`}
+                    />
+                    <ReferenceLine y={0} stroke="#94a3b8" strokeDasharray="4 4" label={{ value: 'Threshold (0)', position: 'insideTopRight', fontSize: 10, fill: '#94a3b8' }} />
+                    <Line
+                      type="monotone"
+                      dataKey="score"
+                      stroke="#6366f1"
+                      strokeWidth={1.5}
+                      dot={<AnomalyDot />}
+                      activeDot={{ r: 4 }}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </>
+            )}
           </div>
         </section>
 
@@ -277,10 +387,11 @@ export default function BehaviorIntelligenceDashboard() {
                   <span className="detail-label">DBSCAN Cluster</span>
                   <span className="detail-value">{selectedDay.dbscan_cluster ?? '—'}</span>
                 </div>
-                {dayProfile && (
+                {/* Reason only rendered when profile loaded successfully */}
+                {dayProfile && dayProfile.behavior_reason && (
                   <div className="detail-row detail-reason">
                     <span className="detail-label">Reason</span>
-                    <span className="detail-value reason-text">{dayProfile.behavior_reason || '—'}</span>
+                    <span className="detail-value reason-text">{dayProfile.behavior_reason}</span>
                   </div>
                 )}
               </div>
@@ -295,7 +406,9 @@ export default function BehaviorIntelligenceDashboard() {
               Load Profile — {selectedDay ? selectedDay.date : '…'}
             </h3>
             {profileLoading && <div className="profile-loading">Loading profile…</div>}
-            {!profileLoading && dayProfile && (
+
+            {/* Only render the chart when profile_points is a non-empty array */}
+            {!profileLoading && dayProfile && dayProfile.profile_points && dayProfile.profile_points.length > 0 && (
               <ResponsiveContainer width="100%" height={280}>
                 <LineChart
                   data={dayProfile.profile_points}
@@ -332,6 +445,10 @@ export default function BehaviorIntelligenceDashboard() {
                 </LineChart>
               </ResponsiveContainer>
             )}
+
+            {!profileLoading && !dayProfile && (
+              <p className="no-data-msg">No load profile available for this date.</p>
+            )}
           </div>
         </section>
 
@@ -345,6 +462,7 @@ export default function BehaviorIntelligenceDashboard() {
                   <th>Date</th>
                   <th>Peak Demand (kW)</th>
                   <th>Mean Demand (kW)</th>
+                  <th>Anomaly Score</th>
                   <th>Risk</th>
                   <th>Reason</th>
                 </tr>
@@ -355,13 +473,14 @@ export default function BehaviorIntelligenceDashboard() {
                     <td>{day.date}</td>
                     <td>{day.peak_demand != null ? day.peak_demand.toFixed(1) : '—'}</td>
                     <td>{day.mean_demand != null ? day.mean_demand.toFixed(1) : '—'}</td>
+                    <td>{day.isolation_anomaly_score != null ? day.isolation_anomaly_score.toFixed(4) : '—'}</td>
                     <td><RiskBadge risk={day.behavior_risk_level} /></td>
                     <td className="reason-cell">{day.behavior_reason || '—'}</td>
                   </tr>
                 ))}
                 {(!dashboardData.recent_abnormal_days || dashboardData.recent_abnormal_days.length === 0) && (
                   <tr>
-                    <td colSpan={5} style={{ textAlign: 'center', color: '#94a3b8' }}>No abnormal days found</td>
+                    <td colSpan={6} style={{ textAlign: 'center', color: '#94a3b8' }}>No abnormal days found</td>
                   </tr>
                 )}
               </tbody>

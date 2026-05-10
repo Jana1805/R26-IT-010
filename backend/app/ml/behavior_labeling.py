@@ -71,9 +71,12 @@ def generate_behavior_labels_from_csv(peak_demand_results_path, output_path) -> 
     counts = df["behavior_label"].value_counts().to_dict()
     percentages = {k: round(v / total * 100, 2) for k, v in counts.items()}
 
+    risk_counts = df["behavior_risk_level"].value_counts().to_dict()
+
     return {
         "total_days": total,
         "label_counts": counts,
         "label_percentages": percentages,
         "low_demand_threshold": round(float(low_threshold), 2),
+        "risk_distribution": risk_counts,
     }

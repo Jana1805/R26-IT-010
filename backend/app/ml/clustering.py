@@ -10,17 +10,19 @@ from sklearn.preprocessing import StandardScaler
 PROFILE_COLS = [f"p{str(i).zfill(2)}" for i in range(96)]
 
 
-def _select_best_k(X_scaled: np.ndarray, k_min: int = 2, k_max: int = 10):
+def _select_best_k(X_scaled: np.ndarray, k_min: int = 2, k_max: int = 12):
     """Try KMeans for each k in [k_min, k_max] and return (best_k, best_silhouette_score)."""
     best_k = k_min
     best_score = -1.0
+    scores = {}
     for k in range(k_min, k_max + 1):
-        labels = KMeans(n_clusters=k, random_state=42, n_init=10).fit_predict(X_scaled)
+        labels = KMeans(n_clusters=k, random_state=42, n_init=20).fit_predict(X_scaled)
         score = silhouette_score(X_scaled, labels)
+        scores[k] = round(float(score), 4)
         if score > best_score:
             best_score = score
             best_k = k
-    return best_k, best_score
+    return best_k, best_score, scores
 
 
 def _fit_dbscan_with_fallback(
@@ -44,7 +46,7 @@ def run_clustering_pipeline(
     models_dir: Path,
     output_path: Path,
     k_min: int = 2,
-    k_max: int = 10,
+    k_max: int = 12,
 ) -> dict:
     """Cluster daily load profiles with KMeans (auto-selected k) and DBSCAN.
 
@@ -64,12 +66,12 @@ def run_clustering_pipeline(
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
 
-    best_k, _ = _select_best_k(X_scaled, k_min, k_max)
+    best_k, _, k_scores = _select_best_k(X_scaled, k_min, k_max)
 
-    kmeans = KMeans(n_clusters=best_k, random_state=42, n_init=10)
+    kmeans = KMeans(n_clusters=best_k, random_state=42, n_init=20)
     kmeans_labels = kmeans.fit_predict(X_scaled)
 
-    _, dbscan_labels = _fit_dbscan_with_fallback(X_scaled)
+    db, dbscan_labels = _fit_dbscan_with_fallback(X_scaled)
 
     sil = silhouette_score(X_scaled, kmeans_labels)
     dbi = davies_bouldin_score(X_scaled, kmeans_labels)
@@ -77,6 +79,8 @@ def run_clustering_pipeline(
     models_dir.mkdir(parents=True, exist_ok=True)
     with open(models_dir / "kmeans_model.pkl", "wb") as f:
         pickle.dump(kmeans, f)
+    with open(models_dir / "dbscan_model.pkl", "wb") as f:
+        pickle.dump(db, f)
     with open(models_dir / "profile_scaler.pkl", "wb") as f:
         pickle.dump(scaler, f)
 
@@ -89,6 +93,18 @@ def run_clustering_pipeline(
     unique, counts = np.unique(kmeans_labels, return_counts=True)
     cluster_counts = {int(k): int(v) for k, v in zip(unique, counts)}
 
+    # Per-cluster peak demand stats
+    df_result = df.copy()
+    df_result["kmeans_cluster"] = kmeans_labels
+    cluster_stats = {}
+    for cid in sorted(df_result["kmeans_cluster"].unique()):
+        sub = df_result[df_result["kmeans_cluster"] == cid]
+        cluster_stats[int(cid)] = {
+            "count": int(len(sub)),
+            "mean_peak_demand": round(float(sub["peak_demand"].mean()), 2),
+            "mean_avg_demand": round(float(sub["mean_demand"].mean()), 2),
+        }
+
     return {
         "best_k": int(best_k),
         "silhouette_score": round(float(sil), 4),
@@ -96,4 +112,6 @@ def run_clustering_pipeline(
         "total_days": len(df),
         "dbscan_noise_days": int(np.sum(dbscan_labels == -1)),
         "cluster_counts": cluster_counts,
+        "k_silhouette_scores": k_scores,
+        "cluster_stats": cluster_stats,
     }
