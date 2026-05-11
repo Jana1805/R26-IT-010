@@ -21,6 +21,23 @@ const RISK_COLORS = {
   Low: '#3b82f6',
 };
 
+const MADHUSHANI_LIME_URL = 'http://localhost:5173/anomaly-diagnosis';
+
+function RiskBadge({ risk }) {
+  return (
+    <span className={`badge badge-risk-${(risk || 'normal').toLowerCase()}`}>
+      {risk || '—'}
+    </span>
+  );
+}
+
+function openLimeExplainer(date) {
+  const url = date
+    ? `${MADHUSHANI_LIME_URL}?source=bi&date=${date}`
+    : `${MADHUSHANI_LIME_URL}?source=bi`;
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
 const SHORT_LABELS = {
   'Normal Weekday Demand': 'Normal',
   'Peak Demand Day': 'Peak',
@@ -45,7 +62,7 @@ function nextWeekday(dayOfWeek) {
   return d.toISOString().split('T')[0];
 }
 
-export default function FutureBehaviorPrediction() {
+export default function FutureBehaviorPrediction({ recentAbnormalDays = [] }) {
   const [selectedDate, setSelectedDate] = useState(todayStr());
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -155,6 +172,65 @@ export default function FutureBehaviorPrediction() {
           </div>
 
           <p className="pred-explanation">{result.explanation}</p>
+
+          {/* ── Anomaly Alert + LIME button ── */}
+          {result.predicted_label === 'Abnormal Demand Day' && (
+            <div className="anomaly-alert">
+              <div className="anomaly-alert-header">
+                <span className="anomaly-alert-icon">⚠</span>
+                Anomaly Detected — Explainable AI Analysis Available
+              </div>
+              <div className="anomaly-alert-body">
+                <p className="anomaly-alert-text">
+                  This date is predicted to show abnormal electricity demand behaviour.
+                  Use LIME (Local Interpretable Model-agnostic Explanations) to understand
+                  which features are driving this anomaly.
+                </p>
+                <div className="anomaly-confidence-row">
+                  <span className="anomaly-confidence-label">Model Confidence</span>
+                  <span className="anomaly-confidence-value">{result.confidence_percent}%</span>
+                </div>
+              </div>
+              <div>
+                <button className="btn-lime" onClick={() => openLimeExplainer(selectedDate)}>
+                  Show LIME Explanation →
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* ── Similar Past Anomalies ── */}
+          {result.predicted_label === 'Abnormal Demand Day' && recentAbnormalDays.length > 0 && (
+            <div className="similar-anomalies">
+              <p className="similar-anomalies-title">Similar Past Anomalies (for reference)</p>
+              <div className="table-wrapper">
+                <table className="data-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Peak Demand (kW)</th>
+                      <th>Anomaly Score</th>
+                      <th>Risk</th>
+                      <th>Reason</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {recentAbnormalDays.slice(0, 5).map((day) => (
+                      <tr key={day.date}>
+                        <td>{day.date}</td>
+                        <td>{day.peak_demand != null ? day.peak_demand.toFixed(1) : '—'}</td>
+                        <td>{day.isolation_anomaly_score != null ? day.isolation_anomaly_score.toFixed(4) : '—'}</td>
+                        <td><RiskBadge risk={day.behavior_risk_level} /></td>
+                        <td style={{ fontSize: '0.78rem', color: '#64748b', maxWidth: 220, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                          {day.behavior_reason || '—'}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
 
           <div className="pred-chart">
             <h4 className="chart-subtitle">Probability Distribution</h4>

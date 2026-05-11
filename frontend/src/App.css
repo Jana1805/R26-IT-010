@@ -234,6 +234,121 @@ body {
 .pred-explanation { font-size: 0.85rem; color: #475569; line-height: 1.5; }
 .pred-chart { margin-top: 4px; }
 
+/* ── LIME Integration ── */
+.btn-lime {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 20px;
+  background: #7c3aed;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s;
+  white-space: nowrap;
+}
+.btn-lime:hover { background: #6d28d9; }
+
+.btn-lime-sm {
+  padding: 4px 10px;
+  background: #7c3aed;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s;
+  white-space: nowrap;
+}
+.btn-lime-sm:hover { background: #6d28d9; }
+
+.anomaly-alert {
+  border: 1px solid #fca5a5;
+  background: #fff5f5;
+  border-radius: 8px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.anomaly-alert-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #b91c1c;
+}
+.anomaly-alert-icon { font-size: 1.1rem; }
+.anomaly-alert-body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.anomaly-alert-text {
+  font-size: 0.84rem;
+  color: #6b7280;
+  line-height: 1.5;
+  flex: 1;
+  margin: 0;
+}
+.anomaly-confidence-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.anomaly-confidence-label {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.anomaly-confidence-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ef4444;
+  line-height: 1;
+}
+
+.similar-anomalies {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.similar-anomalies-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #334155;
+  margin: 0;
+}
+
+/* ── LIME button in Day Detail ── */
+.lime-detail-action {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.lime-detail-hint {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  flex: 1;
+}
+
 /* ── Loading / Error screens ── */
 .loading-screen, .error-screen {
   min-height: 100vh;

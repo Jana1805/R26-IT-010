@@ -9,6 +9,14 @@ import FutureBehaviorPrediction from './FutureBehaviorPrediction';
 import './App.css';
 
 const BASE_URL = 'http://127.0.0.1:8001';
+const MADHUSHANI_LIME_URL = 'http://localhost:5173/anomaly-diagnosis';
+
+function openLimeForDate(date) {
+  const url = date
+    ? `${MADHUSHANI_LIME_URL}?source=bi&date=${date}`
+    : `${MADHUSHANI_LIME_URL}?source=bi`;
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
 
 const LABEL_COLORS = {
   'Normal Weekday Demand': '#22c55e',
@@ -396,6 +404,21 @@ export default function BehaviorIntelligenceDashboard() {
                 )}
               </div>
             )}
+
+            {/* LIME button — shown when selected day is anomalous */}
+            {selectedDay && selectedDay.behavior_label === 'Abnormal Demand Day' && (
+              <div className="lime-detail-action">
+                <span className="lime-detail-hint">
+                  Anomaly detected — view LIME feature importance in XAI component
+                </span>
+                <button
+                  className="btn-lime"
+                  onClick={() => openLimeForDate(selectedDay.date)}
+                >
+                  Show LIME Explanation →
+                </button>
+              </div>
+            )}
           </div>
         </section>
 
@@ -465,6 +488,7 @@ export default function BehaviorIntelligenceDashboard() {
                   <th>Anomaly Score</th>
                   <th>Risk</th>
                   <th>Reason</th>
+                  <th>XAI</th>
                 </tr>
               </thead>
               <tbody>
@@ -476,11 +500,20 @@ export default function BehaviorIntelligenceDashboard() {
                     <td>{day.isolation_anomaly_score != null ? day.isolation_anomaly_score.toFixed(4) : '—'}</td>
                     <td><RiskBadge risk={day.behavior_risk_level} /></td>
                     <td className="reason-cell">{day.behavior_reason || '—'}</td>
+                    <td>
+                      <button
+                        className="btn-lime-sm"
+                        onClick={() => openLimeForDate(day.date)}
+                        title="View LIME explanation for this anomaly"
+                      >
+                        LIME →
+                      </button>
+                    </td>
                   </tr>
                 ))}
                 {(!dashboardData.recent_abnormal_days || dashboardData.recent_abnormal_days.length === 0) && (
                   <tr>
-                    <td colSpan={6} style={{ textAlign: 'center', color: '#94a3b8' }}>No abnormal days found</td>
+                    <td colSpan={7} style={{ textAlign: 'center', color: '#94a3b8' }}>No abnormal days found</td>
                   </tr>
                 )}
               </tbody>
@@ -489,7 +522,7 @@ export default function BehaviorIntelligenceDashboard() {
         </section>
 
         {/* ── Future Prediction ── */}
-        <FutureBehaviorPrediction />
+        <FutureBehaviorPrediction recentAbnormalDays={dashboardData.recent_abnormal_days || []} />
       </main>
     </div>
   );
