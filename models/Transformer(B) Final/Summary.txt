@@ -1,0 +1,9 @@
+What was actually wrong: mixed_float16 precision was silently breaking training. Around epoch 7-11 every run, the optimizer's LossScaleOptimizer hit non-finite gradients, kept halving its internal loss scale, and effectively froze weight updates — val_loss would go flat (0.7057, 0.7056, 0.7054...) instead of erroring out, so it looked like a normal plateau. That's why train R² kept coming out lower than val/test R² — the model never properly converged.
+What you changed, in order:
+
+Added COVID/economic-crisis flags as features ? didn't fix it (root cause was elsewhere)
+Switched loss to Huber ? didn't fix it
+Added LR warmup + cosine decay ? made it worse (schedule bug, LR stayed too high too long)
+Reverted to warmup callback + ReduceLROnPlateau ? still broken
+Removed flags as features, used sample_weight to downweight crisis rows instead ? still broken (R² went negative)
+Disabled mixed_float16 ? fixed it. Test R² jumped from 0.666 ? 0.732.
