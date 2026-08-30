@@ -1,0 +1,47 @@
+{
+  "model_id": "cnn_lstm_b",
+  "display_name": "CNN-LSTM-B",
+  "predictions_path": "evaluation/cnn_lstm_predictions_run1.csv",
+  "mc_dropout": false,
+  "mc_samples": 1,
+  "custom_objects": [],
+  "lookback": 96,
+  "horizon": 1,
+  "input_shape": [
+    96,
+    20
+  ],
+  "output_shape": [
+    1
+  ],
+  "features": [
+    "Temperature (°C)",
+    "Humidity (%)",
+    "Wind Speed (m/s)",
+    "Rainfall (mm)",
+    "Solar Irradiance (W/m²)",
+    "sin_hour",
+    "cos_hour",
+    "sin_dow",
+    "cos_dow",
+    "sin_month",
+    "cos_month",
+    "is_weekend",
+    "year_norm",
+    "Public Event",
+    "Poya Day",
+    "load_lag_96",
+    "load_lag_192",
+    "load_lag_672",
+    "load_mean_week",
+    "load_std_day"
+  ],
+  "feature_count": 20,
+  "target_name": "Load Demand (kW)",
+  "target_unit": "kW",
+  "artifact_path": "runtime/best_model.keras",
+  "feature_scaler_path": "runtime/feat_scaler.pkl",
+  "target_scaler_path": "runtime/target_scaler.pkl",
+  "enabled": true,
+  "compatibility": "compatible"
+}

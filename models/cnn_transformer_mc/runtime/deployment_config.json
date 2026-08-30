@@ -1,0 +1,43 @@
+{
+  "model_name": "CNN-Transformer with MC Dropout Inference",
+  "lookback": 96,
+  "horizon": 1,
+  "features": [
+    "Temperature (\u00b0C)",
+    "Humidity (%)",
+    "Wind Speed (m/s)",
+    "Rainfall (mm)",
+    "Solar Irradiance (W/m\u00b2)",
+    "sin_hour",
+    "cos_hour",
+    "sin_dow",
+    "cos_dow",
+    "sin_month",
+    "cos_month",
+    "is_weekend",
+    "year_norm",
+    "Public Event",
+    "Poya Day",
+    "load_lag_96",
+    "load_lag_192",
+    "load_lag_672",
+    "load_mean_week",
+    "load_std_day"
+  ],
+  "target": "Load Demand (kW)",
+  "mc_samples": 30,
+  "dropout_rate": 0.2,
+  "alpha": 0.05,
+  "q_hat_kW": 72.04833984375,
+  "checkpoint_sha256": "1329594c91b596d8b93d0b0a41987e94f24ef47afbb2dbf97606914cb3c6cc92",
+  "architecture": {
+    "cnn_filters": [
+      64,
+      32
+    ],
+    "d_model": 64,
+    "attention_heads": 4,
+    "feed_forward_units": 256,
+    "transformer_blocks": 3
+  }
+}

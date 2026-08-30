@@ -1,0 +1,104 @@
+{
+  "model": "CNN-LSTM deterministic vs MC Dropout \u2014 same checkpoint",
+  "checkpoint": {
+    "path": "/content/drive/MyDrive/Colab Notebooks/cnn_lstm_baseline_artifacts/best_model.keras",
+    "sha256": "26f21a8957ee05d631374b5d3bd50bcc3d3e2781241301660d5f6fd565903993",
+    "parameters": 146145,
+    "trained_in_this_notebook": false
+  },
+  "comparison_protocol": {
+    "lookback": 96,
+    "horizon": 1,
+    "train_val_test": [
+      0.8,
+      0.1,
+      0.1
+    ],
+    "batch_size": 128,
+    "max_epochs": 100,
+    "learning_rate": 0.001,
+    "dropout": 0.2,
+    "optimizer": "Adam",
+    "loss": "MAE",
+    "early_stopping_patience": 15,
+    "reduce_lr_patience": 8,
+    "seed": 42,
+    "shuffle": false
+  },
+  "mc_inference": {
+    "samples": 100,
+    "point_estimator": "MC predictive mean",
+    "same_checkpoint_as_deterministic": true
+  },
+  "deterministic_checkpoint": {
+    "train": {
+      "MAE_kW": 37.89686584472656,
+      "RMSE_kW": 52.35192566748381,
+      "MAPE_pct": 2.457289695739746,
+      "R2": 0.9713441729545593
+    },
+    "val": {
+      "MAE_kW": 21.48038101196289,
+      "RMSE_kW": 31.477140336592385,
+      "MAPE_pct": 1.11089289188385,
+      "R2": 0.9819716811180115
+    },
+    "test": {
+      "MAE_kW": 20.518585205078125,
+      "RMSE_kW": 29.978151630734548,
+      "MAPE_pct": 0.9796826243400574,
+      "R2": 0.9731544852256775
+    }
+  },
+  "mc_mean": {
+    "train": {
+      "MAE_kW": 37.981327056884766,
+      "RMSE_kW": 52.40002105945426,
+      "MAPE_pct": 2.4609339237213135,
+      "R2": 0.9712914824485779
+    },
+    "val": {
+      "MAE_kW": 21.70499038696289,
+      "RMSE_kW": 31.612870736322037,
+      "MAPE_pct": 1.1207919120788574,
+      "R2": 0.9818158745765686
+    },
+    "test": {
+      "MAE_kW": 21.15836524963379,
+      "RMSE_kW": 30.26365668612478,
+      "MAPE_pct": 1.00710928440094,
+      "R2": 0.9726407527923584
+    },
+    "test_per_step": {
+      "step_1": {
+        "MAE_kW": 21.15836524963379,
+        "RMSE_kW": 30.26365668612478,
+        "MAPE_pct": 1.00710928440094,
+        "R2": 0.9726407527923584
+      }
+    }
+  },
+  "uncertainty_supplementary": {
+    "alpha": 0.05,
+    "mean_mc_std_val_kW": 26.275122377421553,
+    "mean_mc_std_test_kW": 36.280415813513116,
+    "raw_mc_val": {
+      "coverage_pct": 74.39413265306123,
+      "mean_width_kW": 102.99847971949248
+    },
+    "raw_mc_test": {
+      "coverage_pct": 85.23143965563055,
+      "mean_width_kW": 142.21922998897142
+    },
+    "validation_residual_q_hat_kW": 66.996826171875,
+    "calibrated_val": {
+      "coverage_pct": 95.01488095238095,
+      "mean_width_kW": 133.99365234375
+    },
+    "calibrated_test": {
+      "coverage_pct": 96.32778870170591,
+      "mean_width_kW": 133.99365234375
+    },
+    "note": "Validation was also used for early stopping; calibrated coverage is supplementary, not strict split-conformal coverage."
+  }
+}
