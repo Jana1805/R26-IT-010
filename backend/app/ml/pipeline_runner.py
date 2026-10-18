@@ -1,13 +1,13 @@
 from pathlib import Path
 
-from backend.app.core.config import RAW_DATASET_FILENAME
-from backend.app.ml.anomaly_detection import run_anomaly_detection_pipeline
-from backend.app.ml.behavior_labeling import generate_behavior_labels_from_csv
-from backend.app.ml.clustering import run_clustering_pipeline
-from backend.app.ml.daily_profile import to_daily_profiles
-from backend.app.ml.data_loader import load_raw_dataset
-from backend.app.ml.peak_detection import detect_peak_days
-from backend.app.ml.preprocessing import preprocess_timeseries
+from app.core.config import RAW_DATASET_FILENAME
+from app.ml.anomaly_detection import run_anomaly_detection_pipeline
+from app.ml.behavior_labeling import generate_behavior_labels_from_csv
+from app.ml.clustering import run_clustering_pipeline
+from app.ml.daily_profile import to_daily_profiles
+from app.ml.data_loader import load_raw_dataset
+from app.ml.peak_detection import detect_peak_days
+from app.ml.preprocessing import preprocess_timeseries
 
 
 def run_full_pipeline(

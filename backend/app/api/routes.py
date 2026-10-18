@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Query
-from backend.app.controllers import pipeline_controller
+from app.controllers import pipeline_controller
 
 router = APIRouter()
 
@@ -13,6 +13,8 @@ def run_clustering():
 
 @router.post("/run-anomaly-detection")
 def run_anomaly_detection():
+
+    
     return pipeline_controller.run_anomaly_detection()
 
 @router.post("/detect-peak-days")
@@ -34,3 +36,15 @@ def predict_future_behavior(date: str = Query(..., description="Target date e.g.
 @router.get("/get-day-profile")
 def get_day_profile(date: str = Query(..., description="Date string e.g. 2020-03-15")):
     return pipeline_controller.get_day_profile(date)
+
+@router.get("/model-comparison")
+def model_comparison():
+    return pipeline_controller.get_model_comparison()
+
+@router.get("/anomaly-comparison")
+def anomaly_comparison():
+    return pipeline_controller.get_anomaly_comparison()
+
+@router.get("/download-report")
+def download_report(label: str = Query(None, description="Optional behaviour label to filter to, e.g. 'Abnormal Demand Day'")):
+    return pipeline_controller.get_download_report(label)

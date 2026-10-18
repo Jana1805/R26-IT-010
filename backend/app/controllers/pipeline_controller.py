@@ -1,18 +1,27 @@
-from backend.app.core.config import (
+import io
+from datetime import datetime
+
+import pandas as pd
+from fastapi import HTTPException
+from fastapi.responses import StreamingResponse
+
+from app.core.config import (
     DATA_PROCESSED_DIR,
     DATA_RAW_DIR,
     MODELS_DIR,
     RAW_DATASET_FILENAME,
 )
-from backend.app.ml.anomaly_detection import run_anomaly_detection_pipeline
-from backend.app.ml.behavior_labeling import generate_behavior_labels_from_csv
-from backend.app.ml.behavior_prediction import predict_future_behavior
-from backend.app.ml.clustering import run_clustering_pipeline
-from backend.app.ml.daily_profile import to_daily_profiles
-from backend.app.ml.data_loader import load_raw_dataset
-from backend.app.ml.peak_detection import detect_peak_days
-from backend.app.ml.preprocessing import preprocess_timeseries
-from backend.app.services import analysis_service
+from app.ml.anomaly_comparison import run_anomaly_detection_comparison
+from app.ml.anomaly_detection import run_anomaly_detection_pipeline
+from app.ml.behavior_labeling import generate_behavior_labels_from_csv
+from app.ml.behavior_prediction import predict_future_behavior
+from app.ml.clustering import run_clustering_pipeline
+from app.ml.daily_profile import to_daily_profiles
+from app.ml.data_loader import load_raw_dataset
+from app.ml.model_comparison import run_clustering_model_comparison
+from app.ml.peak_detection import detect_peak_days
+from app.ml.preprocessing import preprocess_timeseries
+from app.services import analysis_service
 
 
 def run_generate_daily_profiles() -> dict:
@@ -137,3 +146,78 @@ def get_day_profile(date_str: str) -> dict:
         return {"success": True, "message": f"Profile for {date_str} loaded.", "data": result}
     except Exception as e:
         return {"success": False, "message": str(e), "data": {}}
+
+
+def get_model_comparison() -> dict:
+    """Run model comparison across clustering algorithms and return results."""
+    try:
+        result = run_clustering_model_comparison(
+            daily_profiles_path=DATA_PROCESSED_DIR / "daily_profiles.csv",
+            n_clusters=2,
+        )
+        return {"success": True, "message": "Model comparison completed.", "data": result}
+    except Exception as e:
+        return {"success": False, "message": str(e), "data": {}}
+
+
+def get_anomaly_comparison() -> dict:
+    """Run model comparison across anomaly detection algorithms and return results."""
+    try:
+        result = run_anomaly_detection_comparison(
+            daily_profiles_path=DATA_PROCESSED_DIR / "daily_profiles.csv",
+            contamination=0.03,
+        )
+        return {"success": True, "message": "Anomaly comparison completed.", "data": result}
+    except Exception as e:
+        return {"success": False, "message": str(e), "data": {}}
+
+
+REPORT_COLUMNS = [
+    "date",
+    "behavior_label",
+    "behavior_risk_level",
+    "peak_demand",
+    "mean_demand",
+    "is_peak_demand_day",
+    "final_is_anomaly",
+    "isolation_anomaly_score",
+    "kmeans_cluster",
+    "behavior_reason",
+]
+
+
+def get_download_report(label: str = None) -> StreamingResponse:
+    """Stream behavior_labels.csv as a downloadable CSV report.
+
+    label, when given, filters to a single behaviour type (e.g. "Abnormal
+    Demand Day"); omitted, every day is included. Raises a 404 if the
+    source CSV doesn't exist yet; any other failure is caught so it never
+    crashes the app.
+    """
+    csv_path = DATA_PROCESSED_DIR / "behavior_labels.csv"
+    try:
+        if not csv_path.exists():
+            raise HTTPException(
+                status_code=404,
+                detail="behavior_labels.csv not found - run the behaviour labelling pipeline first.",
+            )
+
+        df = pd.read_csv(csv_path)
+        df = df[REPORT_COLUMNS]
+        if label:
+            df = df[df["behavior_label"] == label]
+
+        buffer = io.StringIO()
+        df.to_csv(buffer, index=False)
+        csv_bytes = buffer.getvalue()
+
+        filename = f"behaviour_report_{datetime.now().strftime('%Y-%m-%d')}.csv"
+        return StreamingResponse(
+            iter([csv_bytes]),
+            media_type="text/csv",
+            headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to generate report: {e}")

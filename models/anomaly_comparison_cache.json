@@ -1,0 +1,173 @@
+{
+  "models": [
+    {
+      "model_name": "Isolation Forest",
+      "model_type": "Ensemble-based",
+      "description": "Isolation-based anomaly detection using random forest",
+      "anomaly_count": 60,
+      "anomaly_percentage": 3.03,
+      "mean_anomaly_score": 0.1864,
+      "std_anomaly_score": 0.0586,
+      "contamination": 0.03,
+      "mean_jaccard": 0.7769,
+      "std_jaccard": 0.032,
+      "mean_symmetric_difference": 13.6,
+      "rank": 1,
+      "status": "Best Model"
+    },
+    {
+      "model_name": "Local Outlier Factor",
+      "model_type": "Density-based",
+      "description": "Local density-based outlier detection",
+      "anomaly_count": 60,
+      "anomaly_percentage": 3.03,
+      "mean_anomaly_score": -1.253,
+      "std_anomaly_score": 1.3395,
+      "n_neighbors": 20,
+      "mean_jaccard": 0.7769,
+      "std_jaccard": 0.032,
+      "mean_symmetric_difference": 13.6,
+      "rank": 2,
+      "status": "Alternative"
+    },
+    {
+      "model_name": "One-Class SVM",
+      "model_type": "Support Vector Machine",
+      "description": "Support vector machine for anomaly detection",
+      "anomaly_count": 75,
+      "anomaly_percentage": 3.79,
+      "mean_anomaly_score": 0.036,
+      "std_anomaly_score": 0.0226,
+      "nu": 0.03,
+      "mean_jaccard": 0.2812,
+      "std_jaccard": 0.0516,
+      "mean_symmetric_difference": 77.9,
+      "rank": 3,
+      "status": "Alternative"
+    },
+    {
+      "model_name": "Z-Score",
+      "model_type": "Statistical",
+      "description": "max(|z(peak_demand)|, |z(mean_demand)|) - matches anomaly_detection.py",
+      "anomaly_count": 0,
+      "anomaly_percentage": 0.0,
+      "mean_anomaly_score": 0.9333,
+      "std_anomaly_score": 0.5518,
+      "threshold": 3.0,
+      "mean_jaccard": 0.0,
+      "std_jaccard": 0.0,
+      "mean_symmetric_difference": 0.0,
+      "status": "Not applicable - flags no days",
+      "rank": null
+    }
+  ],
+  "best_model": {
+    "model_name": "Isolation Forest",
+    "model_type": "Ensemble-based",
+    "description": "Isolation-based anomaly detection using random forest",
+    "anomaly_count": 60,
+    "anomaly_percentage": 3.03,
+    "mean_anomaly_score": 0.1864,
+    "std_anomaly_score": 0.0586,
+    "contamination": 0.03,
+    "mean_jaccard": 0.7769,
+    "std_jaccard": 0.032,
+    "mean_symmetric_difference": 13.6,
+    "rank": 1,
+    "status": "Best Model"
+  },
+  "explanation": "Isolation Forest was selected because its flagged set is the most stable under resampling: mean Jaccard=0.7769 against the full-data flagged set across 20 bootstrap resamples of 80% of days (mean symmetric difference=13.6 days). It is robust to high-dimensional data and provides consistent results. Z-Score is excluded from ranking: it flags 0 days at threshold=3.0 on this dataset, so a stability score of 0.0 would reflect that it never fires in any resample, not that it is unstable.",
+  "summary_points": [
+    "Mean Jaccard=0.7769 across 20 resamples \u2014 moderate stability under resampling",
+    "Mean symmetric difference=13.6 days between each resample's flagged set and the full-data flagged set",
+    "Robust ensemble method with proven reliability",
+    "Handles high-dimensional profile data effectively",
+    "Stable anomaly scores with low variance"
+  ],
+  "comparison_table": [
+    {
+      "model": "Isolation Forest",
+      "anomaly_count": 60,
+      "anomaly_percentage": 3.03,
+      "mean_anomaly_score": 0.1864,
+      "std_anomaly_score": 0.0586,
+      "mean_jaccard": 0.7769,
+      "std_jaccard": 0.032,
+      "mean_symmetric_difference": 13.6,
+      "rank": 1,
+      "status": "Best Model"
+    },
+    {
+      "model": "Local Outlier Factor",
+      "anomaly_count": 60,
+      "anomaly_percentage": 3.03,
+      "mean_anomaly_score": -1.253,
+      "std_anomaly_score": 1.3395,
+      "mean_jaccard": 0.7769,
+      "std_jaccard": 0.032,
+      "mean_symmetric_difference": 13.6,
+      "rank": 2,
+      "status": "Alternative"
+    },
+    {
+      "model": "One-Class SVM",
+      "anomaly_count": 75,
+      "anomaly_percentage": 3.79,
+      "mean_anomaly_score": 0.036,
+      "std_anomaly_score": 0.0226,
+      "mean_jaccard": 0.2812,
+      "std_jaccard": 0.0516,
+      "mean_symmetric_difference": 77.9,
+      "rank": 3,
+      "status": "Alternative"
+    },
+    {
+      "model": "Z-Score",
+      "anomaly_count": 0,
+      "anomaly_percentage": 0.0,
+      "mean_anomaly_score": 0.9333,
+      "std_anomaly_score": 0.5518,
+      "mean_jaccard": 0.0,
+      "std_jaccard": 0.0,
+      "mean_symmetric_difference": 0.0,
+      "rank": null,
+      "status": "Not applicable - flags no days"
+    }
+  ],
+  "spearman_matrix": {
+    "Isolation Forest": {
+      "Isolation Forest": 1.0,
+      "Z-Score": 0.9028,
+      "One-Class SVM": 0.0767,
+      "Local Outlier Factor": 0.2046
+    },
+    "Z-Score": {
+      "Isolation Forest": 0.9028,
+      "Z-Score": 1.0,
+      "One-Class SVM": -0.1097,
+      "Local Outlier Factor": -0.0081
+    },
+    "One-Class SVM": {
+      "Isolation Forest": 0.0767,
+      "Z-Score": -0.1097,
+      "One-Class SVM": 1.0,
+      "Local Outlier Factor": 0.5313
+    },
+    "Local Outlier Factor": {
+      "Isolation Forest": 0.2046,
+      "Z-Score": -0.0081,
+      "One-Class SVM": 0.5313,
+      "Local Outlier Factor": 1.0
+    }
+  },
+  "contamination_note": "Isolation Forest, One-Class SVM, and Local Outlier Factor are all pre-tuned to an expected anomaly rate of 3% (contamination/nu=0.03), so flagged-set size alone is not an independent quality signal \u2014 the bootstrap stability ranking below measures agreement on WHICH days get flagged, not how many.",
+  "bootstrap_config": {
+    "n_resamples": 20,
+    "resample_frac": 0.8,
+    "seeds": "0-19"
+  },
+  "total_days": 1977,
+  "runtime_seconds": 14.04,
+  "cached": false,
+  "computed_at": "2026-09-01T00:44:43.996014+00:00"
+}

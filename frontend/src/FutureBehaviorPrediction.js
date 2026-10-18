@@ -236,9 +236,9 @@ export default function FutureBehaviorPrediction({ recentAbnormalDays = [] }) {
             <h4 className="chart-subtitle">Probability Distribution</h4>
             <ResponsiveContainer width="100%" height={200}>
               <BarChart data={probData} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                <XAxis dataKey="label" tick={{ fontSize: 12 }} />
-                <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} tick={{ fontSize: 12 }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                <XAxis dataKey="label" tick={{ fontSize: 12, fill: '#94a3b8' }} />
+                <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} tick={{ fontSize: 12, fill: '#94a3b8' }} />
                 <Tooltip formatter={(v) => [`${v}%`, 'Probability']} />
                 <Bar dataKey="percentage" radius={[4, 4, 0, 0]}>
                   {probData.map((entry) => (

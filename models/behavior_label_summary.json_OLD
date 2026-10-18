@@ -1,0 +1,22 @@
+{
+  "total_days": 1978,
+  "label_counts": {
+    "Normal Weekday Demand": 1283,
+    "Holiday / Low Demand Day": 449,
+    "Peak Demand Day": 210,
+    "Abnormal Demand Day": 36
+  },
+  "label_percentages": {
+    "Normal Weekday Demand": 64.86,
+    "Holiday / Low Demand Day": 22.7,
+    "Peak Demand Day": 10.62,
+    "Abnormal Demand Day": 1.82
+  },
+  "low_demand_threshold": 1486.06,
+  "risk_distribution": {
+    "Normal": 1283,
+    "Low": 449,
+    "Medium": 210,
+    "High": 36
+  }
+}

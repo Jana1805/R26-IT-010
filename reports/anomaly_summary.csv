@@ -1,0 +1,4 @@
+Model,Flagged,Percent
+IsolationForest,60,3.03
+LocalOutlierFactor,60,3.03
+OneClassSVM,93,4.7

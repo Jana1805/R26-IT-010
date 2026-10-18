@@ -30,19 +30,20 @@ from sklearn.metrics import davies_bouldin_score, silhouette_score
 from sklearn.preprocessing import StandardScaler
 from scipy import stats
 
-# Add project root to Python path for imports
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
+# Add backend/ dir to path so `from app.*` imports work when run as a script
+_BACKEND_DIR = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(_BACKEND_DIR))
 
-# Import existing modules
-from backend.app.ml.data_loader import load_raw_dataset
-from backend.app.ml.preprocessing import preprocess_timeseries
-from backend.app.ml.daily_profile import to_daily_profiles
-from backend.app.ml.behavior_labeling import generate_behavior_labels_from_csv
+PROJECT_ROOT = _BACKEND_DIR.parent  # behaviour-intelligence/
+
+from app.ml.data_loader import load_raw_dataset
+from app.ml.preprocessing import preprocess_timeseries
+from app.ml.daily_profile import to_daily_profiles
+from app.ml.behavior_labeling import generate_behavior_labels_from_csv
 
 # Constants
 PROFILE_COLS = [f"p{str(i).zfill(2)}" for i in range(96)]
-RAW_DATA_PATH = PROJECT_ROOT / "data" / "raw" / "load_forecasting_dataset_corrected.csv"
+RAW_DATA_PATH = PROJECT_ROOT / "data" / "raw" / "synthetic_realistic_load.csv"
 DATA_PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
 MODELS_DIR = PROJECT_ROOT / "models"
 REPORTS_DIR = PROJECT_ROOT / "reports"

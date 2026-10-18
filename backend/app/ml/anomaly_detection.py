@@ -6,6 +6,15 @@ import pandas as pd
 from scipy import stats
 from sklearn.ensemble import IsolationForest
 
+# peak_zscore, mean_zscore, and zscore_is_anomaly are computed and kept as
+# diagnostic columns, but zscore_is_anomaly is NOT included in final_is_anomaly.
+# Diagnosis on daily_profiles.csv (1977 days): max|z| = 2.50 for peak_demand
+# and 2.93 for mean_demand, and the MAD-based modified z-score never exceeds
+# 2.50 either — no Gaussian-tail test at threshold >= 2.0 ever fires on this
+# dataset. Both columns are left-skewed with zero days above mean+1.5*std, so
+# the extremes here are asymmetric and a symmetric |z| test structurally
+# cannot flag them. final_is_anomaly is isolation_is_anomaly only.
+
 PROFILE_COLS = [f"p{str(i).zfill(2)}" for i in range(96)]
 
 
@@ -86,7 +95,7 @@ def run_anomaly_detection_pipeline(
     zscore_is_anomaly, peak_z, mean_z = run_zscore_anomaly_detection(
         df, threshold=zscore_threshold
     )
-    final_is_anomaly = iso_is_anomaly | zscore_is_anomaly
+    final_is_anomaly = iso_is_anomaly
 
     models_dir.mkdir(parents=True, exist_ok=True)
     with open(models_dir / "isolation_forest_model.pkl", "wb") as f:

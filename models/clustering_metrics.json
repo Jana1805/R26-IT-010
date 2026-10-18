@@ -1,22 +1,33 @@
 {
   "best_k": 2,
-  "silhouette_score": 0.0097,
-  "davies_bouldin_index": 9.7934,
+  "silhouette_score": 0.4729,
+  "davies_bouldin_index": 0.8373,
   "cluster_distribution": {
-    "0": 1043,
-    "1": 935
+    "0": 1396,
+    "1": 581
   },
-  "dbscan_noise_count": 1978,
-  "dbscan_cluster_distribution": {},
+  "dbscan_eps": 4.4183,
+  "dbscan_min_samples": 8,
+  "dbscan_knee_percentile": 96.81,
+  "dbscan_noise_count": 60,
+  "dbscan_n_clusters": 1,
+  "dbscan_cluster_distribution": {
+    "0": 1917
+  },
+  "dbscan_largest_cluster_size": 1917,
+  "dbscan_silhouette": null,
+  "dbscan_status": "degenerate - single cluster",
   "k_silhouette_scores": {
-    "2": 0.0097,
-    "3": 0.0085,
-    "4": 0.0085,
-    "5": 0.0085,
-    "6": 0.0081,
-    "7": 0.0083,
-    "8": 0.0085,
-    "9": 0.0087,
-    "10": 0.0083
+    "2": 0.4729,
+    "3": 0.3839,
+    "4": 0.277,
+    "5": 0.3095,
+    "6": 0.3371,
+    "7": 0.1705,
+    "8": 0.252,
+    "9": 0.1933,
+    "10": 0.2537,
+    "11": 0.2234,
+    "12": 0.1614
   }
 }

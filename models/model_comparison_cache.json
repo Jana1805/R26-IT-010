@@ -1,0 +1,175 @@
+{
+  "models": [
+    {
+      "model_name": "K-Means",
+      "model_type": "Partitioning",
+      "description": "Iterative clustering algorithm that minimizes within-cluster variance",
+      "n_clusters": 2,
+      "silhouette_score": 0.4729,
+      "davies_bouldin_index": 0.8373,
+      "calinski_harabasz_score": 1367.3276,
+      "noise_points": 0,
+      "cluster_distribution": {
+        "0": 1396,
+        "1": 581
+      },
+      "silhouette_rank": 2,
+      "davies_bouldin_rank": 2,
+      "calinski_harabasz_rank": 1,
+      "mean_rank": 1.667,
+      "rank": 1,
+      "status": "Best Model"
+    },
+    {
+      "model_name": "Agglomerative Clustering",
+      "model_type": "Hierarchical",
+      "description": "Hierarchical clustering using Ward linkage to minimize variance",
+      "n_clusters": 2,
+      "silhouette_score": 0.4536,
+      "davies_bouldin_index": 0.7929,
+      "calinski_harabasz_score": 1324.1035,
+      "noise_points": 0,
+      "cluster_distribution": {
+        "0": 1417,
+        "1": 560
+      },
+      "silhouette_rank": 3,
+      "davies_bouldin_rank": 1,
+      "calinski_harabasz_rank": 2,
+      "mean_rank": 2.0,
+      "rank": 2,
+      "status": "Alternative"
+    },
+    {
+      "model_name": "Gaussian Mixture Model",
+      "model_type": "Probabilistic",
+      "description": "Probabilistic model assuming clusters follow Gaussian distributions",
+      "n_clusters": 2,
+      "silhouette_score": 0.6558,
+      "davies_bouldin_index": 2.9566,
+      "calinski_harabasz_score": 58.4577,
+      "noise_points": 0,
+      "cluster_distribution": {
+        "0": 1940,
+        "1": 37
+      },
+      "silhouette_rank": 1,
+      "davies_bouldin_rank": 3,
+      "calinski_harabasz_rank": 3,
+      "mean_rank": 2.333,
+      "rank": 3,
+      "status": "Alternative"
+    },
+    {
+      "model_name": "DBSCAN",
+      "model_type": "Density-Based",
+      "description": "Density-based clustering that identifies clusters of arbitrary shape",
+      "n_clusters": 1,
+      "silhouette_score": null,
+      "davies_bouldin_index": null,
+      "calinski_harabasz_score": null,
+      "noise_points": 60,
+      "cluster_distribution": {
+        "-1": 60,
+        "0": 1917
+      },
+      "eps": 4.4183,
+      "knee_percentile": 96.81,
+      "silhouette_rank": null,
+      "davies_bouldin_rank": null,
+      "calinski_harabasz_rank": null,
+      "mean_rank": null,
+      "rank": null,
+      "status": "Not applicable - single cluster"
+    }
+  ],
+  "best_model": {
+    "model_name": "K-Means",
+    "model_type": "Partitioning",
+    "description": "Iterative clustering algorithm that minimizes within-cluster variance",
+    "n_clusters": 2,
+    "silhouette_score": 0.4729,
+    "davies_bouldin_index": 0.8373,
+    "calinski_harabasz_score": 1367.3276,
+    "noise_points": 0,
+    "cluster_distribution": {
+      "0": 1396,
+      "1": 581
+    },
+    "silhouette_rank": 2,
+    "davies_bouldin_rank": 2,
+    "calinski_harabasz_rank": 1,
+    "mean_rank": 1.667,
+    "rank": 1,
+    "status": "Best Model"
+  },
+  "explanation": "K-Means ranks best overall (mean rank=1.667) across Silhouette (rank 2), Davies-Bouldin (rank 2), and Calinski-Harabasz (rank 1) combined. It is not the top performer on any single metric, but is consistently near the top across all three. Gaussian Mixture Model has the highest Silhouette Score (0.6558) of any model, but the worst Davies-Bouldin Index (2.9566) and worst Calinski-Harabasz Score (58.4577) -- a Silhouette-only ranking would have selected it despite that.",
+  "summary_points": [
+    "Best mean rank (1.667) across Silhouette (rank 2), Davies-Bouldin (rank 2), and Calinski-Harabasz (rank 1)",
+    "Good Silhouette Score (0.4729) indicating reasonable cluster separation",
+    "Competitive Davies-Bouldin Index (0.8373) indicating compact clusters",
+    "Produces 2 meaningful clusters with balanced distribution",
+    "Efficient and scalable for large datasets"
+  ],
+  "comparison_table": [
+    {
+      "model": "K-Means",
+      "silhouette_score": 0.4729,
+      "davies_bouldin_index": 0.8373,
+      "calinski_harabasz_score": 1367.3276,
+      "silhouette_rank": 2,
+      "davies_bouldin_rank": 2,
+      "calinski_harabasz_rank": 1,
+      "mean_rank": 1.667,
+      "n_clusters": 2,
+      "noise_points": 0,
+      "rank": 1,
+      "status": "Best Model"
+    },
+    {
+      "model": "Agglomerative Clustering",
+      "silhouette_score": 0.4536,
+      "davies_bouldin_index": 0.7929,
+      "calinski_harabasz_score": 1324.1035,
+      "silhouette_rank": 3,
+      "davies_bouldin_rank": 1,
+      "calinski_harabasz_rank": 2,
+      "mean_rank": 2.0,
+      "n_clusters": 2,
+      "noise_points": 0,
+      "rank": 2,
+      "status": "Alternative"
+    },
+    {
+      "model": "Gaussian Mixture Model",
+      "silhouette_score": 0.6558,
+      "davies_bouldin_index": 2.9566,
+      "calinski_harabasz_score": 58.4577,
+      "silhouette_rank": 1,
+      "davies_bouldin_rank": 3,
+      "calinski_harabasz_rank": 3,
+      "mean_rank": 2.333,
+      "n_clusters": 2,
+      "noise_points": 0,
+      "rank": 3,
+      "status": "Alternative"
+    },
+    {
+      "model": "DBSCAN",
+      "silhouette_score": "N/A",
+      "davies_bouldin_index": "N/A",
+      "calinski_harabasz_score": "N/A",
+      "silhouette_rank": null,
+      "davies_bouldin_rank": null,
+      "calinski_harabasz_rank": null,
+      "mean_rank": "N/A",
+      "n_clusters": 1,
+      "noise_points": 60,
+      "rank": null,
+      "status": "Not applicable - single cluster"
+    }
+  ],
+  "total_days": 1977,
+  "cached": false,
+  "computed_at": "2026-09-01T02:28:05.019501+00:00"
+}

@@ -3,33 +3,27 @@ from typing import Tuple
 
 import pandas as pd
 
+# Explicit column names to avoid auto-detection bugs
+DEMAND_COLUMN = "Load Demand (kW)"
+TIMESTAMP_COLUMN = "Timestamp"
+
 
 def load_raw_dataset(filepath: Path) -> Tuple[pd.DataFrame, str, str]:
-    """Load the raw CSV, auto-detect Timestamp and Load Demand columns, parse, and sort.
+    """Load the raw CSV, parse timestamp and demand columns, and sort.
 
     Returns:
         (df, ts_col_name, demand_col_name)
     """
     df = pd.read_csv(filepath)
 
-    col_lower = {col.lower(): col for col in df.columns}
+    # Use explicit column names instead of auto-detection
+    ts_col = TIMESTAMP_COLUMN
+    demand_col = DEMAND_COLUMN
 
-    ts_col = None
-    for key, col in col_lower.items():
-        if "timestamp" in key or "time" in key or "date" in key:
-            ts_col = col
-            break
-
-    demand_col = None
-    for key, col in col_lower.items():
-        if "load" in key or "demand" in key:
-            demand_col = col
-            break
-
-    if ts_col is None:
-        raise ValueError(f"No timestamp column found. Available columns: {list(df.columns)}")
-    if demand_col is None:
-        raise ValueError(f"No demand column found. Available columns: {list(df.columns)}")
+    if ts_col not in df.columns:
+        raise ValueError(f"Timestamp column '{ts_col}' not found. Available columns: {list(df.columns)}")
+    if demand_col not in df.columns:
+        raise ValueError(f"Demand column '{demand_col}' not found. Available columns: {list(df.columns)}")
 
     df[ts_col] = pd.to_datetime(df[ts_col], dayfirst=False, infer_datetime_format=True)
     df[demand_col] = pd.to_numeric(df[demand_col], errors="coerce")

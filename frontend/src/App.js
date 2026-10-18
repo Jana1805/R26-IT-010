@@ -150,8 +150,19 @@ export default function BehaviorIntelligenceDashboard() {
     <div className="app">
       {/* ── Header ── */}
       <header className="app-header">
-        <h1>Electricity Demand Behaviour Intelligence</h1>
-        <p>Sri Lanka Grid Analysis — AI-Powered Daily Pattern Classification</p>
+        <div className="app-header-inner">
+          <div className="app-header-brand">
+            <span className="app-component-tag">Component 01</span>
+            <h1 className="app-header-title">Behaviour Intelligence</h1>
+            <p className="app-header-sub">Sri Lanka Electricity Grid · Daily Demand Pattern Analysis</p>
+          </div>
+          <div className="app-header-methods">
+            <span className="method-tag">K-Means Clustering</span>
+            <span className="method-tag">DBSCAN</span>
+            <span className="method-tag">Isolation Forest</span>
+            <span className="method-tag">Anomaly Detection</span>
+          </div>
+        </div>
       </header>
 
       <main className="app-main">
@@ -212,9 +223,9 @@ export default function BehaviorIntelligenceDashboard() {
             <h3 className="chart-title">Risk Level Distribution</h3>
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={dashboardData.risk_distribution} margin={{ top: 10, right: 20, left: 0, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                <XAxis dataKey="risk" tick={{ fontSize: 13 }} />
-                <YAxis tick={{ fontSize: 12 }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                <XAxis dataKey="risk" tick={{ fontSize: 12, fill: '#94a3b8' }} />
+                <YAxis tick={{ fontSize: 12, fill: '#94a3b8' }} />
                 <Tooltip />
                 <Bar dataKey="count" radius={[4, 4, 0, 0]}>
                   {dashboardData.risk_distribution.map((entry) => (
@@ -238,17 +249,17 @@ export default function BehaviorIntelligenceDashboard() {
                   data={topAnomalyDays}
                   margin={{ top: 10, right: 20, left: 10, bottom: 50 }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                   <XAxis
                     dataKey="date"
-                    tick={{ fontSize: 10 }}
+                    tick={{ fontSize: 10, fill: '#94a3b8' }}
                     angle={-40}
                     textAnchor="end"
                     interval={0}
                   />
                   <YAxis
-                    tick={{ fontSize: 11 }}
-                    label={{ value: 'Anomaly Score', angle: -90, position: 'insideLeft', offset: 5, style: { fontSize: 11 } }}
+                    tick={{ fontSize: 11, fill: '#94a3b8' }}
+                    label={{ value: 'Anomaly Score', angle: -90, position: 'insideLeft', offset: 5, style: { fontSize: 11, fill: '#94a3b8' } }}
                   />
                   <Tooltip
                     formatter={(v, name, props) => [
@@ -283,11 +294,11 @@ export default function BehaviorIntelligenceDashboard() {
                     data={anomalyTrend}
                     margin={{ top: 10, right: 20, left: 10, bottom: 5 }}
                   >
-                    <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                     <XAxis dataKey="date" tick={false} />
                     <YAxis
-                      tick={{ fontSize: 11 }}
-                      label={{ value: 'Anomaly Score', angle: -90, position: 'insideLeft', offset: 5, style: { fontSize: 11 } }}
+                      tick={{ fontSize: 11, fill: '#94a3b8' }}
+                      label={{ value: 'Anomaly Score', angle: -90, position: 'insideLeft', offset: 5, style: { fontSize: 11, fill: '#94a3b8' } }}
                     />
                     <Tooltip
                       formatter={(v) => [v.toFixed(4), 'Anomaly Score']}
@@ -437,18 +448,18 @@ export default function BehaviorIntelligenceDashboard() {
                   data={dayProfile.profile_points}
                   margin={{ top: 10, right: 20, left: 10, bottom: 5 }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                   <XAxis
                     dataKey="slot"
                     type="number"
                     domain={[0, 95]}
                     ticks={PROFILE_TICKS}
                     tickFormatter={(v) => PROFILE_TICK_LABELS[v] || ''}
-                    tick={{ fontSize: 12 }}
+                    tick={{ fontSize: 12, fill: '#94a3b8' }}
                   />
                   <YAxis
-                    tick={{ fontSize: 12 }}
-                    label={{ value: 'Load Demand (kW)', angle: -90, position: 'insideLeft', offset: 10, style: { fontSize: 12 } }}
+                    tick={{ fontSize: 12, fill: '#94a3b8' }}
+                    label={{ value: 'Load Demand (kW)', angle: -90, position: 'insideLeft', offset: 10, style: { fontSize: 12, fill: '#94a3b8' } }}
                   />
                   <Tooltip
                     formatter={(v) => [`${v.toFixed(1)} kW`, 'Load']}

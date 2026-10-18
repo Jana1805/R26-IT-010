@@ -1,0 +1,28 @@
+Model,K,Silhouette,DaviesBouldin,CalinskiHarabasz
+K-Means,2,0.8661,4.0018,59.2805
+Agglomerative (Ward),2,0.8655,4.0243,54.4065
+Gaussian Mixture,2,0.8658,4.4151,53.4238
+K-Means,3,0.8677,4.144,53.1004
+Agglomerative (Ward),3,0.8649,3.3686,55.8051
+Gaussian Mixture,3,0.8497,4.7232,41.0088
+K-Means,4,0.8674,3.3658,47.9831
+Agglomerative (Ward),4,0.866,3.2146,56.2454
+Gaussian Mixture,4,0.8674,3.8274,42.239
+K-Means,5,0.8678,2.7953,45.3978
+Agglomerative (Ward),5,0.8645,3.1285,56.7163
+Gaussian Mixture,5,0.8673,3.2638,40.6032
+K-Means,6,0.8683,2.885,46.0335
+Agglomerative (Ward),6,0.8655,3.0483,57.3079
+Gaussian Mixture,6,0.8683,2.885,46.0335
+K-Means,7,0.8667,2.098,44.5585
+Agglomerative (Ward),7,0.8656,2.7248,57.7753
+Gaussian Mixture,7,0.863,2.582,38.757
+K-Means,8,0.8653,1.9753,43.3866
+Agglomerative (Ward),8,0.8672,2.8575,58.4237
+Gaussian Mixture,8,0.8666,2.5461,39.3986
+K-Means,9,0.8648,2.1797,44.0996
+Agglomerative (Ward),9,0.8673,2.7719,58.2675
+Gaussian Mixture,9,0.8666,2.2141,42.2211
+K-Means,10,0.8672,2.0649,43.8421
+Agglomerative (Ward),10,0.8674,2.6728,58.3766
+Gaussian Mixture,10,0.83,2.0572,41.1339

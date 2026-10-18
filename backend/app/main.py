@@ -1,15 +1,8 @@
-import sys
-from pathlib import Path
-
-# Add project root to Python path for absolute imports
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
-sys.path.insert(0, str(PROJECT_ROOT))
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.app.api.routes import router
-from backend.app.core.config import BACKEND_PORT, FRONTEND_URL
+from app.api.routes import router
+from app.core.config import FRONTEND_URL
 
 app = FastAPI(
     title="Behaviour Intelligence API",

@@ -1,0 +1,9 @@
+{
+  "total_days": 1978,
+  "anomaly_days": 76,
+  "anomaly_percentage": 3.84,
+  "isolation_forest_anomaly_count": 60,
+  "z_score_anomaly_count": 18,
+  "final_anomaly_count": 76,
+  "note": "Precision, Recall, and F1-score require verified abnormal event labels and are not calculated in this version."
+}
