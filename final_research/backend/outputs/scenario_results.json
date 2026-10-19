@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "baseline_samples": 1000,
+    "model_type": "GradientBoostingRegressor",
+    "features_count": 13,
+    "baseline_demand": 1423.5561205306149,
+    "model_performance": {
+      "train_r2": 0.8278199472093739,
+      "test_r2": 0.8237240455045933,
+      "train_mae": 91.06283601367524,
+      "test_mae": 91.76852729662471,
+      "train_rmse": 114.22849250872251,
+      "test_rmse": 115.07719914361772,
+      "chronological_test_r2": 0.8260875548617025,
+      "chronological_test_mae": 91.65410806883953
+    }
+  },
+  "scenarios": {
+    "heat_wave": {
+      "baseline_demand": 1423.5561205306149,
+      "scenario_demand": 1571.990491541534,
+      "absolute_change": 148.43437101091922,
+      "percentage_change": 10.42701224561431
+    },
+    "cold_spell": {
+      "baseline_demand": 1423.5561205306149,
+      "scenario_demand": 1361.8180764629785,
+      "absolute_change": -61.73804406763634,
+      "percentage_change": -4.33688866755911
+    },
+    "price_shock": {
+      "baseline_demand": 1423.5561205306149,
+      "scenario_demand": 1320.7446091869413,
+      "absolute_change": -102.8115113436736,
+      "percentage_change": -7.222160746662502
+    },
+    "economic_boom": {
+      "baseline_demand": 1423.5561205306149,
+      "scenario_demand": 1532.6409318685182,
+      "absolute_change": 109.08481133790337,
+      "percentage_change": 7.662838841734122
+    }
+  }
+}

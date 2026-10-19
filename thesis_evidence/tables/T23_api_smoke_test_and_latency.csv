@@ -1,0 +1,25 @@
+test,method,path,http_status,passed,calls,median_ms,min_ms,max_ms,response_bytes,note
+health,GET,/health,200,True,20,6.2,5.6,25.4,50,
+openapi schema served,GET,/openapi.json,200,True,1,22.6,22.6,22.6,4482,12 paths
+POST generate-daily-profiles,POST,/api/generate-daily-profiles,200,True,1,2223.5,2223.5,2223.5,136,Daily profiles generated successfully.
+POST run-clustering,POST,/api/run-clustering,200,True,1,8171.0,8171.0,8171.0,722,Clustering completed successfully.
+POST run-anomaly-detection,POST,/api/run-anomaly-detection,200,True,1,1028.8,1028.8,1028.8,199,Anomaly detection completed successfully.
+POST detect-peak-days,POST,/api/detect-peak-days,200,True,1,368.5,368.5,368.5,203,Peak detection completed successfully.
+POST generate-behavior-labels,POST,/api/generate-behavior-labels,200,True,1,486.9,486.9,486.9,458,Behaviour labeling completed successfully.
+GET dashboard-summary,GET,/api/dashboard-summary,200,True,20,155.5,146.4,218.4,524202,Dashboard summary loaded.
+GET get-day-profile (valid date),GET,/api/get-day-profile?date=2024-07-04,200,True,20,113.7,109.2,143.4,5029,Profile for 2024-07-04 loaded.
+GET get-day-profile (unknown date -> success=false),GET,/api/get-day-profile?date=1999-01-01,200,True,1,113.8,113.8,113.8,77,No profile found for date: 1999-01-01
+GET get-day-profile (missing param -> 422),GET,/api/get-day-profile,422,True,1,16.0,16.0,16.0,90,
+GET predict-future-behavior (future date),GET,/api/predict-future-behavior?date=2026-10-12,200,True,20,73.0,70.0,107.1,537,Prediction for 2026-10-12 generated.
+GET predict-future-behavior (invalid date -> success=false),GET,/api/predict-future-behavior?date=not-a-date,200,True,1,79.4,79.4,79.4,114,"Unknown datetime string format, unable to parse: not-a-date, at position 0"
+"GET model-comparison (cold, computes)",GET,/api/model-comparison,200,True,1,1786.6,1786.6,1786.6,4379,Model comparison completed.
+GET model-comparison (cached),GET,/api/model-comparison,200,True,20,8.9,8.2,22.1,4378,Model comparison completed.
+"GET anomaly-comparison (cold, 20 bootstrap resamples)",GET,/api/anomaly-comparison,200,True,1,28147.0,28147.0,28147.0,4677,Anomaly comparison completed.
+GET anomaly-comparison (cached),GET,/api/anomaly-comparison,200,True,20,9.5,8.4,38.8,4676,Anomaly comparison completed.
+GET download-report (all days),GET,/api/download-report,200,True,5,91.7,89.4,103.7,357223,1977 data rows
+GET download-report (label filter),GET,/api/download-report?label=Abnormal Demand Day,200,True,5,71.5,70.0,74.8,3758,21 data rows
+GET download-report (unknown label -> header only),GET,/api/download-report?label=Nope,200,True,1,72.2,72.2,72.2,156,header row only
+CORS allows http://localhost:3000,GET,/health,200,True,1,6.6,6.6,6.6,50,
+CORS does not allow other origins,GET,/health,200,True,1,6.3,6.3,6.3,50,
+GET dashboard-summary before pipeline run -> success=false,GET,/api/dashboard-summary,200,True,1,6.6,6.6,6.6,109,Pipeline has not been run yet. Please run all 5 pipeline steps first.
+GET download-report before pipeline run -> 404,GET,/api/download-report,404,True,1,6.4,6.4,6.4,88,behavior_labels.csv not found - run the behaviour labelling pipeline first.

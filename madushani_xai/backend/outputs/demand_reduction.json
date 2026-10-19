@@ -1,0 +1,234 @@
+{
+  "features": [
+    {
+      "name": "Temperature",
+      "actionable": false,
+      "avg_shap": 157.5483,
+      "peak_shap": 252.1195,
+      "excess_shap": 94.5712,
+      "reason": "Outdoor temperature is set by weather and cannot be modified",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "Humidity",
+      "actionable": false,
+      "avg_shap": 0.0141,
+      "peak_shap": 0.0145,
+      "excess_shap": 0.0004,
+      "reason": "Atmospheric humidity follows weather patterns beyond human control",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "Wind Speed",
+      "actionable": false,
+      "avg_shap": 0.0016,
+      "peak_shap": 0.0014,
+      "excess_shap": -0.0002,
+      "reason": "Wind conditions are determined by natural weather systems",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "Rainfall",
+      "actionable": false,
+      "avg_shap": 0.0191,
+      "peak_shap": 0.0201,
+      "excess_shap": 0.001,
+      "reason": "Precipitation is a natural phenomenon beyond control",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "Solar Irradiance",
+      "actionable": false,
+      "avg_shap": 0.0078,
+      "peak_shap": 0.014,
+      "excess_shap": 0.0062,
+      "reason": "Solar radiation depends on atmospheric and astronomical conditions",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "GDP",
+      "actionable": false,
+      "avg_shap": 0.0076,
+      "peak_shap": 0.0104,
+      "excess_shap": 0.0028,
+      "reason": "Macroeconomic output cannot be adjusted in the short term",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "Per Capita Energy Use",
+      "actionable": true,
+      "avg_shap": 0.013,
+      "peak_shap": 0.0124,
+      "excess_shap": -0.0006,
+      "action": "Roll out energy efficiency programmes and smart meter incentives",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "Electricity Price",
+      "actionable": true,
+      "avg_shap": 0.0095,
+      "peak_shap": 0.0094,
+      "excess_shap": -0.0001,
+      "action": "Implement time-of-use tariffs to incentivise shifting consumption off-peak",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "Day of Week",
+      "actionable": true,
+      "avg_shap": 0.0002,
+      "peak_shap": 0.0005,
+      "excess_shap": 0.0003,
+      "action": "Reschedule high-consumption industrial activities to lower-demand days",
+      "reduction_potential": 0.0003
+    },
+    {
+      "name": "Hour of Day",
+      "actionable": true,
+      "avg_shap": 0.0101,
+      "peak_shap": 0.0098,
+      "excess_shap": -0.0004,
+      "action": "Shift industrial and commercial loads to off-peak hours (11 pm to 6 am)",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "Month",
+      "actionable": false,
+      "avg_shap": 0.0025,
+      "peak_shap": 0.0026,
+      "excess_shap": 0.0001,
+      "reason": "Calendar time is fixed and cannot be changed",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "Public Event",
+      "actionable": true,
+      "avg_shap": 0.0114,
+      "peak_shap": 0.0104,
+      "excess_shap": -0.001,
+      "action": "Manage large event scheduling and apply temporary demand restrictions",
+      "reduction_potential": 0.0
+    }
+  ],
+  "actionable_features": [
+    {
+      "name": "Day of Week",
+      "actionable": true,
+      "avg_shap": 0.0002,
+      "peak_shap": 0.0005,
+      "excess_shap": 0.0003,
+      "action": "Reschedule high-consumption industrial activities to lower-demand days",
+      "reduction_potential": 0.0003
+    },
+    {
+      "name": "Per Capita Energy Use",
+      "actionable": true,
+      "avg_shap": 0.013,
+      "peak_shap": 0.0124,
+      "excess_shap": -0.0006,
+      "action": "Roll out energy efficiency programmes and smart meter incentives",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "Electricity Price",
+      "actionable": true,
+      "avg_shap": 0.0095,
+      "peak_shap": 0.0094,
+      "excess_shap": -0.0001,
+      "action": "Implement time-of-use tariffs to incentivise shifting consumption off-peak",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "Hour of Day",
+      "actionable": true,
+      "avg_shap": 0.0101,
+      "peak_shap": 0.0098,
+      "excess_shap": -0.0004,
+      "action": "Shift industrial and commercial loads to off-peak hours (11 pm to 6 am)",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "Public Event",
+      "actionable": true,
+      "avg_shap": 0.0114,
+      "peak_shap": 0.0104,
+      "excess_shap": -0.001,
+      "action": "Manage large event scheduling and apply temporary demand restrictions",
+      "reduction_potential": 0.0
+    }
+  ],
+  "non_actionable_features": [
+    {
+      "name": "Temperature",
+      "actionable": false,
+      "avg_shap": 157.5483,
+      "peak_shap": 252.1195,
+      "excess_shap": 94.5712,
+      "reason": "Outdoor temperature is set by weather and cannot be modified",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "Rainfall",
+      "actionable": false,
+      "avg_shap": 0.0191,
+      "peak_shap": 0.0201,
+      "excess_shap": 0.001,
+      "reason": "Precipitation is a natural phenomenon beyond control",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "Humidity",
+      "actionable": false,
+      "avg_shap": 0.0141,
+      "peak_shap": 0.0145,
+      "excess_shap": 0.0004,
+      "reason": "Atmospheric humidity follows weather patterns beyond human control",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "Solar Irradiance",
+      "actionable": false,
+      "avg_shap": 0.0078,
+      "peak_shap": 0.014,
+      "excess_shap": 0.0062,
+      "reason": "Solar radiation depends on atmospheric and astronomical conditions",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "GDP",
+      "actionable": false,
+      "avg_shap": 0.0076,
+      "peak_shap": 0.0104,
+      "excess_shap": 0.0028,
+      "reason": "Macroeconomic output cannot be adjusted in the short term",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "Month",
+      "actionable": false,
+      "avg_shap": 0.0025,
+      "peak_shap": 0.0026,
+      "excess_shap": 0.0001,
+      "reason": "Calendar time is fixed and cannot be changed",
+      "reduction_potential": 0.0
+    },
+    {
+      "name": "Wind Speed",
+      "actionable": false,
+      "avg_shap": 0.0016,
+      "peak_shap": 0.0014,
+      "excess_shap": -0.0002,
+      "reason": "Wind conditions are determined by natural weather systems",
+      "reduction_potential": 0.0
+    }
+  ],
+  "total_reduction_potential": 0.0003,
+  "total_avg_shap_all": 157.6452,
+  "non_actionable_shap_total": 157.601,
+  "actionable_shap_total": 0.0442,
+  "demand_stats": {
+    "mean_demand": 1500.97,
+    "peak_threshold": 1630.43,
+    "high_demand_count": 750,
+    "sample_size": 3000
+  }
+}

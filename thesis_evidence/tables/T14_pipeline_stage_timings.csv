@@ -1,0 +1,9 @@
+stage,seconds
+load_raw_dataset,0.413
+preprocess_timeseries,0.221
+to_daily_profiles,0.137
+run_clustering_pipeline (k=2..12 sweep + KMeans + DBSCAN),5.795
+run_anomaly_detection_pipeline (IsolationForest + z-score),1.245
+detect_peak_days,0.396
+generate_behavior_labels_from_csv,0.65
+TOTAL pipeline,8.857

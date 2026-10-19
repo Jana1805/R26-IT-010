@@ -1,0 +1,5 @@
+,Isolation Forest,Z-Score,One-Class SVM,Local Outlier Factor
+Isolation Forest,1.0,0.9028,0.0767,0.2046
+Z-Score,0.9028,1.0,-0.1097,-0.0081
+One-Class SVM,0.0767,-0.1097,1.0,0.5313
+Local Outlier Factor,0.2046,-0.0081,0.5313,1.0

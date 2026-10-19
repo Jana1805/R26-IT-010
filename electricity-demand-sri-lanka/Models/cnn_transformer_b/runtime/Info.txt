@@ -1,0 +1,3 @@
+CNN-Transformer With Mc Dropout
+
+CNN-Transformer V2 exploratory capacity-matching experiment — rejected due to substantial underfitting.

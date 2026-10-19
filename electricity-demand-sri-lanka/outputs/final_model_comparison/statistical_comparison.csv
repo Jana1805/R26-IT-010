@@ -1,0 +1,6 @@
+model_a,model_b,mean_absolute_error_difference_kw,p_value
+cnn_transformer_mc,cnn_lstm_b,-0.061260413455917595,0.9040959040959041
+cnn_transformer_mc,lstm,-10.26039865547112,0.000999000999000999
+cnn_transformer_mc,transformer,-12.150043497900834,0.000999000999000999
+cnn_transformer_mc,cnn_transformer_b,-18.339568602859117,0.000999000999000999
+cnn_transformer_mc,cnn,-18.99847488441303,0.000999000999000999

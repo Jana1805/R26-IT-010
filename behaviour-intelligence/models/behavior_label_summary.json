@@ -1,0 +1,34 @@
+{
+  "total_days": 1977,
+  "label_counts": {
+    "Normal Demand Day": 1279,
+    "Low Demand Day": 465,
+    "Peak Demand Day": 212,
+    "Abnormal Demand Day": 21
+  },
+  "label_percentages": {
+    "Normal Demand Day": 64.69,
+    "Low Demand Day": 23.52,
+    "Peak Demand Day": 10.72,
+    "Abnormal Demand Day": 1.06
+  },
+  "low_demand_threshold": 1616.61,
+  "risk_distribution": {
+    "Normal": 1279,
+    "Low": 465,
+    "Medium": 212,
+    "High": 21
+  },
+  "peak_detection": {
+    "total_days": 1977,
+    "peak_days": 212,
+    "peak_days_by_condition": {
+      "peak_ge_p90": 198,
+      "signed_z_gt_threshold": 0,
+      "anomaly_and_peak_ge_p75": 39
+    },
+    "non_peak_days": 1765,
+    "threshold_90th_percentile": 2884.67,
+    "threshold_75th_percentile": 2819.01
+  }
+}

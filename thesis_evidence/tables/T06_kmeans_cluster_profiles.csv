@@ -1,0 +1,3 @@
+cluster,days,share_pct,mean_demand_kw,mean_peak_kw,mean_min_kw,mean_intraday_std_kw,peak_time_of_mean_profile,trough_time_of_mean_profile,weekend_pct,anomaly_days,Mon,Tue,Wed,Thu,Fri,Sat,Sun,Normal Weekday Demand,Peak Demand Day,Holiday / Low Demand Day,Abnormal Demand Day
+0,1396,70.61,1839.9,2723.4,1504.53,287.53,19:30,02:00,0.0,24,278,279,279,279,281,0,0,1199,195,0,2
+1,581,29.39,1510.93,2275.3,1211.61,257.93,19:30,01:15,97.07,36,4,3,4,4,2,282,282,80,86,396,19

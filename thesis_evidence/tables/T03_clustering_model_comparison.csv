@@ -1,0 +1,5 @@
+model,k,silhouette,davies_bouldin,calinski_harabasz,n_clusters,noise_points,noise_pct,cluster_sizes,runtime_s,silhouette_rank,davies_bouldin_rank,calinski_harabasz_rank,mean_rank
+K-Means,2,0.4729,0.8373,1367.33,2,0,0.0,1396/581,0.232,2.0,2.0,1.0,1.667
+Agglomerative (Ward),2,0.4536,0.7929,1324.1,2,0,0.0,1417/560,0.282,3.0,1.0,2.0,2.0
+Gaussian Mixture,2,0.6558,2.9566,58.46,2,0,0.0,1940/37,0.12,1.0,3.0,3.0,2.333
+"DBSCAN (eps=4.4183, min_samples=8)",,,,,1,60,3.03,1917,0.059,,,,

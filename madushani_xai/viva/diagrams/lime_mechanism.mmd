@@ -1,0 +1,17 @@
+flowchart TB
+    A["① Instance to explain<br/>x = 12 feature values, e.g. 2025-01-25 10:45<br/>(the day's highest-demand reading)"]
+    B["② Discretise<br/>split each feature into quartile bins of a<br/>2,000-row background sample (QuartileDiscretizer)<br/>e.g. Temperature: ≤ 26.65 · 26.65–28.02 · 28.02–29.29 · > 29.29"]
+    C["③ Perturb<br/>draw 1,000 synthetic rows by sampling bins<br/>z = 1 if a feature stays in x's bin, else 0"]
+    D["④ Predict<br/>run the XGBoost model on every synthetic row"]
+    E["⑤ Kernel weights<br/>π(z) = √exp(−d² / σ²), σ = 0.75 · √12 ≈ 2.60<br/>rows closer to x count more"]
+    F["⑥ Weighted Ridge regression (α = 1)<br/>g(z) = w₀ + Σ wᵢ zᵢ fitted to the predictions"]
+    G["⑦ Output<br/>wᵢ = effect (kW) of being in x's bin, e.g. 'Temperature > 29.29: +359 kW'<br/>local prediction = w₀ + Σ wᵢ · fit R² = how well g mimics XGBoost near x"]
+    N["Implementation notes<br/>regression mode: real weights are local_exp[1] (key 0 is negated)<br/>random state re-seeded to 42 per request → same date, same answer"]
+
+    A --> B --> C --> D --> E --> F --> G
+    G -.- N
+
+    classDef step fill:#FDEEE7,stroke:#D95926,color:#0B0B0B
+    classDef note fill:#F4F4F2,stroke:#52514E,color:#0B0B0B
+    class A,B,C,D,E,F,G step
+    class N note

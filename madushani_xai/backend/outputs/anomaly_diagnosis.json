@@ -1,0 +1,1512 @@
+{
+  "instances": [
+    {
+      "id": 1,
+      "timestamp": "2022-11-04 11:15:00",
+      "actual": 1187.54,
+      "predicted": 1189.35,
+      "error_kw": 1.8044,
+      "error_pct": 0.1519,
+      "demand_level": "low",
+      "lime_r2": 0.6117,
+      "intercept": 1620.609,
+      "local_pred": 1198.0091,
+      "contributions": [
+        {
+          "feature": "Temperature",
+          "rule": "Temperature <= 26.65",
+          "weight": -351.0704,
+          "value": 24.8754
+        },
+        {
+          "feature": "Public Event",
+          "rule": "Public Event <= 0.00",
+          "weight": -18.081,
+          "value": 0.0
+        },
+        {
+          "feature": "Per Capita Energy Use",
+          "rule": "485.88 < Per Capita Energy Use <= 499.74",
+          "weight": -15.2287,
+          "value": 486.474
+        },
+        {
+          "feature": "Month",
+          "rule": "Month > 9.00",
+          "weight": -11.9719,
+          "value": 11.0
+        },
+        {
+          "feature": "GDP",
+          "rule": "GDP > 1032.79",
+          "weight": -10.2906,
+          "value": 1107.9944
+        },
+        {
+          "feature": "Solar Irradiance",
+          "rule": "250.81 < Solar Irradiance <= 283.58",
+          "weight": -8.9314,
+          "value": 254.1277
+        },
+        {
+          "feature": "Humidity",
+          "rule": "76.56 < Humidity <= 79.90",
+          "weight": -5.7755,
+          "value": 77.1491
+        },
+        {
+          "feature": "Electricity Price",
+          "rule": "25.12 < Electricity Price <= 28.45",
+          "weight": -5.4286,
+          "value": 25.4273
+        },
+        {
+          "feature": "Wind Speed",
+          "rule": "Wind Speed > 2.73",
+          "weight": 4.812,
+          "value": 3.1214
+        },
+        {
+          "feature": "Rainfall",
+          "rule": "Rainfall > 6.99",
+          "weight": -1.0228,
+          "value": 20.9189
+        },
+        {
+          "feature": "Hour of Day",
+          "rule": "5.00 < Hour of Day <= 12.00",
+          "weight": 0.761,
+          "value": 11.0
+        },
+        {
+          "feature": "Day of Week",
+          "rule": "3.00 < Day of Week <= 5.00",
+          "weight": -0.3718,
+          "value": 4.0
+        }
+      ],
+      "feature_values": {
+        "Temperature": 24.8754,
+        "Humidity": 77.1491,
+        "Wind Speed": 3.1214,
+        "Rainfall": 20.9189,
+        "Solar Irradiance": 254.1277,
+        "GDP": 1107.9944,
+        "Per Capita Energy Use": 486.474,
+        "Electricity Price": 25.4273,
+        "Day of Week": 4.0,
+        "Hour of Day": 11.0,
+        "Month": 11.0,
+        "Public Event": 0.0
+      }
+    },
+    {
+      "id": 2,
+      "timestamp": "2022-02-07 17:30:00",
+      "actual": 1331.65,
+      "predicted": 1331.2,
+      "error_kw": -0.4551,
+      "error_pct": 0.0342,
+      "demand_level": "low",
+      "lime_r2": 0.5593,
+      "intercept": 1580.38,
+      "local_pred": 1234.1257,
+      "contributions": [
+        {
+          "feature": "Temperature",
+          "rule": "Temperature <= 26.65",
+          "weight": -342.2088,
+          "value": 26.3165
+        },
+        {
+          "feature": "Wind Speed",
+          "rule": "Wind Speed > 2.73",
+          "weight": 12.3786,
+          "value": 3.5355
+        },
+        {
+          "feature": "Day of Week",
+          "rule": "Day of Week <= 1.00",
+          "weight": -11.0591,
+          "value": 0.0
+        },
+        {
+          "feature": "Month",
+          "rule": "Month <= 3.00",
+          "weight": -8.5946,
+          "value": 2.0
+        },
+        {
+          "feature": "Humidity",
+          "rule": "79.90 < Humidity <= 83.39",
+          "weight": 7.6892,
+          "value": 81.3638
+        },
+        {
+          "feature": "Public Event",
+          "rule": "Public Event <= 0.00",
+          "weight": 7.2887,
+          "value": 0.0
+        },
+        {
+          "feature": "Rainfall",
+          "rule": "3.49 < Rainfall <= 6.99",
+          "weight": -6.2527,
+          "value": 3.8543
+        },
+        {
+          "feature": "Per Capita Energy Use",
+          "rule": "Per Capita Energy Use <= 485.88",
+          "weight": -3.3852,
+          "value": 471.0091
+        },
+        {
+          "feature": "Solar Irradiance",
+          "rule": "Solar Irradiance > 283.58",
+          "weight": -2.83,
+          "value": 283.7501
+        },
+        {
+          "feature": "Electricity Price",
+          "rule": "21.79 < Electricity Price <= 25.12",
+          "weight": 2.7994,
+          "value": 22.5444
+        },
+        {
+          "feature": "GDP",
+          "rule": "GDP <= 965.36",
+          "weight": -2.448,
+          "value": 937.5595
+        },
+        {
+          "feature": "Hour of Day",
+          "rule": "12.00 < Hour of Day <= 18.00",
+          "weight": 0.3682,
+          "value": 17.0
+        }
+      ],
+      "feature_values": {
+        "Temperature": 26.3165,
+        "Humidity": 81.3638,
+        "Wind Speed": 3.5355,
+        "Rainfall": 3.8543,
+        "Solar Irradiance": 283.7501,
+        "GDP": 937.5595,
+        "Per Capita Energy Use": 471.0091,
+        "Electricity Price": 22.5444,
+        "Day of Week": 0.0,
+        "Hour of Day": 17.0,
+        "Month": 2.0,
+        "Public Event": 0.0
+      }
+    },
+    {
+      "id": 3,
+      "timestamp": "2021-09-10 00:45:00",
+      "actual": 1155.33,
+      "predicted": 1158.84,
+      "error_kw": 3.508,
+      "error_pct": 0.3036,
+      "demand_level": "low",
+      "lime_r2": 0.594,
+      "intercept": 1571.0536,
+      "local_pred": 1229.9386,
+      "contributions": [
+        {
+          "feature": "Temperature",
+          "rule": "Temperature <= 26.65",
+          "weight": -350.0665,
+          "value": 24.5533
+        },
+        {
+          "feature": "Public Event",
+          "rule": "Public Event <= 0.00",
+          "weight": 22.5785,
+          "value": 0.0
+        },
+        {
+          "feature": "Day of Week",
+          "rule": "3.00 < Day of Week <= 5.00",
+          "weight": -10.5668,
+          "value": 4.0
+        },
+        {
+          "feature": "Wind Speed",
+          "rule": "2.03 < Wind Speed <= 2.73",
+          "weight": 7.7809,
+          "value": 2.6005
+        },
+        {
+          "feature": "Month",
+          "rule": "6.00 < Month <= 9.00",
+          "weight": -7.7409,
+          "value": 9.0
+        },
+        {
+          "feature": "Rainfall",
+          "rule": "Rainfall <= 1.43",
+          "weight": 5.8643,
+          "value": 0.7924
+        },
+        {
+          "feature": "GDP",
+          "rule": "965.36 < GDP <= 998.20",
+          "weight": -5.4017,
+          "value": 989.1037
+        },
+        {
+          "feature": "Electricity Price",
+          "rule": "Electricity Price > 28.45",
+          "weight": -2.6778,
+          "value": 28.5786
+        },
+        {
+          "feature": "Per Capita Energy Use",
+          "rule": "Per Capita Energy Use > 511.73",
+          "weight": 1.5972,
+          "value": 516.4147
+        },
+        {
+          "feature": "Humidity",
+          "rule": "Humidity > 83.39",
+          "weight": -1.031,
+          "value": 84.3916
+        },
+        {
+          "feature": "Hour of Day",
+          "rule": "Hour of Day <= 5.00",
+          "weight": -0.898,
+          "value": 0.0
+        },
+        {
+          "feature": "Solar Irradiance",
+          "rule": "Solar Irradiance > 283.58",
+          "weight": -0.5532,
+          "value": 307.9071
+        }
+      ],
+      "feature_values": {
+        "Temperature": 24.5533,
+        "Humidity": 84.3916,
+        "Wind Speed": 2.6005,
+        "Rainfall": 0.7924,
+        "Solar Irradiance": 307.9071,
+        "GDP": 989.1037,
+        "Per Capita Energy Use": 516.4147,
+        "Electricity Price": 28.5786,
+        "Day of Week": 4.0,
+        "Hour of Day": 0.0,
+        "Month": 9.0,
+        "Public Event": 0.0
+      }
+    },
+    {
+      "id": 4,
+      "timestamp": "2024-03-03 13:30:00",
+      "actual": 1531.94,
+      "predicted": 1532.62,
+      "error_kw": 0.6855,
+      "error_pct": 0.0447,
+      "demand_level": "medium",
+      "lime_r2": 0.0376,
+      "intercept": 1579.5658,
+      "local_pred": 1524.58,
+      "contributions": [
+        {
+          "feature": "Temperature",
+          "rule": "28.02 < Temperature <= 29.29",
+          "weight": 71.1946,
+          "value": 28.3194
+        },
+        {
+          "feature": "Public Event",
+          "rule": "Public Event <= 0.00",
+          "weight": -68.8544,
+          "value": 0.0
+        },
+        {
+          "feature": "GDP",
+          "rule": "965.36 < GDP <= 998.20",
+          "weight": -28.4555,
+          "value": 989.5102
+        },
+        {
+          "feature": "Rainfall",
+          "rule": "1.43 < Rainfall <= 3.49",
+          "weight": -18.6013,
+          "value": 3.4489
+        },
+        {
+          "feature": "Per Capita Energy Use",
+          "rule": "Per Capita Energy Use > 511.73",
+          "weight": 14.0856,
+          "value": 518.5382
+        },
+        {
+          "feature": "Humidity",
+          "rule": "76.56 < Humidity <= 79.90",
+          "weight": -13.3025,
+          "value": 77.3409
+        },
+        {
+          "feature": "Hour of Day",
+          "rule": "12.00 < Hour of Day <= 18.00",
+          "weight": 12.2758,
+          "value": 13.0
+        },
+        {
+          "feature": "Solar Irradiance",
+          "rule": "Solar Irradiance > 283.58",
+          "weight": -11.811,
+          "value": 300.829
+        },
+        {
+          "feature": "Electricity Price",
+          "rule": "25.12 < Electricity Price <= 28.45",
+          "weight": -9.2859,
+          "value": 26.6519
+        },
+        {
+          "feature": "Month",
+          "rule": "Month <= 3.00",
+          "weight": -5.132,
+          "value": 3.0
+        },
+        {
+          "feature": "Day of Week",
+          "rule": "Day of Week > 5.00",
+          "weight": 4.5621,
+          "value": 6.0
+        },
+        {
+          "feature": "Wind Speed",
+          "rule": "Wind Speed > 2.73",
+          "weight": -1.6614,
+          "value": 3.2395
+        }
+      ],
+      "feature_values": {
+        "Temperature": 28.3194,
+        "Humidity": 77.3409,
+        "Wind Speed": 3.2395,
+        "Rainfall": 3.4489,
+        "Solar Irradiance": 300.829,
+        "GDP": 989.5102,
+        "Per Capita Energy Use": 518.5382,
+        "Electricity Price": 26.6519,
+        "Day of Week": 6.0,
+        "Hour of Day": 13.0,
+        "Month": 3.0,
+        "Public Event": 0.0
+      }
+    },
+    {
+      "id": 5,
+      "timestamp": "2021-02-09 05:45:00",
+      "actual": 1455.77,
+      "predicted": 1456.29,
+      "error_kw": 0.5196,
+      "error_pct": 0.0357,
+      "demand_level": "medium",
+      "lime_r2": 0.0509,
+      "intercept": 1536.3154,
+      "local_pred": 1438.7377,
+      "contributions": [
+        {
+          "feature": "Temperature",
+          "rule": "26.65 < Temperature <= 28.02",
+          "weight": -87.0377,
+          "value": 27.5577
+        },
+        {
+          "feature": "Rainfall",
+          "rule": "1.43 < Rainfall <= 3.49",
+          "weight": -31.3888,
+          "value": 1.6322
+        },
+        {
+          "feature": "Electricity Price",
+          "rule": "21.79 < Electricity Price <= 25.12",
+          "weight": 22.7945,
+          "value": 22.8254
+        },
+        {
+          "feature": "Day of Week",
+          "rule": "Day of Week <= 1.00",
+          "weight": 16.9305,
+          "value": 1.0
+        },
+        {
+          "feature": "Wind Speed",
+          "rule": "Wind Speed > 2.73",
+          "weight": 16.5624,
+          "value": 3.527
+        },
+        {
+          "feature": "Month",
+          "rule": "Month <= 3.00",
+          "weight": -12.529,
+          "value": 2.0
+        },
+        {
+          "feature": "Public Event",
+          "rule": "Public Event <= 0.00",
+          "weight": -10.8918,
+          "value": 0.0
+        },
+        {
+          "feature": "Humidity",
+          "rule": "79.90 < Humidity <= 83.39",
+          "weight": -10.5228,
+          "value": 81.1141
+        },
+        {
+          "feature": "GDP",
+          "rule": "965.36 < GDP <= 998.20",
+          "weight": 9.6086,
+          "value": 970.5152
+        },
+        {
+          "feature": "Hour of Day",
+          "rule": "Hour of Day <= 5.00",
+          "weight": -8.2552,
+          "value": 5.0
+        },
+        {
+          "feature": "Per Capita Energy Use",
+          "rule": "Per Capita Energy Use <= 485.88",
+          "weight": -4.855,
+          "value": 458.5133
+        },
+        {
+          "feature": "Solar Irradiance",
+          "rule": "215.58 < Solar Irradiance <= 250.81",
+          "weight": 2.0066,
+          "value": 230.2541
+        }
+      ],
+      "feature_values": {
+        "Temperature": 27.5577,
+        "Humidity": 81.1141,
+        "Wind Speed": 3.527,
+        "Rainfall": 1.6322,
+        "Solar Irradiance": 230.2541,
+        "GDP": 970.5152,
+        "Per Capita Energy Use": 458.5133,
+        "Electricity Price": 22.8254,
+        "Day of Week": 1.0,
+        "Hour of Day": 5.0,
+        "Month": 2.0,
+        "Public Event": 0.0
+      }
+    },
+    {
+      "id": 6,
+      "timestamp": "2020-04-21 16:30:00",
+      "actual": 1505.24,
+      "predicted": 1505.46,
+      "error_kw": 0.2267,
+      "error_pct": 0.0151,
+      "demand_level": "medium",
+      "lime_r2": 0.0564,
+      "intercept": 1434.3982,
+      "local_pred": 1531.59,
+      "contributions": [
+        {
+          "feature": "Temperature",
+          "rule": "28.02 < Temperature <= 29.29",
+          "weight": 92.3584,
+          "value": 28.0524
+        },
+        {
+          "feature": "Public Event",
+          "rule": "Public Event <= 0.00",
+          "weight": 59.4679,
+          "value": 0.0
+        },
+        {
+          "feature": "Electricity Price",
+          "rule": "25.12 < Electricity Price <= 28.45",
+          "weight": -33.3137,
+          "value": 27.4645
+        },
+        {
+          "feature": "Per Capita Energy Use",
+          "rule": "Per Capita Energy Use <= 485.88",
+          "weight": -15.4135,
+          "value": 460.8157
+        },
+        {
+          "feature": "Day of Week",
+          "rule": "Day of Week <= 1.00",
+          "weight": -14.98,
+          "value": 1.0
+        },
+        {
+          "feature": "Hour of Day",
+          "rule": "12.00 < Hour of Day <= 18.00",
+          "weight": -12.5697,
+          "value": 16.0
+        },
+        {
+          "feature": "Humidity",
+          "rule": "76.56 < Humidity <= 79.90",
+          "weight": 7.6257,
+          "value": 77.6467
+        },
+        {
+          "feature": "GDP",
+          "rule": "965.36 < GDP <= 998.20",
+          "weight": -7.3999,
+          "value": 986.5617
+        },
+        {
+          "feature": "Solar Irradiance",
+          "rule": "215.58 < Solar Irradiance <= 250.81",
+          "weight": 7.325,
+          "value": 236.718
+        },
+        {
+          "feature": "Rainfall",
+          "rule": "Rainfall > 6.99",
+          "weight": 6.6696,
+          "value": 10.7785
+        },
+        {
+          "feature": "Wind Speed",
+          "rule": "2.03 < Wind Speed <= 2.73",
+          "weight": 4.7283,
+          "value": 2.4956
+        },
+        {
+          "feature": "Month",
+          "rule": "3.00 < Month <= 6.00",
+          "weight": 2.6938,
+          "value": 4.0
+        }
+      ],
+      "feature_values": {
+        "Temperature": 28.0524,
+        "Humidity": 77.6467,
+        "Wind Speed": 2.4956,
+        "Rainfall": 10.7785,
+        "Solar Irradiance": 236.718,
+        "GDP": 986.5617,
+        "Per Capita Energy Use": 460.8157,
+        "Electricity Price": 27.4645,
+        "Day of Week": 1.0,
+        "Hour of Day": 16.0,
+        "Month": 4.0,
+        "Public Event": 0.0
+      }
+    },
+    {
+      "id": 7,
+      "timestamp": "2021-08-02 21:45:00",
+      "actual": 1514.29,
+      "predicted": 1513.39,
+      "error_kw": -0.9022,
+      "error_pct": 0.0596,
+      "demand_level": "medium",
+      "lime_r2": 0.0317,
+      "intercept": 1493.548,
+      "local_pred": 1560.4385,
+      "contributions": [
+        {
+          "feature": "Temperature",
+          "rule": "28.02 < Temperature <= 29.29",
+          "weight": 73.544,
+          "value": 28.1429
+        },
+        {
+          "feature": "Hour of Day",
+          "rule": "Hour of Day > 18.00",
+          "weight": 13.8018,
+          "value": 21.0
+        },
+        {
+          "feature": "Solar Irradiance",
+          "rule": "215.58 < Solar Irradiance <= 250.81",
+          "weight": -12.4438,
+          "value": 242.1079
+        },
+        {
+          "feature": "Rainfall",
+          "rule": "1.43 < Rainfall <= 3.49",
+          "weight": -10.8245,
+          "value": 2.1222
+        },
+        {
+          "feature": "Wind Speed",
+          "rule": "Wind Speed <= 1.34",
+          "weight": 9.8012,
+          "value": 0.8267
+        },
+        {
+          "feature": "Per Capita Energy Use",
+          "rule": "499.74 < Per Capita Energy Use <= 511.73",
+          "weight": -9.3027,
+          "value": 507.4616
+        },
+        {
+          "feature": "Day of Week",
+          "rule": "Day of Week <= 1.00",
+          "weight": 5.858,
+          "value": 0.0
+        },
+        {
+          "feature": "GDP",
+          "rule": "GDP > 1032.79",
+          "weight": -5.1017,
+          "value": 1097.9995
+        },
+        {
+          "feature": "Month",
+          "rule": "6.00 < Month <= 9.00",
+          "weight": 4.4828,
+          "value": 8.0
+        },
+        {
+          "feature": "Electricity Price",
+          "rule": "25.12 < Electricity Price <= 28.45",
+          "weight": -4.0206,
+          "value": 25.6584
+        },
+        {
+          "feature": "Humidity",
+          "rule": "Humidity > 83.39",
+          "weight": 1.624,
+          "value": 84.2457
+        },
+        {
+          "feature": "Public Event",
+          "rule": "Public Event <= 0.00",
+          "weight": -0.5281,
+          "value": 0.0
+        }
+      ],
+      "feature_values": {
+        "Temperature": 28.1429,
+        "Humidity": 84.2457,
+        "Wind Speed": 0.8267,
+        "Rainfall": 2.1222,
+        "Solar Irradiance": 242.1079,
+        "GDP": 1097.9995,
+        "Per Capita Energy Use": 507.4616,
+        "Electricity Price": 25.6584,
+        "Day of Week": 0.0,
+        "Hour of Day": 21.0,
+        "Month": 8.0,
+        "Public Event": 0.0
+      }
+    },
+    {
+      "id": 8,
+      "timestamp": "2025-04-26 15:15:00",
+      "actual": 1639.49,
+      "predicted": 1640.34,
+      "error_kw": 0.8459,
+      "error_pct": 0.0516,
+      "demand_level": "high",
+      "lime_r2": 0.5858,
+      "intercept": 1424.7056,
+      "local_pred": 1731.5941,
+      "contributions": [
+        {
+          "feature": "Temperature",
+          "rule": "Temperature > 29.29",
+          "weight": 345.9951,
+          "value": 29.3949
+        },
+        {
+          "feature": "GDP",
+          "rule": "998.20 < GDP <= 1032.79",
+          "weight": -23.0828,
+          "value": 1003.9553
+        },
+        {
+          "feature": "Solar Irradiance",
+          "rule": "215.58 < Solar Irradiance <= 250.81",
+          "weight": -11.9149,
+          "value": 236.9813
+        },
+        {
+          "feature": "Wind Speed",
+          "rule": "Wind Speed > 2.73",
+          "weight": -11.3079,
+          "value": 3.1559
+        },
+        {
+          "feature": "Month",
+          "rule": "3.00 < Month <= 6.00",
+          "weight": -8.2919,
+          "value": 4.0
+        },
+        {
+          "feature": "Humidity",
+          "rule": "76.56 < Humidity <= 79.90",
+          "weight": 8.2132,
+          "value": 78.064
+        },
+        {
+          "feature": "Day of Week",
+          "rule": "3.00 < Day of Week <= 5.00",
+          "weight": 6.7671,
+          "value": 5.0
+        },
+        {
+          "feature": "Per Capita Energy Use",
+          "rule": "499.74 < Per Capita Energy Use <= 511.73",
+          "weight": 6.2471,
+          "value": 511.4792
+        },
+        {
+          "feature": "Rainfall",
+          "rule": "3.49 < Rainfall <= 6.99",
+          "weight": -2.6282,
+          "value": 5.6388
+        },
+        {
+          "feature": "Hour of Day",
+          "rule": "12.00 < Hour of Day <= 18.00",
+          "weight": -2.4266,
+          "value": 15.0
+        },
+        {
+          "feature": "Public Event",
+          "rule": "Public Event <= 0.00",
+          "weight": -1.328,
+          "value": 0.0
+        },
+        {
+          "feature": "Electricity Price",
+          "rule": "21.79 < Electricity Price <= 25.12",
+          "weight": 0.6463,
+          "value": 24.1144
+        }
+      ],
+      "feature_values": {
+        "Temperature": 29.3949,
+        "Humidity": 78.064,
+        "Wind Speed": 3.1559,
+        "Rainfall": 5.6388,
+        "Solar Irradiance": 236.9813,
+        "GDP": 1003.9553,
+        "Per Capita Energy Use": 511.4792,
+        "Electricity Price": 24.1144,
+        "Day of Week": 5.0,
+        "Hour of Day": 15.0,
+        "Month": 4.0,
+        "Public Event": 0.0
+      }
+    },
+    {
+      "id": 9,
+      "timestamp": "2022-10-18 05:30:00",
+      "actual": 1707.05,
+      "predicted": 1705.45,
+      "error_kw": -1.6031,
+      "error_pct": 0.0939,
+      "demand_level": "high",
+      "lime_r2": 0.6162,
+      "intercept": 1410.833,
+      "local_pred": 1731.3944,
+      "contributions": [
+        {
+          "feature": "Temperature",
+          "rule": "Temperature > 29.29",
+          "weight": 358.8239,
+          "value": 30.0705
+        },
+        {
+          "feature": "Per Capita Energy Use",
+          "rule": "Per Capita Energy Use > 511.73",
+          "weight": -22.9204,
+          "value": 525.9182
+        },
+        {
+          "feature": "Humidity",
+          "rule": "Humidity > 83.39",
+          "weight": -11.4832,
+          "value": 85.0055
+        },
+        {
+          "feature": "Public Event",
+          "rule": "Public Event <= 0.00",
+          "weight": 10.541,
+          "value": 0.0
+        },
+        {
+          "feature": "Hour of Day",
+          "rule": "Hour of Day <= 5.00",
+          "weight": 6.6791,
+          "value": 5.0
+        },
+        {
+          "feature": "Electricity Price",
+          "rule": "25.12 < Electricity Price <= 28.45",
+          "weight": -5.3624,
+          "value": 26.2194
+        },
+        {
+          "feature": "GDP",
+          "rule": "GDP > 1032.79",
+          "weight": -5.316,
+          "value": 1076.5318
+        },
+        {
+          "feature": "Rainfall",
+          "rule": "Rainfall > 6.99",
+          "weight": -4.7721,
+          "value": 7.5369
+        },
+        {
+          "feature": "Month",
+          "rule": "Month > 9.00",
+          "weight": -2.637,
+          "value": 10.0
+        },
+        {
+          "feature": "Solar Irradiance",
+          "rule": "Solar Irradiance > 283.58",
+          "weight": -1.7962,
+          "value": 290.9502
+        },
+        {
+          "feature": "Wind Speed",
+          "rule": "2.03 < Wind Speed <= 2.73",
+          "weight": -0.9108,
+          "value": 2.3845
+        },
+        {
+          "feature": "Day of Week",
+          "rule": "Day of Week <= 1.00",
+          "weight": -0.2846,
+          "value": 1.0
+        }
+      ],
+      "feature_values": {
+        "Temperature": 30.0705,
+        "Humidity": 85.0055,
+        "Wind Speed": 2.3845,
+        "Rainfall": 7.5369,
+        "Solar Irradiance": 290.9502,
+        "GDP": 1076.5318,
+        "Per Capita Energy Use": 525.9182,
+        "Electricity Price": 26.2194,
+        "Day of Week": 1.0,
+        "Hour of Day": 5.0,
+        "Month": 10.0,
+        "Public Event": 0.0
+      }
+    },
+    {
+      "id": 10,
+      "timestamp": "2023-09-04 00:00:00",
+      "actual": 1680.55,
+      "predicted": 1680.67,
+      "error_kw": 0.1165,
+      "error_pct": 0.0069,
+      "demand_level": "high",
+      "lime_r2": 0.6102,
+      "intercept": 1415.7407,
+      "local_pred": 1738.0154,
+      "contributions": [
+        {
+          "feature": "Temperature",
+          "rule": "Temperature > 29.29",
+          "weight": 354.0703,
+          "value": 29.8055
+        },
+        {
+          "feature": "Month",
+          "rule": "6.00 < Month <= 9.00",
+          "weight": -24.6467,
+          "value": 9.0
+        },
+        {
+          "feature": "Wind Speed",
+          "rule": "Wind Speed <= 1.34",
+          "weight": 13.0235,
+          "value": 1.2013
+        },
+        {
+          "feature": "Per Capita Energy Use",
+          "rule": "499.74 < Per Capita Energy Use <= 511.73",
+          "weight": -10.7431,
+          "value": 500.9081
+        },
+        {
+          "feature": "Rainfall",
+          "rule": "Rainfall > 6.99",
+          "weight": -7.472,
+          "value": 7.2755
+        },
+        {
+          "feature": "Public Event",
+          "rule": "Public Event <= 0.00",
+          "weight": 5.99,
+          "value": 0.0
+        },
+        {
+          "feature": "Electricity Price",
+          "rule": "25.12 < Electricity Price <= 28.45",
+          "weight": 4.5082,
+          "value": 27.1452
+        },
+        {
+          "feature": "Day of Week",
+          "rule": "Day of Week <= 1.00",
+          "weight": -4.4334,
+          "value": 0.0
+        },
+        {
+          "feature": "Hour of Day",
+          "rule": "Hour of Day <= 5.00",
+          "weight": -3.1765,
+          "value": 0.0
+        },
+        {
+          "feature": "GDP",
+          "rule": "GDP <= 965.36",
+          "weight": -2.8497,
+          "value": 926.7372
+        },
+        {
+          "feature": "Humidity",
+          "rule": "Humidity <= 76.56",
+          "weight": -1.0958,
+          "value": 73.9417
+        },
+        {
+          "feature": "Solar Irradiance",
+          "rule": "Solar Irradiance > 283.58",
+          "weight": -0.8999,
+          "value": 318.0411
+        }
+      ],
+      "feature_values": {
+        "Temperature": 29.8055,
+        "Humidity": 73.9417,
+        "Wind Speed": 1.2013,
+        "Rainfall": 7.2755,
+        "Solar Irradiance": 318.0411,
+        "GDP": 926.7372,
+        "Per Capita Energy Use": 500.9081,
+        "Electricity Price": 27.1452,
+        "Day of Week": 0.0,
+        "Hour of Day": 0.0,
+        "Month": 9.0,
+        "Public Event": 0.0
+      }
+    },
+    {
+      "id": 11,
+      "timestamp": "2024-01-10 04:00:00",
+      "actual": 1647.08,
+      "predicted": 1648.11,
+      "error_kw": 1.0317,
+      "error_pct": 0.0626,
+      "demand_level": "high",
+      "lime_r2": 0.6059,
+      "intercept": 1443.1911,
+      "local_pred": 1755.0255,
+      "contributions": [
+        {
+          "feature": "Temperature",
+          "rule": "Temperature > 29.29",
+          "weight": 352.3451,
+          "value": 29.4708
+        },
+        {
+          "feature": "Public Event",
+          "rule": "Public Event <= 0.00",
+          "weight": -30.1148,
+          "value": 0.0
+        },
+        {
+          "feature": "Electricity Price",
+          "rule": "21.79 < Electricity Price <= 25.12",
+          "weight": 15.033,
+          "value": 22.7298
+        },
+        {
+          "feature": "Wind Speed",
+          "rule": "2.03 < Wind Speed <= 2.73",
+          "weight": -12.1439,
+          "value": 2.3336
+        },
+        {
+          "feature": "Humidity",
+          "rule": "Humidity <= 76.56",
+          "weight": 8.1241,
+          "value": 75.8743
+        },
+        {
+          "feature": "Per Capita Energy Use",
+          "rule": "Per Capita Energy Use <= 485.88",
+          "weight": -7.3865,
+          "value": 461.4977
+        },
+        {
+          "feature": "Rainfall",
+          "rule": "3.49 < Rainfall <= 6.99",
+          "weight": -6.6383,
+          "value": 5.1986
+        },
+        {
+          "feature": "GDP",
+          "rule": "998.20 < GDP <= 1032.79",
+          "weight": -5.3516,
+          "value": 1001.108
+        },
+        {
+          "feature": "Month",
+          "rule": "Month <= 3.00",
+          "weight": -3.6031,
+          "value": 1.0
+        },
+        {
+          "feature": "Solar Irradiance",
+          "rule": "Solar Irradiance > 283.58",
+          "weight": 2.2105,
+          "value": 316.0394
+        },
+        {
+          "feature": "Day of Week",
+          "rule": "1.00 < Day of Week <= 3.00",
+          "weight": -0.3559,
+          "value": 2.0
+        },
+        {
+          "feature": "Hour of Day",
+          "rule": "Hour of Day <= 5.00",
+          "weight": -0.2841,
+          "value": 4.0
+        }
+      ],
+      "feature_values": {
+        "Temperature": 29.4708,
+        "Humidity": 75.8743,
+        "Wind Speed": 2.3336,
+        "Rainfall": 5.1986,
+        "Solar Irradiance": 316.0394,
+        "GDP": 1001.108,
+        "Per Capita Energy Use": 461.4977,
+        "Electricity Price": 22.7298,
+        "Day of Week": 2.0,
+        "Hour of Day": 4.0,
+        "Month": 1.0,
+        "Public Event": 0.0
+      }
+    },
+    {
+      "id": 12,
+      "timestamp": "2023-01-27 08:45:00",
+      "actual": 1886.34,
+      "predicted": 1882.04,
+      "error_kw": -4.3035,
+      "error_pct": 0.2281,
+      "demand_level": "peak",
+      "lime_r2": 0.5903,
+      "intercept": 1431.484,
+      "local_pred": 1765.2698,
+      "contributions": [
+        {
+          "feature": "Temperature",
+          "rule": "Temperature > 29.29",
+          "weight": 353.5545,
+          "value": 31.8634
+        },
+        {
+          "feature": "Solar Irradiance",
+          "rule": "Solar Irradiance > 283.58",
+          "weight": 24.0248,
+          "value": 351.2562
+        },
+        {
+          "feature": "Humidity",
+          "rule": "76.56 < Humidity <= 79.90",
+          "weight": -21.7337,
+          "value": 77.0907
+        },
+        {
+          "feature": "Public Event",
+          "rule": "Public Event <= 0.00",
+          "weight": -19.0593,
+          "value": 0.0
+        },
+        {
+          "feature": "Wind Speed",
+          "rule": "Wind Speed <= 1.34",
+          "weight": 9.4552,
+          "value": 1.1375
+        },
+        {
+          "feature": "Day of Week",
+          "rule": "3.00 < Day of Week <= 5.00",
+          "weight": -8.6952,
+          "value": 4.0
+        },
+        {
+          "feature": "Hour of Day",
+          "rule": "5.00 < Hour of Day <= 12.00",
+          "weight": -5.7299,
+          "value": 8.0
+        },
+        {
+          "feature": "Month",
+          "rule": "Month <= 3.00",
+          "weight": 5.4581,
+          "value": 1.0
+        },
+        {
+          "feature": "Electricity Price",
+          "rule": "21.79 < Electricity Price <= 25.12",
+          "weight": -5.2958,
+          "value": 23.5005
+        },
+        {
+          "feature": "Per Capita Energy Use",
+          "rule": "499.74 < Per Capita Energy Use <= 511.73",
+          "weight": -4.5427,
+          "value": 509.7838
+        },
+        {
+          "feature": "Rainfall",
+          "rule": "3.49 < Rainfall <= 6.99",
+          "weight": 3.5594,
+          "value": 4.2699
+        },
+        {
+          "feature": "GDP",
+          "rule": "GDP <= 965.36",
+          "weight": 2.7904,
+          "value": 963.8368
+        }
+      ],
+      "feature_values": {
+        "Temperature": 31.8634,
+        "Humidity": 77.0907,
+        "Wind Speed": 1.1375,
+        "Rainfall": 4.2699,
+        "Solar Irradiance": 351.2562,
+        "GDP": 963.8368,
+        "Per Capita Energy Use": 509.7838,
+        "Electricity Price": 23.5005,
+        "Day of Week": 4.0,
+        "Hour of Day": 8.0,
+        "Month": 1.0,
+        "Public Event": 0.0
+      }
+    },
+    {
+      "id": 13,
+      "timestamp": "2020-09-15 18:45:00",
+      "actual": 1762.86,
+      "predicted": 1762.79,
+      "error_kw": -0.0661,
+      "error_pct": 0.0037,
+      "demand_level": "peak",
+      "lime_r2": 0.6067,
+      "intercept": 1435.5142,
+      "local_pred": 1747.0849,
+      "contributions": [
+        {
+          "feature": "Temperature",
+          "rule": "Temperature > 29.29",
+          "weight": 363.1537,
+          "value": 30.6286
+        },
+        {
+          "feature": "Public Event",
+          "rule": "Public Event <= 0.00",
+          "weight": -18.7562,
+          "value": 0.0
+        },
+        {
+          "feature": "Hour of Day",
+          "rule": "12.00 < Hour of Day <= 18.00",
+          "weight": -14.9832,
+          "value": 18.0
+        },
+        {
+          "feature": "Per Capita Energy Use",
+          "rule": "Per Capita Energy Use > 511.73",
+          "weight": -11.4014,
+          "value": 532.8046
+        },
+        {
+          "feature": "Month",
+          "rule": "6.00 < Month <= 9.00",
+          "weight": -10.9201,
+          "value": 9.0
+        },
+        {
+          "feature": "Solar Irradiance",
+          "rule": "Solar Irradiance > 283.58",
+          "weight": 6.9072,
+          "value": 284.5797
+        },
+        {
+          "feature": "Day of Week",
+          "rule": "Day of Week <= 1.00",
+          "weight": -6.4691,
+          "value": 1.0
+        },
+        {
+          "feature": "Wind Speed",
+          "rule": "Wind Speed <= 1.34",
+          "weight": 4.8695,
+          "value": 1.1979
+        },
+        {
+          "feature": "Rainfall",
+          "rule": "Rainfall <= 1.43",
+          "weight": 4.1313,
+          "value": 0.7598
+        },
+        {
+          "feature": "Electricity Price",
+          "rule": "Electricity Price > 28.45",
+          "weight": -2.6629,
+          "value": 30.6961
+        },
+        {
+          "feature": "Humidity",
+          "rule": "Humidity > 83.39",
+          "weight": -2.4096,
+          "value": 83.5405
+        },
+        {
+          "feature": "GDP",
+          "rule": "GDP > 1032.79",
+          "weight": 0.1113,
+          "value": 1043.014
+        }
+      ],
+      "feature_values": {
+        "Temperature": 30.6286,
+        "Humidity": 83.5405,
+        "Wind Speed": 1.1979,
+        "Rainfall": 0.7598,
+        "Solar Irradiance": 284.5797,
+        "GDP": 1043.014,
+        "Per Capita Energy Use": 532.8046,
+        "Electricity Price": 30.6961,
+        "Day of Week": 1.0,
+        "Hour of Day": 18.0,
+        "Month": 9.0,
+        "Public Event": 0.0
+      }
+    },
+    {
+      "id": 14,
+      "timestamp": "2023-12-28 11:00:00",
+      "actual": 1757.45,
+      "predicted": 1758.67,
+      "error_kw": 1.2177,
+      "error_pct": 0.0693,
+      "demand_level": "peak",
+      "lime_r2": 0.5946,
+      "intercept": 1427.6292,
+      "local_pred": 1734.458,
+      "contributions": [
+        {
+          "feature": "Temperature",
+          "rule": "Temperature > 29.29",
+          "weight": 355.0192,
+          "value": 30.5745
+        },
+        {
+          "feature": "Rainfall",
+          "rule": "Rainfall <= 1.43",
+          "weight": -17.6495,
+          "value": 0.2527
+        },
+        {
+          "feature": "GDP",
+          "rule": "998.20 < GDP <= 1032.79",
+          "weight": -13.2553,
+          "value": 1013.4326
+        },
+        {
+          "feature": "Public Event",
+          "rule": "Public Event <= 0.00",
+          "weight": -13.1806,
+          "value": 0.0
+        },
+        {
+          "feature": "Month",
+          "rule": "Month > 9.00",
+          "weight": -7.9713,
+          "value": 12.0
+        },
+        {
+          "feature": "Wind Speed",
+          "rule": "2.03 < Wind Speed <= 2.73",
+          "weight": 6.8594,
+          "value": 2.0906
+        },
+        {
+          "feature": "Hour of Day",
+          "rule": "5.00 < Hour of Day <= 12.00",
+          "weight": 4.1084,
+          "value": 11.0
+        },
+        {
+          "feature": "Humidity",
+          "rule": "79.90 < Humidity <= 83.39",
+          "weight": -3.523,
+          "value": 80.1579
+        },
+        {
+          "feature": "Day of Week",
+          "rule": "1.00 < Day of Week <= 3.00",
+          "weight": -3.0488,
+          "value": 3.0
+        },
+        {
+          "feature": "Per Capita Energy Use",
+          "rule": "499.74 < Per Capita Energy Use <= 511.73",
+          "weight": -2.1446,
+          "value": 502.873
+        },
+        {
+          "feature": "Electricity Price",
+          "rule": "Electricity Price <= 21.79",
+          "weight": 2.0065,
+          "value": 15.1332
+        },
+        {
+          "feature": "Solar Irradiance",
+          "rule": "215.58 < Solar Irradiance <= 250.81",
+          "weight": -0.3917,
+          "value": 249.994
+        }
+      ],
+      "feature_values": {
+        "Temperature": 30.5745,
+        "Humidity": 80.1579,
+        "Wind Speed": 2.0906,
+        "Rainfall": 0.2527,
+        "Solar Irradiance": 249.994,
+        "GDP": 1013.4326,
+        "Per Capita Energy Use": 502.873,
+        "Electricity Price": 15.1332,
+        "Day of Week": 3.0,
+        "Hour of Day": 11.0,
+        "Month": 12.0,
+        "Public Event": 0.0
+      }
+    },
+    {
+      "id": 15,
+      "timestamp": "2021-03-09 09:30:00",
+      "actual": 1929.97,
+      "predicted": 1925.59,
+      "error_kw": -4.3772,
+      "error_pct": 0.2268,
+      "demand_level": "peak",
+      "lime_r2": 0.5964,
+      "intercept": 1399.4498,
+      "local_pred": 1763.3013,
+      "contributions": [
+        {
+          "feature": "Temperature",
+          "rule": "Temperature > 29.29",
+          "weight": 353.3757,
+          "value": 32.2997
+        },
+        {
+          "feature": "Month",
+          "rule": "Month <= 3.00",
+          "weight": 21.2718,
+          "value": 3.0
+        },
+        {
+          "feature": "Public Event",
+          "rule": "Public Event <= 0.00",
+          "weight": 18.9164,
+          "value": 0.0
+        },
+        {
+          "feature": "Hour of Day",
+          "rule": "5.00 < Hour of Day <= 12.00",
+          "weight": -17.444,
+          "value": 9.0
+        },
+        {
+          "feature": "Day of Week",
+          "rule": "Day of Week <= 1.00",
+          "weight": -12.8495,
+          "value": 1.0
+        },
+        {
+          "feature": "Solar Irradiance",
+          "rule": "215.58 < Solar Irradiance <= 250.81",
+          "weight": -9.4098,
+          "value": 216.8123
+        },
+        {
+          "feature": "Per Capita Energy Use",
+          "rule": "Per Capita Energy Use > 511.73",
+          "weight": 8.7619,
+          "value": 524.3104
+        },
+        {
+          "feature": "Electricity Price",
+          "rule": "Electricity Price > 28.45",
+          "weight": 7.0931,
+          "value": 32.9967
+        },
+        {
+          "feature": "Humidity",
+          "rule": "79.90 < Humidity <= 83.39",
+          "weight": 5.0357,
+          "value": 83.3079
+        },
+        {
+          "feature": "Rainfall",
+          "rule": "Rainfall > 6.99",
+          "weight": -4.9275,
+          "value": 7.787
+        },
+        {
+          "feature": "GDP",
+          "rule": "GDP <= 965.36",
+          "weight": -3.842,
+          "value": 956.1543
+        },
+        {
+          "feature": "Wind Speed",
+          "rule": "1.34 < Wind Speed <= 2.03",
+          "weight": -2.1304,
+          "value": 1.9977
+        }
+      ],
+      "feature_values": {
+        "Temperature": 32.2997,
+        "Humidity": 83.3079,
+        "Wind Speed": 1.9977,
+        "Rainfall": 7.787,
+        "Solar Irradiance": 216.8123,
+        "GDP": 956.1543,
+        "Per Capita Energy Use": 524.3104,
+        "Electricity Price": 32.9967,
+        "Day of Week": 1.0,
+        "Hour of Day": 9.0,
+        "Month": 3.0,
+        "Public Event": 0.0
+      }
+    }
+  ],
+  "meta": {
+    "sample_count": 15,
+    "mean_demand": 1500.33,
+    "std_demand": 194.38,
+    "p25_threshold": 1366.45,
+    "p75_threshold": 1634.11,
+    "p90_threshold": 1753.72
+  }
+}

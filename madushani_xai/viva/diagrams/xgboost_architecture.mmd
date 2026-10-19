@@ -1,0 +1,31 @@
+flowchart LR
+    IN["Input x · 12 features (one 15-min row)<br/>Temperature · Humidity · Wind Speed<br/>Rainfall · Solar Irradiance · GDP<br/>Per Capita Energy Use · Electricity Price<br/>Day of Week · Hour of Day · Month · Public Event<br/><i>no lags · no scaling</i>"]
+
+    subgraph ENS["Ensemble of 467 regression trees (each sees the same x)"]
+        direction TB
+        T1["Tree 1 · depth ≤ 3 · ≤ 8 leaves"]
+        T2["Tree 2 · fitted to the errors left by tree 1"]
+        TD["⋮"]
+        T467["Tree 467"]
+        T1 --> T2 --> TD --> T467
+    end
+
+    B["Base score<br/>1,500.50 kW<br/>(training mean)"]
+    SUM(("Σ"))
+    OUT["Output ŷ<br/>Load Demand (kW)"]
+
+    IN --> ENS
+    ENS -- "η · f₁(x) + η · f₂(x) + … + η · f₄₆₇(x)" --> SUM
+    B --> SUM
+    SUM --> OUT
+
+    HP["Hyperparameters · Optuna TPE, 50 trials, seed 42<br/>n_estimators 467 · max_depth 3 · learning rate η 0.0231<br/>subsample 0.925 · colsample_bytree 0.894 · min_child_weight 1<br/>L1 α 0.789 · L2 λ 0.466<br/>loss: squared error (reg:squarederror)<br/>trees use gradient + Hessian of the loss (2nd-order boosting)"]
+    ENS ~~~ HP
+    HP -.-> ENS
+
+    classDef io fill:#E8F1FD,stroke:#2A78D6,color:#0B0B0B
+    classDef tree fill:#E5F6EF,stroke:#199E70,color:#0B0B0B
+    classDef hp fill:#FDEEE7,stroke:#D95926,color:#0B0B0B
+    class IN,OUT,B io
+    class T1,T2,TD,T467 tree
+    class HP hp

@@ -1,0 +1,793 @@
+{
+  "method": "One deployed model (xgb_model.pkl). SHAP TreeExplainer on every cleaned row of each year; 20 bootstrap resamples of those rows give the 95% percentile CI. Drift is flagged only when the 95% CIs of two years do not overlap. Because the model is fixed, any change reflects a change in that year's input data, not a change in the model.",
+  "years": [
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+  ],
+  "features": [
+    "Temperature",
+    "Humidity",
+    "Wind Speed",
+    "Rainfall",
+    "Solar Irradiance",
+    "GDP",
+    "Per Capita Energy Use",
+    "Electricity Price",
+    "Day of Week",
+    "Hour of Day",
+    "Month",
+    "Public Event"
+  ],
+  "n_bootstrap": 20,
+  "per_year": {
+    "2020": {
+      "rows": 34871,
+      "mean_abs_shap": {
+        "Temperature": 156.4928436279297,
+        "Humidity": 0.02206059917807579,
+        "Wind Speed": 0.0022860022727400064,
+        "Rainfall": 0.02689491957426071,
+        "Solar Irradiance": 0.028454171493649483,
+        "GDP": 0.00985710695385933,
+        "Per Capita Energy Use": 0.022871222347021103,
+        "Electricity Price": 0.010565719567239285,
+        "Day of Week": 0.0004734644608106464,
+        "Hour of Day": 0.011015293188393116,
+        "Month": 0.005419010296463966,
+        "Public Event": 0.009690471924841404
+      },
+      "ci_low": {
+        "Temperature": 155.50132751464844,
+        "Humidity": 0.021799392998218536,
+        "Wind Speed": 0.0022190778981894255,
+        "Rainfall": 0.026464728638529778,
+        "Solar Irradiance": 0.02825913019478321,
+        "GDP": 0.009621821343898773,
+        "Per Capita Energy Use": 0.022759944200515747,
+        "Electricity Price": 0.010407422669231892,
+        "Day of Week": 0.0004578248190227896,
+        "Hour of Day": 0.010802719742059708,
+        "Month": 0.005345867946743965,
+        "Public Event": 0.009492115117609501
+      },
+      "ci_high": {
+        "Temperature": 157.14797973632812,
+        "Humidity": 0.0223739892244339,
+        "Wind Speed": 0.002387975575402379,
+        "Rainfall": 0.027448229491710663,
+        "Solar Irradiance": 0.028930552303791046,
+        "GDP": 0.010141515173017979,
+        "Per Capita Energy Use": 0.023333534598350525,
+        "Electricity Price": 0.01075477059930563,
+        "Day of Week": 0.0004917397745884955,
+        "Hour of Day": 0.011251939460635185,
+        "Month": 0.005477236583828926,
+        "Public Event": 0.009865686297416687
+      },
+      "temperature_mean_c": 27.99990756516274,
+      "temperature_mean_abs_dev_c": 1.565270532112876
+    },
+    "2021": {
+      "rows": 34823,
+      "mean_abs_shap": {
+        "Temperature": 156.78778076171875,
+        "Humidity": 0.022114943712949753,
+        "Wind Speed": 0.0023455522023141384,
+        "Rainfall": 0.026909036561846733,
+        "Solar Irradiance": 0.02824094332754612,
+        "GDP": 0.010006051510572433,
+        "Per Capita Energy Use": 0.02277003601193428,
+        "Electricity Price": 0.01048403512686491,
+        "Day of Week": 0.000502991140820086,
+        "Hour of Day": 0.01093676220625639,
+        "Month": 0.0053957607597112656,
+        "Public Event": 0.009542605839669704
+      },
+      "ci_low": {
+        "Temperature": 155.6933135986328,
+        "Humidity": 0.021879807114601135,
+        "Wind Speed": 0.002251866739243269,
+        "Rainfall": 0.026454320177435875,
+        "Solar Irradiance": 0.027706056833267212,
+        "GDP": 0.009796258993446827,
+        "Per Capita Energy Use": 0.022581856697797775,
+        "Electricity Price": 0.010288742370903492,
+        "Day of Week": 0.0004867736715823412,
+        "Hour of Day": 0.010672144591808319,
+        "Month": 0.005348483566194773,
+        "Public Event": 0.009296991862356663
+      },
+      "ci_high": {
+        "Temperature": 157.33755493164062,
+        "Humidity": 0.022368500009179115,
+        "Wind Speed": 0.002435421571135521,
+        "Rainfall": 0.02756735309958458,
+        "Solar Irradiance": 0.02871578373014927,
+        "GDP": 0.010231292806565762,
+        "Per Capita Energy Use": 0.02301197312772274,
+        "Electricity Price": 0.010627053678035736,
+        "Day of Week": 0.0005352679872885346,
+        "Hour of Day": 0.01118393987417221,
+        "Month": 0.00547090033069253,
+        "Public Event": 0.009781420230865479
+      },
+      "temperature_mean_c": 28.01082183524567,
+      "temperature_mean_abs_dev_c": 1.5681741350991183
+    },
+    "2022": {
+      "rows": 34815,
+      "mean_abs_shap": {
+        "Temperature": 156.8387908935547,
+        "Humidity": 0.021998519077897072,
+        "Wind Speed": 0.002322131535038352,
+        "Rainfall": 0.027168355882167816,
+        "Solar Irradiance": 0.0284547321498394,
+        "GDP": 0.009838218800723553,
+        "Per Capita Energy Use": 0.022641079500317574,
+        "Electricity Price": 0.010427654720842838,
+        "Day of Week": 0.0005023915437050164,
+        "Hour of Day": 0.011169953271746635,
+        "Month": 0.005427591502666473,
+        "Public Event": 0.009659956209361553
+      },
+      "ci_low": {
+        "Temperature": 156.24935913085938,
+        "Humidity": 0.021821411326527596,
+        "Wind Speed": 0.002236403292044997,
+        "Rainfall": 0.026865823194384575,
+        "Solar Irradiance": 0.028241146355867386,
+        "GDP": 0.009676539339125156,
+        "Per Capita Energy Use": 0.02251179702579975,
+        "Electricity Price": 0.010297728702425957,
+        "Day of Week": 0.0004887724062427878,
+        "Hour of Day": 0.011052764020860195,
+        "Month": 0.005358612164855003,
+        "Public Event": 0.00938278529793024
+      },
+      "ci_high": {
+        "Temperature": 157.94589233398438,
+        "Humidity": 0.02224915288388729,
+        "Wind Speed": 0.0024414730723947287,
+        "Rainfall": 0.027563247829675674,
+        "Solar Irradiance": 0.028918933123350143,
+        "GDP": 0.010218249633908272,
+        "Per Capita Energy Use": 0.022840438410639763,
+        "Electricity Price": 0.010585593059659004,
+        "Day of Week": 0.0005353655433282256,
+        "Hour of Day": 0.011360814794898033,
+        "Month": 0.005504471715539694,
+        "Public Event": 0.009953317232429981
+      },
+      "temperature_mean_c": 27.996494460247305,
+      "temperature_mean_abs_dev_c": 1.5686072890696294
+    },
+    "2023": {
+      "rows": 34786,
+      "mean_abs_shap": {
+        "Temperature": 156.2723388671875,
+        "Humidity": 0.02205321192741394,
+        "Wind Speed": 0.0023709312081336975,
+        "Rainfall": 0.02713443711400032,
+        "Solar Irradiance": 0.02852216549217701,
+        "GDP": 0.009764373302459717,
+        "Per Capita Energy Use": 0.02294372022151947,
+        "Electricity Price": 0.010622888803482056,
+        "Day of Week": 0.0005021712277084589,
+        "Hour of Day": 0.010915578342974186,
+        "Month": 0.005361722782254219,
+        "Public Event": 0.009431767277419567
+      },
+      "ci_low": {
+        "Temperature": 155.07998657226562,
+        "Humidity": 0.02181895449757576,
+        "Wind Speed": 0.0022723525762557983,
+        "Rainfall": 0.026741500943899155,
+        "Solar Irradiance": 0.028255406767129898,
+        "GDP": 0.009492650628089905,
+        "Per Capita Energy Use": 0.022694475948810577,
+        "Electricity Price": 0.010434855706989765,
+        "Day of Week": 0.0004792149702552706,
+        "Hour of Day": 0.010616615414619446,
+        "Month": 0.005286144092679024,
+        "Public Event": 0.009101846255362034
+      },
+      "ci_high": {
+        "Temperature": 157.40501403808594,
+        "Humidity": 0.022216498851776123,
+        "Wind Speed": 0.002431261818856001,
+        "Rainfall": 0.027562901377677917,
+        "Solar Irradiance": 0.028853677213191986,
+        "GDP": 0.01003602147102356,
+        "Per Capita Energy Use": 0.023050008341670036,
+        "Electricity Price": 0.010782644152641296,
+        "Day of Week": 0.000534560065716505,
+        "Hour of Day": 0.011120077222585678,
+        "Month": 0.005455311853438616,
+        "Public Event": 0.009670447558164597
+      },
+      "temperature_mean_c": 28.013034181792676,
+      "temperature_mean_abs_dev_c": 1.5630158405198475
+    },
+    "2024": {
+      "rows": 34924,
+      "mean_abs_shap": {
+        "Temperature": 156.4550323486328,
+        "Humidity": 0.022091912105679512,
+        "Wind Speed": 0.00231978390365839,
+        "Rainfall": 0.027091920375823975,
+        "Solar Irradiance": 0.028573554009199142,
+        "GDP": 0.009750771336257458,
+        "Per Capita Energy Use": 0.02282170206308365,
+        "Electricity Price": 0.01047929935157299,
+        "Day of Week": 0.0004981500678695738,
+        "Hour of Day": 0.010961785912513733,
+        "Month": 0.0053693270310759544,
+        "Public Event": 0.009870003908872604
+      },
+      "ci_low": {
+        "Temperature": 155.0491943359375,
+        "Humidity": 0.021820781752467155,
+        "Wind Speed": 0.0022018342278897762,
+        "Rainfall": 0.026707051321864128,
+        "Solar Irradiance": 0.02811823971569538,
+        "GDP": 0.009532277472317219,
+        "Per Capita Energy Use": 0.022488713264465332,
+        "Electricity Price": 0.010344689711928368,
+        "Day of Week": 0.0004699441196862608,
+        "Hour of Day": 0.01069367304444313,
+        "Month": 0.005298148840665817,
+        "Public Event": 0.009568095207214355
+      },
+      "ci_high": {
+        "Temperature": 157.41432189941406,
+        "Humidity": 0.022324835881590843,
+        "Wind Speed": 0.0024170170072466135,
+        "Rainfall": 0.02741624414920807,
+        "Solar Irradiance": 0.028770513832569122,
+        "GDP": 0.0101555734872818,
+        "Per Capita Energy Use": 0.022993270307779312,
+        "Electricity Price": 0.010665767826139927,
+        "Day of Week": 0.0005226276116445661,
+        "Hour of Day": 0.011202479712665081,
+        "Month": 0.0054426249116659164,
+        "Public Event": 0.01008603349328041
+      },
+      "temperature_mean_c": 28.001826313929676,
+      "temperature_mean_abs_dev_c": 1.5649032053648961
+    },
+    "2025": {
+      "rows": 14388,
+      "mean_abs_shap": {
+        "Temperature": 155.74444580078125,
+        "Humidity": 0.021925125271081924,
+        "Wind Speed": 0.0021991392131894827,
+        "Rainfall": 0.026935314759612083,
+        "Solar Irradiance": 0.02805183455348015,
+        "GDP": 0.009863918647170067,
+        "Per Capita Energy Use": 0.022670749574899673,
+        "Electricity Price": 0.010433195158839226,
+        "Day of Week": 0.0005164184258319438,
+        "Hour of Day": 0.011083848774433136,
+        "Month": 0.0037620081566274166,
+        "Public Event": 0.009557735174894333
+      },
+      "ci_low": {
+        "Temperature": 154.14706420898438,
+        "Humidity": 0.021509457379579544,
+        "Wind Speed": 0.002095242263749242,
+        "Rainfall": 0.026204688474535942,
+        "Solar Irradiance": 0.027678634971380234,
+        "GDP": 0.009442641399800777,
+        "Per Capita Energy Use": 0.02242174930870533,
+        "Electricity Price": 0.010259496979415417,
+        "Day of Week": 0.000468199432361871,
+        "Hour of Day": 0.010729683563113213,
+        "Month": 0.00369102880358696,
+        "Public Event": 0.009192987345159054
+      },
+      "ci_high": {
+        "Temperature": 157.35594177246094,
+        "Humidity": 0.02228986658155918,
+        "Wind Speed": 0.002285347320139408,
+        "Rainfall": 0.027756638824939728,
+        "Solar Irradiance": 0.028509702533483505,
+        "GDP": 0.010261347517371178,
+        "Per Capita Energy Use": 0.02286997251212597,
+        "Electricity Price": 0.010621264576911926,
+        "Day of Week": 0.0005790078430436552,
+        "Hour of Day": 0.011622224003076553,
+        "Month": 0.0038379435427486897,
+        "Public Event": 0.009964963421225548
+      },
+      "temperature_mean_c": 27.98984565246594,
+      "temperature_mean_abs_dev_c": 1.557865875865257
+    }
+  },
+  "drift": {
+    "Temperature": {
+      "change_first_to_last_kw": -0.7483978271484375,
+      "first_to_last_cis_overlap": true,
+      "flagged_first_to_last": false,
+      "adjacent_years": [
+        {
+          "from": "2020",
+          "to": "2021",
+          "change_kw": 0.2949371337890625,
+          "cis_overlap": true
+        },
+        {
+          "from": "2021",
+          "to": "2022",
+          "change_kw": 0.0510101318359375,
+          "cis_overlap": true
+        },
+        {
+          "from": "2022",
+          "to": "2023",
+          "change_kw": -0.5664520263671875,
+          "cis_overlap": true
+        },
+        {
+          "from": "2023",
+          "to": "2024",
+          "change_kw": 0.1826934814453125,
+          "cis_overlap": true
+        },
+        {
+          "from": "2024",
+          "to": "2025",
+          "change_kw": -0.7105865478515625,
+          "cis_overlap": true
+        }
+      ],
+      "flagged_adjacent_pairs": []
+    },
+    "Humidity": {
+      "change_first_to_last_kw": -0.00013547390699386597,
+      "first_to_last_cis_overlap": true,
+      "flagged_first_to_last": false,
+      "adjacent_years": [
+        {
+          "from": "2020",
+          "to": "2021",
+          "change_kw": 5.43445348739624e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2021",
+          "to": "2022",
+          "change_kw": -0.00011642463505268097,
+          "cis_overlap": true
+        },
+        {
+          "from": "2022",
+          "to": "2023",
+          "change_kw": 5.469284951686859e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2023",
+          "to": "2024",
+          "change_kw": 3.8700178265571594e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2024",
+          "to": "2025",
+          "change_kw": -0.00016678683459758759,
+          "cis_overlap": true
+        }
+      ],
+      "flagged_adjacent_pairs": []
+    },
+    "Wind Speed": {
+      "change_first_to_last_kw": -8.686305955052376e-05,
+      "first_to_last_cis_overlap": true,
+      "flagged_first_to_last": false,
+      "adjacent_years": [
+        {
+          "from": "2020",
+          "to": "2021",
+          "change_kw": 5.9549929574131966e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2021",
+          "to": "2022",
+          "change_kw": -2.34206672757864e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2022",
+          "to": "2023",
+          "change_kw": 4.87996730953455e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2023",
+          "to": "2024",
+          "change_kw": -5.1147304475307465e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2024",
+          "to": "2025",
+          "change_kw": -0.00012064469046890736,
+          "cis_overlap": true
+        }
+      ],
+      "flagged_adjacent_pairs": []
+    },
+    "Rainfall": {
+      "change_first_to_last_kw": 4.0395185351371765e-05,
+      "first_to_last_cis_overlap": true,
+      "flagged_first_to_last": false,
+      "adjacent_years": [
+        {
+          "from": "2020",
+          "to": "2021",
+          "change_kw": 1.4116987586021423e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2021",
+          "to": "2022",
+          "change_kw": 0.00025931932032108307,
+          "cis_overlap": true
+        },
+        {
+          "from": "2022",
+          "to": "2023",
+          "change_kw": -3.391876816749573e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2023",
+          "to": "2024",
+          "change_kw": -4.2516738176345825e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2024",
+          "to": "2025",
+          "change_kw": -0.00015660561621189117,
+          "cis_overlap": true
+        }
+      ],
+      "flagged_adjacent_pairs": []
+    },
+    "Solar Irradiance": {
+      "change_first_to_last_kw": -0.0004023369401693344,
+      "first_to_last_cis_overlap": true,
+      "flagged_first_to_last": false,
+      "adjacent_years": [
+        {
+          "from": "2020",
+          "to": "2021",
+          "change_kw": -0.00021322816610336304,
+          "cis_overlap": true
+        },
+        {
+          "from": "2021",
+          "to": "2022",
+          "change_kw": 0.00021378882229328156,
+          "cis_overlap": true
+        },
+        {
+          "from": "2022",
+          "to": "2023",
+          "change_kw": 6.743334233760834e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2023",
+          "to": "2024",
+          "change_kw": 5.1388517022132874e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2024",
+          "to": "2025",
+          "change_kw": -0.0005217194557189941,
+          "cis_overlap": true
+        }
+      ],
+      "flagged_adjacent_pairs": []
+    },
+    "GDP": {
+      "change_first_to_last_kw": 6.81169331073761e-06,
+      "first_to_last_cis_overlap": true,
+      "flagged_first_to_last": false,
+      "adjacent_years": [
+        {
+          "from": "2020",
+          "to": "2021",
+          "change_kw": 0.00014894455671310425,
+          "cis_overlap": true
+        },
+        {
+          "from": "2021",
+          "to": "2022",
+          "change_kw": -0.00016783270984888077,
+          "cis_overlap": true
+        },
+        {
+          "from": "2022",
+          "to": "2023",
+          "change_kw": -7.384549826383591e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2023",
+          "to": "2024",
+          "change_kw": -1.3601966202259064e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2024",
+          "to": "2025",
+          "change_kw": 0.0001131473109126091,
+          "cis_overlap": true
+        }
+      ],
+      "flagged_adjacent_pairs": []
+    },
+    "Per Capita Energy Use": {
+      "change_first_to_last_kw": -0.00020047277212142944,
+      "first_to_last_cis_overlap": true,
+      "flagged_first_to_last": false,
+      "adjacent_years": [
+        {
+          "from": "2020",
+          "to": "2021",
+          "change_kw": -0.00010118633508682251,
+          "cis_overlap": true
+        },
+        {
+          "from": "2021",
+          "to": "2022",
+          "change_kw": -0.00012895651161670685,
+          "cis_overlap": true
+        },
+        {
+          "from": "2022",
+          "to": "2023",
+          "change_kw": 0.00030264072120189667,
+          "cis_overlap": true
+        },
+        {
+          "from": "2023",
+          "to": "2024",
+          "change_kw": -0.00012201815843582153,
+          "cis_overlap": true
+        },
+        {
+          "from": "2024",
+          "to": "2025",
+          "change_kw": -0.00015095248818397522,
+          "cis_overlap": true
+        }
+      ],
+      "flagged_adjacent_pairs": []
+    },
+    "Electricity Price": {
+      "change_first_to_last_kw": -0.00013252440840005875,
+      "first_to_last_cis_overlap": true,
+      "flagged_first_to_last": false,
+      "adjacent_years": [
+        {
+          "from": "2020",
+          "to": "2021",
+          "change_kw": -8.168444037437439e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2021",
+          "to": "2022",
+          "change_kw": -5.638040602207184e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2022",
+          "to": "2023",
+          "change_kw": 0.00019523408263921738,
+          "cis_overlap": true
+        },
+        {
+          "from": "2023",
+          "to": "2024",
+          "change_kw": -0.00014358945190906525,
+          "cis_overlap": true
+        },
+        {
+          "from": "2024",
+          "to": "2025",
+          "change_kw": -4.610419273376465e-05,
+          "cis_overlap": true
+        }
+      ],
+      "flagged_adjacent_pairs": []
+    },
+    "Day of Week": {
+      "change_first_to_last_kw": 4.2953965021297336e-05,
+      "first_to_last_cis_overlap": true,
+      "flagged_first_to_last": false,
+      "adjacent_years": [
+        {
+          "from": "2020",
+          "to": "2021",
+          "change_kw": 2.9526680009439588e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2021",
+          "to": "2022",
+          "change_kw": -5.995971150696278e-07,
+          "cis_overlap": true
+        },
+        {
+          "from": "2022",
+          "to": "2023",
+          "change_kw": -2.2031599655747414e-07,
+          "cis_overlap": true
+        },
+        {
+          "from": "2023",
+          "to": "2024",
+          "change_kw": -4.021159838885069e-06,
+          "cis_overlap": true
+        },
+        {
+          "from": "2024",
+          "to": "2025",
+          "change_kw": 1.826835796236992e-05,
+          "cis_overlap": true
+        }
+      ],
+      "flagged_adjacent_pairs": []
+    },
+    "Hour of Day": {
+      "change_first_to_last_kw": 6.855558604001999e-05,
+      "first_to_last_cis_overlap": true,
+      "flagged_first_to_last": false,
+      "adjacent_years": [
+        {
+          "from": "2020",
+          "to": "2021",
+          "change_kw": -7.853098213672638e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2021",
+          "to": "2022",
+          "change_kw": 0.00023319106549024582,
+          "cis_overlap": true
+        },
+        {
+          "from": "2022",
+          "to": "2023",
+          "change_kw": -0.0002543749287724495,
+          "cis_overlap": true
+        },
+        {
+          "from": "2023",
+          "to": "2024",
+          "change_kw": 4.6207569539546967e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2024",
+          "to": "2025",
+          "change_kw": 0.00012206286191940308,
+          "cis_overlap": true
+        }
+      ],
+      "flagged_adjacent_pairs": []
+    },
+    "Month": {
+      "change_first_to_last_kw": -0.0016570021398365498,
+      "first_to_last_cis_overlap": false,
+      "flagged_first_to_last": true,
+      "adjacent_years": [
+        {
+          "from": "2020",
+          "to": "2021",
+          "change_kw": -2.3249536752700806e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2021",
+          "to": "2022",
+          "change_kw": 3.1830742955207825e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2022",
+          "to": "2023",
+          "change_kw": -6.586872041225433e-05,
+          "cis_overlap": true
+        },
+        {
+          "from": "2023",
+          "to": "2024",
+          "change_kw": 7.604248821735382e-06,
+          "cis_overlap": true
+        },
+        {
+          "from": "2024",
+          "to": "2025",
+          "change_kw": -0.0016073188744485378,
+          "cis_overlap": false
+        }
+      ],
+      "flagged_adjacent_pairs": [
+        "2024->2025"
+      ]
+    },
+    "Public Event": {
+      "change_first_to_last_kw": -0.00013273674994707108,
+      "first_to_last_cis_overlap": true,
+      "flagged_first_to_last": false,
+      "adjacent_years": [
+        {
+          "from": "2020",
+          "to": "2021",
+          "change_kw": -0.00014786608517169952,
+          "cis_overlap": true
+        },
+        {
+          "from": "2021",
+          "to": "2022",
+          "change_kw": 0.00011735036969184875,
+          "cis_overlap": true
+        },
+        {
+          "from": "2022",
+          "to": "2023",
+          "change_kw": -0.00022818893194198608,
+          "cis_overlap": true
+        },
+        {
+          "from": "2023",
+          "to": "2024",
+          "change_kw": 0.00043823663145303726,
+          "cis_overlap": true
+        },
+        {
+          "from": "2024",
+          "to": "2025",
+          "change_kw": -0.0003122687339782715,
+          "cis_overlap": true
+        }
+      ],
+      "flagged_adjacent_pairs": []
+    }
+  },
+  "flagged_first_to_last": [
+    "Month"
+  ],
+  "v1_comparison": {
+    "v1_method": "notebook 1: a separate XGBoost refit per year on 2,000 rows, SHAP on the same rows, no CI",
+    "v1_biggest_gainer": {
+      "feature": "Rainfall",
+      "change": 0.1751,
+      "from_year": "2020",
+      "to_year": "2025"
+    },
+    "v1_biggest_loser": {
+      "feature": "Temperature",
+      "change": -2.6901,
+      "from_year": "2020",
+      "to_year": "2025"
+    },
+    "v1_gainer_flagged_in_v2": false,
+    "v1_loser_flagged_in_v2": false
+  },
+  "figures": [
+    "temporal_drift_v2.png"
+  ]
+}

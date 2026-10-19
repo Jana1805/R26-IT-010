@@ -1,0 +1,1183 @@
+{
+  "env": {
+    "python": "3.13.5",
+    "sklearn": "1.6.1",
+    "pandas": "2.2.3",
+    "numpy": "2.1.3",
+    "matplotlib": "3.10.0"
+  },
+  "raw": {
+    "file": "behaviour-intelligence/data/raw/synthetic_realistic_load.csv",
+    "rows": 189793,
+    "cols": 4,
+    "columns": [
+      "Timestamp",
+      "Load Demand (kW)",
+      "Temperature (\u00b0C)",
+      "Solar Irradiance (W/m\u00b2)"
+    ],
+    "ts_min": "2020-01-01 00:00:00",
+    "ts_max": "2025-05-31 00:00:00",
+    "duplicate_timestamps": 0,
+    "nulls": 0,
+    "demand_describe": {
+      "count": 189793.0,
+      "mean": 1747.81,
+      "std": 349.74,
+      "min": 629.73,
+      "25%": 1532.49,
+      "50%": 1700.72,
+      "75%": 1881.49,
+      "max": 4365.2
+    },
+    "corr_load_temperature": 0.155,
+    "corr_load_solar": -0.2431
+  },
+  "preprocessing_steps": [
+    [
+      "0 raw",
+      189793,
+      ""
+    ],
+    [
+      "1 remove NaN / negative",
+      189793,
+      "dropna + demand >= 0"
+    ],
+    [
+      "2 remove extreme spikes",
+      189793,
+      "demand <= median + 10*IQR = 5190.72 kW"
+    ],
+    [
+      "3 interpolate / ffill / bfill",
+      189793,
+      "linear, both directions"
+    ],
+    [
+      "4 remove IQR outliers (factor 3)",
+      189102,
+      "keep [485.49, 2928.49] kW; Q1=1532.49, Q3=1881.49"
+    ],
+    [
+      "5 resample 15min mean + interpolate",
+      189793,
+      "gaps left by step 4 are re-filled by linear interpolation"
+    ],
+    [
+      "6 add Date/Hour/TimeSlot",
+      189793,
+      "columns=['Timestamp', 'Load Demand (kW)', 'Date', 'Hour', 'TimeSlot']"
+    ],
+    [
+      "7 daily 96-slot profiles",
+      1977,
+      "dropped incomplete days: [('2025-05-31', 1)]"
+    ]
+  ],
+  "pipeline": {
+    "clustering": {
+      "best_k": 2,
+      "silhouette_score": 0.4729,
+      "davies_bouldin_score": 0.8373,
+      "total_days": 1977,
+      "dbscan_noise_days": 60,
+      "dbscan_eps": 4.4183,
+      "dbscan_min_samples": 8,
+      "dbscan_knee_percentile": 96.81,
+      "dbscan_n_clusters": 1,
+      "dbscan_largest_cluster_size": 1917,
+      "dbscan_silhouette": null,
+      "dbscan_status": "degenerate - single cluster",
+      "cluster_counts": {
+        "0": 1396,
+        "1": 581
+      },
+      "k_silhouette_scores": {
+        "2": 0.4729,
+        "3": 0.3839,
+        "4": 0.277,
+        "5": 0.3095,
+        "6": 0.3371,
+        "7": 0.1705,
+        "8": 0.252,
+        "9": 0.1933,
+        "10": 0.2537,
+        "11": 0.2234,
+        "12": 0.1614
+      },
+      "cluster_stats": {
+        "0": {
+          "count": 1396,
+          "mean_peak_demand": 2723.4,
+          "mean_avg_demand": 1839.9
+        },
+        "1": {
+          "count": 581,
+          "mean_peak_demand": 2275.3,
+          "mean_avg_demand": 1510.93
+        }
+      }
+    },
+    "anomaly": {
+      "total_days": 1977,
+      "isolation_forest_anomalies": 60,
+      "zscore_anomalies": 0,
+      "final_anomalies": 60,
+      "anomaly_rate_percent": 3.03
+    },
+    "peak": {
+      "total_days": 1977,
+      "peak_days": 281,
+      "non_peak_days": 1696,
+      "threshold_90th_percentile": 2884.67,
+      "threshold_75th_percentile": 2819.01
+    },
+    "labels": {
+      "total_days": 1977,
+      "label_counts": {
+        "Normal Weekday Demand": 1279,
+        "Holiday / Low Demand Day": 396,
+        "Peak Demand Day": 281,
+        "Abnormal Demand Day": 21
+      },
+      "label_percentages": {
+        "Normal Weekday Demand": 64.69,
+        "Holiday / Low Demand Day": 20.03,
+        "Peak Demand Day": 14.21,
+        "Abnormal Demand Day": 1.06
+      },
+      "low_demand_threshold": 1616.61,
+      "risk_distribution": {
+        "Normal": 1279,
+        "Low": 396,
+        "Medium": 281,
+        "High": 21
+      }
+    },
+    "timing_s": [
+      [
+        "load_raw_dataset",
+        0.413
+      ],
+      [
+        "preprocess_timeseries",
+        0.221
+      ],
+      [
+        "to_daily_profiles",
+        0.137
+      ],
+      [
+        "run_clustering_pipeline (k=2..12 sweep + KMeans + DBSCAN)",
+        5.795
+      ],
+      [
+        "run_anomaly_detection_pipeline (IsolationForest + z-score)",
+        1.245
+      ],
+      [
+        "detect_peak_days",
+        0.396
+      ],
+      [
+        "generate_behavior_labels_from_csv",
+        0.65
+      ],
+      [
+        "TOTAL pipeline",
+        8.857
+      ]
+    ],
+    "rss_before_mb": 234.6,
+    "rss_after_mb": 289.5,
+    "peak_working_set_mb": 342.9
+  },
+  "reproduction_vs_saved": {
+    "same_shape": true,
+    "same_dates": true,
+    "behavior_label_mismatches": 0,
+    "behavior_risk_level_mismatches": 0,
+    "kmeans_cluster_mismatches": 0,
+    "dbscan_cluster_mismatches": 0,
+    "final_is_anomaly_mismatches": 0,
+    "is_peak_demand_day_mismatches": 0,
+    "zscore_is_anomaly_mismatches": 0,
+    "isolation_anomaly_score_max_abs_diff": 0.0,
+    "peak_demand_max_abs_diff": 0.0,
+    "mean_demand_max_abs_diff": 0.0,
+    "peak_zscore_max_abs_diff": 0.0,
+    "clustering_metrics_json_equal": true
+  },
+  "profiles": {
+    "days": 1977,
+    "date_min": "2020-01-01",
+    "date_max": "2025-05-30",
+    "weekend_days": 564,
+    "weekday_days": 1413,
+    "peak_demand_describe": {
+      "count": 1977.0,
+      "mean": 2591.71,
+      "std": 258.09,
+      "min": 1946.41,
+      "25%": 2416.57,
+      "50%": 2635.58,
+      "75%": 2819.01,
+      "max": 2928.45
+    },
+    "mean_demand_describe": {
+      "count": 1977.0,
+      "mean": 1743.22,
+      "std": 179.39,
+      "min": 1217.41,
+      "25%": 1616.61,
+      "50%": 1763.9,
+      "75%": 1911.48,
+      "max": 2008.02
+    },
+    "peak_skew": -0.604,
+    "mean_skew": -0.415
+  },
+  "structure_diagnostics": {
+    "mean_adjacent_slot_correlation": 0.6217,
+    "pca_components_for_90pct_variance": 33,
+    "pca_first2_explained": [
+      0.5864,
+      0.0424
+    ]
+  },
+  "structure_diagnostics_old_dataset": {
+    "days": 1978,
+    "mean_adjacent_slot_correlation": 0.003,
+    "pca_components_for_90pct_variance": 83
+  },
+  "demand_by_dow": [
+    {
+      "index": "Mon",
+      "days": 282,
+      "mean_demand_kw": 1835.4,
+      "mean_peak_kw": 2723.47
+    },
+    {
+      "index": "Tue",
+      "days": 282,
+      "mean_demand_kw": 1838.87,
+      "mean_peak_kw": 2726.5
+    },
+    {
+      "index": "Wed",
+      "days": 283,
+      "mean_demand_kw": 1836.06,
+      "mean_peak_kw": 2722.77
+    },
+    {
+      "index": "Thu",
+      "days": 283,
+      "mean_demand_kw": 1834.12,
+      "mean_peak_kw": 2727.49
+    },
+    {
+      "index": "Fri",
+      "days": 283,
+      "mean_demand_kw": 1839.93,
+      "mean_peak_kw": 2721.95
+    },
+    {
+      "index": "Sat",
+      "days": 282,
+      "mean_demand_kw": 1508.11,
+      "mean_peak_kw": 2260.83
+    },
+    {
+      "index": "Sun",
+      "days": 282,
+      "mean_demand_kw": 1509.09,
+      "mean_peak_kw": 2257.57
+    }
+  ],
+  "kmeans_k_sweep": [
+    {
+      "k": 2,
+      "silhouette": 0.4729,
+      "davies_bouldin": 0.8373,
+      "calinski_harabasz": 1367.33,
+      "inertia": 112149.1,
+      "smallest_cluster": 581,
+      "largest_cluster": 1396,
+      "fit_seconds": 0.225
+    },
+    {
+      "k": 3,
+      "silhouette": 0.3839,
+      "davies_bouldin": 1.0281,
+      "calinski_harabasz": 1095.25,
+      "inertia": 89962.8,
+      "smallest_cluster": 433,
+      "largest_cluster": 808,
+      "fit_seconds": 0.241
+    },
+    {
+      "k": 4,
+      "silhouette": 0.277,
+      "davies_bouldin": 1.3785,
+      "calinski_harabasz": 807.33,
+      "inertia": 85201.5,
+      "smallest_cluster": 336,
+      "largest_cluster": 596,
+      "fit_seconds": 0.293
+    },
+    {
+      "k": 5,
+      "silhouette": 0.3095,
+      "davies_bouldin": 1.7812,
+      "calinski_harabasz": 650.98,
+      "inertia": 81791.1,
+      "smallest_cluster": 249,
+      "largest_cluster": 571,
+      "fit_seconds": 0.29
+    },
+    {
+      "k": 6,
+      "silhouette": 0.3371,
+      "davies_bouldin": 2.1552,
+      "calinski_harabasz": 566.75,
+      "inertia": 77856.2,
+      "smallest_cluster": 1,
+      "largest_cluster": 796,
+      "fit_seconds": 0.339
+    },
+    {
+      "k": 7,
+      "silhouette": 0.1705,
+      "davies_bouldin": 2.379,
+      "calinski_harabasz": 503.33,
+      "inertia": 74928.1,
+      "smallest_cluster": 35,
+      "largest_cluster": 444,
+      "fit_seconds": 0.336
+    },
+    {
+      "k": 8,
+      "silhouette": 0.252,
+      "davies_bouldin": 2.0107,
+      "calinski_harabasz": 448.17,
+      "inertia": 73185.4,
+      "smallest_cluster": 1,
+      "largest_cluster": 569,
+      "fit_seconds": 0.344
+    },
+    {
+      "k": 9,
+      "silhouette": 0.1933,
+      "davies_bouldin": 2.0667,
+      "calinski_harabasz": 398.33,
+      "inertia": 72461.2,
+      "smallest_cluster": 1,
+      "largest_cluster": 569,
+      "fit_seconds": 0.373
+    },
+    {
+      "k": 10,
+      "silhouette": 0.2537,
+      "davies_bouldin": 1.8219,
+      "calinski_harabasz": 363.62,
+      "inertia": 71249.5,
+      "smallest_cluster": 1,
+      "largest_cluster": 569,
+      "fit_seconds": 0.367
+    },
+    {
+      "k": 11,
+      "silhouette": 0.2234,
+      "davies_bouldin": 1.835,
+      "calinski_harabasz": 336.17,
+      "inertia": 70036.5,
+      "smallest_cluster": 1,
+      "largest_cluster": 569,
+      "fit_seconds": 0.394
+    },
+    {
+      "k": 12,
+      "silhouette": 0.1614,
+      "davies_bouldin": 1.9742,
+      "calinski_harabasz": 309.79,
+      "inertia": 69413.8,
+      "smallest_cluster": 1,
+      "largest_cluster": 343,
+      "fit_seconds": 0.451
+    }
+  ],
+  "clustering_comparison_k2": [
+    {
+      "model": "K-Means",
+      "k": 2,
+      "silhouette": 0.4729,
+      "davies_bouldin": 0.8373,
+      "calinski_harabasz": 1367.33,
+      "n_clusters": 2,
+      "noise_points": 0,
+      "noise_pct": 0.0,
+      "cluster_sizes": "1396/581",
+      "runtime_s": 0.232,
+      "silhouette_rank": 2.0,
+      "davies_bouldin_rank": 2.0,
+      "calinski_harabasz_rank": 1.0,
+      "mean_rank": 1.667
+    },
+    {
+      "model": "Agglomerative (Ward)",
+      "k": 2,
+      "silhouette": 0.4536,
+      "davies_bouldin": 0.7929,
+      "calinski_harabasz": 1324.1,
+      "n_clusters": 2,
+      "noise_points": 0,
+      "noise_pct": 0.0,
+      "cluster_sizes": "1417/560",
+      "runtime_s": 0.282,
+      "silhouette_rank": 3.0,
+      "davies_bouldin_rank": 1.0,
+      "calinski_harabasz_rank": 2.0,
+      "mean_rank": 2.0
+    },
+    {
+      "model": "Gaussian Mixture",
+      "k": 2,
+      "silhouette": 0.6558,
+      "davies_bouldin": 2.9566,
+      "calinski_harabasz": 58.46,
+      "n_clusters": 2,
+      "noise_points": 0,
+      "noise_pct": 0.0,
+      "cluster_sizes": "1940/37",
+      "runtime_s": 0.12,
+      "silhouette_rank": 1.0,
+      "davies_bouldin_rank": 3.0,
+      "calinski_harabasz_rank": 3.0,
+      "mean_rank": 2.333
+    },
+    {
+      "model": "DBSCAN (eps=4.4183, min_samples=8)",
+      "k": null,
+      "silhouette": null,
+      "davies_bouldin": null,
+      "calinski_harabasz": null,
+      "n_clusters": 1,
+      "noise_points": 60,
+      "noise_pct": 3.03,
+      "cluster_sizes": "1917",
+      "runtime_s": 0.059,
+      "silhouette_rank": null,
+      "davies_bouldin_rank": null,
+      "calinski_harabasz_rank": null,
+      "mean_rank": null
+    }
+  ],
+  "clustering_agreement": {
+    "kmeans_vs_agglomerative_same_assignment_pct": 98.94,
+    "gmm_small_cluster_size": 37
+  },
+  "model_comparison_module": {
+    "runtime_s": 1.188,
+    "best_model": "K-Means",
+    "explanation": "K-Means ranks best overall (mean rank=1.667) across Silhouette (rank 2), Davies-Bouldin (rank 2), and Calinski-Harabasz (rank 1) combined. It is not the top performer on any single metric, but is consistently near the top across all three. Gaussian Mixture Model has the highest Silhouette Score (0.6558) of any model, but the worst Davies-Bouldin Index (2.9566) and worst Calinski-Harabasz Score (58.4577) -- a Silhouette-only ranking would have selected it despite that.",
+    "table": [
+      {
+        "model": "K-Means",
+        "silhouette_score": 0.4729,
+        "davies_bouldin_index": 0.8373,
+        "calinski_harabasz_score": 1367.3276,
+        "silhouette_rank": 2,
+        "davies_bouldin_rank": 2,
+        "calinski_harabasz_rank": 1,
+        "mean_rank": 1.667,
+        "n_clusters": 2,
+        "noise_points": 0,
+        "rank": 1,
+        "status": "Best Model"
+      },
+      {
+        "model": "Agglomerative Clustering",
+        "silhouette_score": 0.4536,
+        "davies_bouldin_index": 0.7929,
+        "calinski_harabasz_score": 1324.1035,
+        "silhouette_rank": 3,
+        "davies_bouldin_rank": 1,
+        "calinski_harabasz_rank": 2,
+        "mean_rank": 2.0,
+        "n_clusters": 2,
+        "noise_points": 0,
+        "rank": 2,
+        "status": "Alternative"
+      },
+      {
+        "model": "Gaussian Mixture Model",
+        "silhouette_score": 0.6558,
+        "davies_bouldin_index": 2.9566,
+        "calinski_harabasz_score": 58.4577,
+        "silhouette_rank": 1,
+        "davies_bouldin_rank": 3,
+        "calinski_harabasz_rank": 3,
+        "mean_rank": 2.333,
+        "n_clusters": 2,
+        "noise_points": 0,
+        "rank": 3,
+        "status": "Alternative"
+      },
+      {
+        "model": "DBSCAN",
+        "silhouette_score": "N/A",
+        "davies_bouldin_index": "N/A",
+        "calinski_harabasz_score": "N/A",
+        "silhouette_rank": null,
+        "davies_bouldin_rank": null,
+        "calinski_harabasz_rank": null,
+        "mean_rank": "N/A",
+        "n_clusters": 1,
+        "noise_points": 60,
+        "rank": null,
+        "status": "Not applicable - single cluster"
+      }
+    ],
+    "matches_saved_cache": true,
+    "cached_call_s": 0.02
+  },
+  "dbscan": {
+    "eps_knee": 4.4183,
+    "knee_percentile": 96.81,
+    "kdist8_percentiles": {
+      "p10": 3.17,
+      "p25": 3.44,
+      "p50": 3.72,
+      "p75": 3.99,
+      "p90": 4.17,
+      "p95": 4.3,
+      "p96": 4.33,
+      "p97": 19.56,
+      "p98": 30.56,
+      "p99": 33.44,
+      "p100": 36.21
+    },
+    "noise_count": 60,
+    "n_clusters": 1,
+    "sweep_any_ge2_clusters_and_noise_lt_25pct": true
+  },
+  "cluster_profiles": [
+    {
+      "cluster": 0,
+      "days": 1396,
+      "share_pct": 70.61,
+      "mean_demand_kw": 1839.9,
+      "mean_peak_kw": 2723.4,
+      "mean_min_kw": 1504.53,
+      "mean_intraday_std_kw": 287.53,
+      "peak_time_of_mean_profile": "19:30",
+      "trough_time_of_mean_profile": "02:00",
+      "weekend_pct": 0.0,
+      "anomaly_days": 24,
+      "Mon": 278,
+      "Tue": 279,
+      "Wed": 279,
+      "Thu": 279,
+      "Fri": 281,
+      "Sat": 0,
+      "Sun": 0,
+      "Normal Weekday Demand": 1199,
+      "Peak Demand Day": 195,
+      "Holiday / Low Demand Day": 0,
+      "Abnormal Demand Day": 2
+    },
+    {
+      "cluster": 1,
+      "days": 581,
+      "share_pct": 29.39,
+      "mean_demand_kw": 1510.93,
+      "mean_peak_kw": 2275.3,
+      "mean_min_kw": 1211.61,
+      "mean_intraday_std_kw": 257.93,
+      "peak_time_of_mean_profile": "19:30",
+      "trough_time_of_mean_profile": "01:15",
+      "weekend_pct": 97.07,
+      "anomaly_days": 36,
+      "Mon": 4,
+      "Tue": 3,
+      "Wed": 4,
+      "Thu": 4,
+      "Fri": 2,
+      "Sat": 282,
+      "Sun": 282,
+      "Normal Weekday Demand": 80,
+      "Peak Demand Day": 86,
+      "Holiday / Low Demand Day": 396,
+      "Abnormal Demand Day": 19
+    }
+  ],
+  "cluster_vs_weekend": {
+    "false": {
+      "0": 1396,
+      "1": 17
+    },
+    "true": {
+      "0": 0,
+      "1": 564
+    }
+  },
+  "cluster_weekend_alignment": {
+    "weekend_like_cluster": 1,
+    "agreement_pct": 99.14
+  },
+  "anomaly_overlap_counts": {
+    "Isolation Forest": {
+      "Isolation Forest": 60,
+      "Local Outlier Factor": 60,
+      "One-Class SVM": 30,
+      "Z-Score (|z|>=3.0)": 0,
+      "DBSCAN noise (knee eps)": 60,
+      "GMM minority component (k=2)": 36
+    },
+    "Local Outlier Factor": {
+      "Isolation Forest": 60,
+      "Local Outlier Factor": 60,
+      "One-Class SVM": 30,
+      "Z-Score (|z|>=3.0)": 0,
+      "DBSCAN noise (knee eps)": 60,
+      "GMM minority component (k=2)": 36
+    },
+    "One-Class SVM": {
+      "Isolation Forest": 30,
+      "Local Outlier Factor": 30,
+      "One-Class SVM": 75,
+      "Z-Score (|z|>=3.0)": 0,
+      "DBSCAN noise (knee eps)": 30,
+      "GMM minority component (k=2)": 16
+    },
+    "Z-Score (|z|>=3.0)": {
+      "Isolation Forest": 0,
+      "Local Outlier Factor": 0,
+      "One-Class SVM": 0,
+      "Z-Score (|z|>=3.0)": 0,
+      "DBSCAN noise (knee eps)": 0,
+      "GMM minority component (k=2)": 0
+    },
+    "DBSCAN noise (knee eps)": {
+      "Isolation Forest": 60,
+      "Local Outlier Factor": 60,
+      "One-Class SVM": 30,
+      "Z-Score (|z|>=3.0)": 0,
+      "DBSCAN noise (knee eps)": 60,
+      "GMM minority component (k=2)": 36
+    },
+    "GMM minority component (k=2)": {
+      "Isolation Forest": 36,
+      "Local Outlier Factor": 36,
+      "One-Class SVM": 16,
+      "Z-Score (|z|>=3.0)": 0,
+      "DBSCAN noise (knee eps)": 36,
+      "GMM minority component (k=2)": 37
+    }
+  },
+  "anomaly_overlap_jaccard": {
+    "Isolation Forest": {
+      "Isolation Forest": 1.0,
+      "Local Outlier Factor": 1.0,
+      "One-Class SVM": 0.2857,
+      "Z-Score (|z|>=3.0)": 0.0,
+      "DBSCAN noise (knee eps)": 1.0,
+      "GMM minority component (k=2)": 0.5902
+    },
+    "Local Outlier Factor": {
+      "Isolation Forest": 1.0,
+      "Local Outlier Factor": 1.0,
+      "One-Class SVM": 0.2857,
+      "Z-Score (|z|>=3.0)": 0.0,
+      "DBSCAN noise (knee eps)": 1.0,
+      "GMM minority component (k=2)": 0.5902
+    },
+    "One-Class SVM": {
+      "Isolation Forest": 0.2857,
+      "Local Outlier Factor": 0.2857,
+      "One-Class SVM": 1.0,
+      "Z-Score (|z|>=3.0)": 0.0,
+      "DBSCAN noise (knee eps)": 0.2857,
+      "GMM minority component (k=2)": 0.1667
+    },
+    "Z-Score (|z|>=3.0)": {
+      "Isolation Forest": 0.0,
+      "Local Outlier Factor": 0.0,
+      "One-Class SVM": 0.0,
+      "Z-Score (|z|>=3.0)": 0.0,
+      "DBSCAN noise (knee eps)": 0.0,
+      "GMM minority component (k=2)": 0.0
+    },
+    "DBSCAN noise (knee eps)": {
+      "Isolation Forest": 1.0,
+      "Local Outlier Factor": 1.0,
+      "One-Class SVM": 0.2857,
+      "Z-Score (|z|>=3.0)": 0.0,
+      "DBSCAN noise (knee eps)": 1.0,
+      "GMM minority component (k=2)": 0.5902
+    },
+    "GMM minority component (k=2)": {
+      "Isolation Forest": 0.5902,
+      "Local Outlier Factor": 0.5902,
+      "One-Class SVM": 0.1667,
+      "Z-Score (|z|>=3.0)": 0.0,
+      "DBSCAN noise (knee eps)": 0.5902,
+      "GMM minority component (k=2)": 1.0
+    }
+  },
+  "anomaly_comparison_module": {
+    "runtime_s_reported": 35.04,
+    "wall_s": 35.042,
+    "cached_call_s": 0.023,
+    "best_model": "Isolation Forest",
+    "explanation": "Isolation Forest was selected because its flagged set is the most stable under resampling: mean Jaccard=0.7769 against the full-data flagged set across 20 bootstrap resamples of 80% of days (mean symmetric difference=13.6 days). It is robust to high-dimensional data and provides consistent results. Z-Score is excluded from ranking: it flags 0 days at threshold=3.0 on this dataset, so a stability score of 0.0 would reflect that it never fires in any resample, not that it is unstable.",
+    "table": [
+      {
+        "model": "Isolation Forest",
+        "anomaly_count": 60,
+        "anomaly_percentage": 3.03,
+        "mean_anomaly_score": 0.1864,
+        "std_anomaly_score": 0.0586,
+        "mean_jaccard": 0.7769,
+        "std_jaccard": 0.032,
+        "mean_symmetric_difference": 13.6,
+        "rank": 1,
+        "status": "Best Model"
+      },
+      {
+        "model": "Local Outlier Factor",
+        "anomaly_count": 60,
+        "anomaly_percentage": 3.03,
+        "mean_anomaly_score": -1.253,
+        "std_anomaly_score": 1.3395,
+        "mean_jaccard": 0.7769,
+        "std_jaccard": 0.032,
+        "mean_symmetric_difference": 13.6,
+        "rank": 2,
+        "status": "Alternative"
+      },
+      {
+        "model": "One-Class SVM",
+        "anomaly_count": 75,
+        "anomaly_percentage": 3.79,
+        "mean_anomaly_score": 0.036,
+        "std_anomaly_score": 0.0226,
+        "mean_jaccard": 0.2812,
+        "std_jaccard": 0.0516,
+        "mean_symmetric_difference": 77.9,
+        "rank": 3,
+        "status": "Alternative"
+      },
+      {
+        "model": "Z-Score",
+        "anomaly_count": 0,
+        "anomaly_percentage": 0.0,
+        "mean_anomaly_score": 0.9333,
+        "std_anomaly_score": 0.5518,
+        "mean_jaccard": 0.0,
+        "std_jaccard": 0.0,
+        "mean_symmetric_difference": 0.0,
+        "rank": null,
+        "status": "Not applicable - flags no days"
+      }
+    ],
+    "spearman": {
+      "Isolation Forest": {
+        "Isolation Forest": 1.0,
+        "Z-Score": 0.9028,
+        "One-Class SVM": 0.0767,
+        "Local Outlier Factor": 0.2046
+      },
+      "Z-Score": {
+        "Isolation Forest": 0.9028,
+        "Z-Score": 1.0,
+        "One-Class SVM": -0.1097,
+        "Local Outlier Factor": -0.0081
+      },
+      "One-Class SVM": {
+        "Isolation Forest": 0.0767,
+        "Z-Score": -0.1097,
+        "One-Class SVM": 1.0,
+        "Local Outlier Factor": 0.5313
+      },
+      "Local Outlier Factor": {
+        "Isolation Forest": 0.2046,
+        "Z-Score": -0.0081,
+        "One-Class SVM": 0.5313,
+        "Local Outlier Factor": 1.0
+      }
+    },
+    "table_matches_saved_cache": true,
+    "spearman_matches_saved_cache": true,
+    "saved_cache_runtime_s": 14.04
+  },
+  "bootstrap_if_equals_lof_in_resamples": "9/20",
+  "bootstrap_mean_full_if_anomalies_in_sample": 48.05,
+  "zscore": {
+    "max_abs_peak_z": 2.501,
+    "max_abs_mean_z": 2.932,
+    "flags_by_threshold": {
+      "3.0": 0,
+      "2.5": 2,
+      "2.0": 76,
+      "1.5": 270
+    },
+    "days_above_mean_plus_1.5std_peak": 0,
+    "days_above_mean_plus_1.5std_mean": 0,
+    "peak_zscore_gt_2_signed_abs": 69
+  },
+  "anomaly_days": {
+    "count": 60,
+    "by_year": {
+      "2020": 10,
+      "2021": 10,
+      "2022": 14,
+      "2023": 9,
+      "2024": 12,
+      "2025": 5
+    },
+    "by_dow": {
+      "Mon": 10,
+      "Tue": 7,
+      "Wed": 8,
+      "Thu": 12,
+      "Fri": 4,
+      "Sat": 11,
+      "Sun": 8
+    },
+    "by_month": {
+      "1": 7,
+      "2": 5,
+      "3": 7,
+      "4": 2,
+      "5": 9,
+      "6": 5,
+      "7": 7,
+      "8": 4,
+      "9": 3,
+      "10": 1,
+      "11": 4,
+      "12": 6
+    },
+    "by_label": {
+      "Peak Demand Day": 39,
+      "Abnormal Demand Day": 21
+    },
+    "spike_like(any slot >1.5x median)": 39,
+    "dip_like(any slot <0.7x median)": 60,
+    "both": 39,
+    "neither": 0,
+    "longest_run_above_1.5x_describe": {
+      "count": 60.0,
+      "mean": 2.18,
+      "std": 2.21,
+      "min": 0.0,
+      "25%": 0.0,
+      "50%": 2.0,
+      "75%": 4.0,
+      "max": 9.0
+    },
+    "non_anomalous_days_with_any_slot_above_1.5x_median": 0,
+    "non_anomalous_days_with_any_slot_below_0.7x_median": 20,
+    "top10": [
+      {
+        "date": "2024-07-04",
+        "day_of_week": "Thu",
+        "peak_demand": 2927.77,
+        "mean_demand": 1764.161,
+        "isolation_anomaly_score": 0.146,
+        "behavior_label": "Peak Demand Day"
+      },
+      {
+        "date": "2022-06-20",
+        "day_of_week": "Mon",
+        "peak_demand": 2905.67,
+        "mean_demand": 1871.336,
+        "isolation_anomaly_score": 0.133,
+        "behavior_label": "Peak Demand Day"
+      },
+      {
+        "date": "2022-01-06",
+        "day_of_week": "Thu",
+        "peak_demand": 2880.97,
+        "mean_demand": 1492.236,
+        "isolation_anomaly_score": 0.131,
+        "behavior_label": "Peak Demand Day"
+      },
+      {
+        "date": "2020-09-24",
+        "day_of_week": "Thu",
+        "peak_demand": 2914.87,
+        "mean_demand": 1630.575,
+        "isolation_anomaly_score": 0.131,
+        "behavior_label": "Peak Demand Day"
+      },
+      {
+        "date": "2021-03-18",
+        "day_of_week": "Thu",
+        "peak_demand": 2922.5,
+        "mean_demand": 1725.04,
+        "isolation_anomaly_score": 0.13,
+        "behavior_label": "Peak Demand Day"
+      },
+      {
+        "date": "2024-02-01",
+        "day_of_week": "Thu",
+        "peak_demand": 2830.6,
+        "mean_demand": 1660.492,
+        "isolation_anomaly_score": 0.13,
+        "behavior_label": "Peak Demand Day"
+      },
+      {
+        "date": "2023-05-13",
+        "day_of_week": "Sat",
+        "peak_demand": 2584.85,
+        "mean_demand": 1360.004,
+        "isolation_anomaly_score": 0.13,
+        "behavior_label": "Abnormal Demand Day"
+      },
+      {
+        "date": "2020-08-05",
+        "day_of_week": "Wed",
+        "peak_demand": 2923.79,
+        "mean_demand": 1772.713,
+        "isolation_anomaly_score": 0.129,
+        "behavior_label": "Peak Demand Day"
+      },
+      {
+        "date": "2023-12-12",
+        "day_of_week": "Tue",
+        "peak_demand": 2877.65,
+        "mean_demand": 1669.283,
+        "isolation_anomaly_score": 0.129,
+        "behavior_label": "Peak Demand Day"
+      },
+      {
+        "date": "2024-11-12",
+        "day_of_week": "Tue",
+        "peak_demand": 2736.24,
+        "mean_demand": 1626.597,
+        "isolation_anomaly_score": 0.128,
+        "behavior_label": "Abnormal Demand Day"
+      }
+    ],
+    "min_score_flagged": 0.0449,
+    "max_score_unflagged": -0.1154
+  },
+  "peak": {
+    "threshold_90": 2884.67,
+    "threshold_75": 2819.01,
+    "cond_90_days": 198,
+    "cond_zscore_gt2_days": 69,
+    "cond_anomaly_and_75_days": 39,
+    "zscore_only_days": 69,
+    "anomaly75_only_days": 14,
+    "cond90_and_anomaly": 25,
+    "peak_days_total": 281,
+    "peak_pct": 14.21,
+    "zscore_gt2_days_with_peak_below_mean": 69,
+    "peak_days_by_dow": {
+      "Mon": 41,
+      "Tue": 42,
+      "Wed": 41,
+      "Thu": 49,
+      "Fri": 30,
+      "Sat": 39,
+      "Sun": 39
+    },
+    "peak_days_weekend_pct": 27.76,
+    "min_peak_kw_among_peak_days": 1946.41
+  },
+  "labels": {
+    "low_demand_threshold_kw": 1616.61,
+    "counts": {
+      "Normal Weekday Demand": 1279,
+      "Holiday / Low Demand Day": 396,
+      "Peak Demand Day": 281,
+      "Abnormal Demand Day": 21
+    },
+    "pct": {
+      "Normal Weekday Demand": 64.69,
+      "Holiday / Low Demand Day": 20.03,
+      "Peak Demand Day": 14.21,
+      "Abnormal Demand Day": 1.06
+    },
+    "risk": {
+      "Normal": 1279,
+      "Low": 396,
+      "Medium": 281,
+      "High": 21
+    },
+    "normal_weekday_label_on_weekend_days": 80,
+    "holiday_low_label_on_weekdays": 0,
+    "holiday_low_label_on_weekends": 396,
+    "anomalies_relabelled_as_peak": 39,
+    "abnormal_days": 21,
+    "distribution_table": [
+      {
+        "behavior_label": "Normal Weekday Demand",
+        "risk_level": "Normal",
+        "days": 1279,
+        "percent": 64.69,
+        "mean_demand_kw": 1812.25,
+        "mean_peak_kw": 2675.72,
+        "weekend_pct": 6.25
+      },
+      {
+        "behavior_label": "Peak Demand Day",
+        "risk_level": "Medium",
+        "days": 281,
+        "percent": 14.21,
+        "mean_demand_kw": 1780.96,
+        "mean_peak_kw": 2691.13,
+        "weekend_pct": 27.76
+      },
+      {
+        "behavior_label": "Holiday / Low Demand Day",
+        "risk_level": "Low",
+        "days": 396,
+        "percent": 20.03,
+        "mean_demand_kw": 1505.66,
+        "mean_peak_kw": 2241.86,
+        "weekend_pct": 100.0
+      },
+      {
+        "behavior_label": "Abnormal Demand Day",
+        "risk_level": "High",
+        "days": 21,
+        "percent": 1.06,
+        "mean_demand_kw": 1513.9,
+        "mean_peak_kw": 2742.16,
+        "weekend_pct": 47.62
+      }
+    ],
+    "by_dow": {
+      "Mon": {
+        "Normal Weekday Demand": 239,
+        "Peak Demand Day": 41,
+        "Holiday / Low Demand Day": 0,
+        "Abnormal Demand Day": 2
+      },
+      "Tue": {
+        "Normal Weekday Demand": 239,
+        "Peak Demand Day": 42,
+        "Holiday / Low Demand Day": 0,
+        "Abnormal Demand Day": 1
+      },
+      "Wed": {
+        "Normal Weekday Demand": 239,
+        "Peak Demand Day": 41,
+        "Holiday / Low Demand Day": 0,
+        "Abnormal Demand Day": 3
+      },
+      "Thu": {
+        "Normal Weekday Demand": 231,
+        "Peak Demand Day": 49,
+        "Holiday / Low Demand Day": 0,
+        "Abnormal Demand Day": 3
+      },
+      "Fri": {
+        "Normal Weekday Demand": 251,
+        "Peak Demand Day": 30,
+        "Holiday / Low Demand Day": 0,
+        "Abnormal Demand Day": 2
+      },
+      "Sat": {
+        "Normal Weekday Demand": 37,
+        "Peak Demand Day": 39,
+        "Holiday / Low Demand Day": 199,
+        "Abnormal Demand Day": 7
+      },
+      "Sun": {
+        "Normal Weekday Demand": 43,
+        "Peak Demand Day": 39,
+        "Holiday / Low Demand Day": 197,
+        "Abnormal Demand Day": 3
+      }
+    },
+    "vs_cluster": {
+      "Normal Weekday Demand": {
+        "0": 1199,
+        "1": 80
+      },
+      "Peak Demand Day": {
+        "0": 195,
+        "1": 86
+      },
+      "Holiday / Low Demand Day": {
+        "0": 0,
+        "1": 396
+      },
+      "Abnormal Demand Day": {
+        "0": 2,
+        "1": 19
+      }
+    }
+  },
+  "prediction_backtest": {
+    "note": "computed by this script; not part of the component code base",
+    "cutoff": "2024-06-01",
+    "train_days": 1613,
+    "test_days": 364,
+    "accuracy_pct": 78.85,
+    "majority_baseline_label": "Normal Weekday Demand",
+    "majority_baseline_accuracy_pct": 62.36,
+    "macro_f1": 0.4764,
+    "mean_confidence_pct": 84.28,
+    "strategies_used": {
+      "month + day-of-week": 364
+    },
+    "mean_matched_days": 19.1,
+    "per_label": [
+      {
+        "label": "Normal Weekday Demand",
+        "support": 227,
+        "predicted": 262,
+        "precision": 0.8206,
+        "recall": 0.9471,
+        "f1": 0.8793
+      },
+      {
+        "label": "Peak Demand Day",
+        "support": 57,
+        "predicted": 25,
+        "precision": 0.32,
+        "recall": 0.1404,
+        "f1": 0.1951
+      },
+      {
+        "label": "Holiday / Low Demand Day",
+        "support": 77,
+        "predicted": 77,
+        "precision": 0.8312,
+        "recall": 0.8312,
+        "f1": 0.8312
+      },
+      {
+        "label": "Abnormal Demand Day",
+        "support": 3,
+        "predicted": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    ],
+    "mean_ms_per_prediction": 6.37
+  },
+  "figures": [
+    "F01_kmeans_k_selection.png",
+    "F02_clustering_algorithm_comparison.png",
+    "F03_dbscan_k_distance.png",
+    "F04_kmeans_cluster_profiles.png",
+    "F05_pca_clusters_and_anomalies.png",
+    "F06_anomaly_bootstrap_stability.png",
+    "F07_isolation_forest_score_distribution.png",
+    "F08_top_anomaly_day_profiles.png",
+    "F09_peak_demand_thresholds.png",
+    "F10_behaviour_label_distribution.png",
+    "F11_mean_profile_by_behaviour_label.png",
+    "F12_monthly_behaviour_label_mix.png",
+    "F13_dataset_weekday_vs_weekend_profile.png"
+  ]
+}

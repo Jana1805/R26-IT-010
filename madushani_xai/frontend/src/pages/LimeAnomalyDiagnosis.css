@@ -1,0 +1,545 @@
+.lad-page {
+  padding: 2rem;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── Focused view (deep-linked from Behaviour Intelligence) ──── */
+.lad-page--focused {
+  margin: 0 auto;
+}
+
+.lad-panel--focused {
+  width: 100%;
+}
+
+.lad-focused-back-bottom {
+  align-self: center;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.lad-focused-back-bottom:hover {
+  background: var(--bg-surface);
+  color: var(--text);
+}
+
+/* ── Behaviour Intelligence Context Banner ──────────────────── */
+.lad-bi-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 1rem;
+  background: rgba(109, 40, 217, 0.08);
+  border: 1px solid rgba(109, 40, 217, 0.25);
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+.lad-bi-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex: 1;
+  flex-wrap: wrap;
+}
+.lad-bi-banner-icon {
+  color: #7c3aed;
+  flex-shrink: 0;
+}
+.lad-bi-banner-source {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #7c3aed;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.lad-bi-banner-sep {
+  color: var(--text-dim);
+  font-size: 0.72rem;
+}
+.lad-bi-banner-msg {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.lad-bi-banner-back {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #7c3aed;
+  text-decoration: none;
+  border: 1px solid rgba(109, 40, 217, 0.3);
+  border-radius: 5px;
+  padding: 0.25rem 0.65rem;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.lad-bi-banner-back:hover {
+  background: rgba(109, 40, 217, 0.12);
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.lad-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.lad-component-tag {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--blue);
+  background: var(--blue-glow);
+  border: 1px solid var(--blue);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  margin-top: 0.25rem;
+}
+.lad-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 0.25rem;
+}
+.lad-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Stats Row ──────────────────────────────────────────────── */
+.lad-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.lad-stat {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.85rem 1.1rem;
+}
+.lad-stat-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.3rem;
+}
+.lad-stat-value {
+  font-family: 'Fira Code', monospace;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  line-height: 1;
+}
+.lad-stat-unit {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-weight: 400;
+}
+
+/* ── Demand Badge ───────────────────────────────────────────── */
+.lad-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.lad-badge--low    { background: rgba(16,185,129,0.15); color: var(--green); border: 1px solid rgba(16,185,129,0.3); }
+.lad-badge--medium { background: rgba(59,130,246,0.15); color: var(--blue);  border: 1px solid rgba(59,130,246,0.3); }
+.lad-badge--high   { background: rgba(245,158,11,0.15); color: var(--orange);border: 1px solid rgba(245,158,11,0.3); }
+.lad-badge--peak   { background: rgba(239,68,68,0.15);  color: var(--red);   border: 1px solid rgba(239,68,68,0.3);  }
+
+/* ── Two-column Layout ──────────────────────────────────────── */
+.lad-columns {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+/* ── Panel ──────────────────────────────────────────────────── */
+.lad-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.lad-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.lad-panel-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+  flex: 1;
+}
+
+/* ── Filter Pills ───────────────────────────────────────────── */
+.lad-filter-row {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+.lad-filter-pill {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.lad-filter-pill:hover { border-color: var(--blue); color: var(--blue); }
+.lad-filter-pill--active { background: var(--blue-glow); border-color: var(--blue); color: var(--blue); }
+
+/* ── Instance List ──────────────────────────────────────────── */
+.lad-instance-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 520px;
+  overflow-y: auto;
+}
+.lad-instance-list::-webkit-scrollbar { width: 4px; }
+.lad-instance-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.lad-instance-card {
+  width: 100%;
+  text-align: left;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  padding: 0.6rem 0.75rem;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.lad-instance-card:hover { border-color: var(--blue); }
+.lad-instance-card--active { border-color: var(--blue); background: var(--blue-glow); }
+
+.lad-instance-card--live { border-color: var(--green); }
+
+.lad-inst-id--live {
+  background: var(--green);
+  color: #06210f;
+  font-weight: 700;
+  padding: 0.05rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+
+.lad-inst-top {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.lad-inst-id {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.lad-inst-r2 {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+.lad-inst-bottom {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+.lad-inst-ts {
+  font-family: 'Fira Code', monospace;
+}
+.lad-inst-demands {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+.lad-inst-demands strong {
+  color: var(--text);
+  font-family: 'Fira Code', monospace;
+}
+
+/* ── Prediction Row ─────────────────────────────────────────── */
+.lad-pred-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+.lad-pred-block {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  padding: 0.75rem;
+}
+.lad-pred-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin: 0 0 0.25rem;
+}
+.lad-pred-value {
+  font-family: 'Fira Code', monospace;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  line-height: 1;
+}
+.lad-pred-value--error { color: var(--orange); }
+.lad-pred-unit {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin: 0.15rem 0 0;
+}
+.lad-pred-ts {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.68rem;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.4;
+  word-break: break-all;
+}
+
+/* ── Confidence ─────────────────────────────────────────────── */
+.lad-conf {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.lad-conf-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.lad-conf-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.lad-conf-value {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.lad-conf-track {
+  height: 6px;
+  background: var(--bg-card);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.lad-conf-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+  min-width: 2px;
+}
+.lad-conf-hint {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ── Section label ──────────────────────────────────────────── */
+.lad-section-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.5rem;
+}
+
+/* ── Contributions ──────────────────────────────────────────── */
+.lad-contribs {
+  display: flex;
+  flex-direction: column;
+}
+.lad-contrib-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.lad-contrib-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.lad-contrib-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.lad-contrib-icon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+.lad-contrib-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+}
+.lad-contrib-fval {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+.lad-contrib-weight {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.lad-contrib-weight--pos { color: var(--green); }
+.lad-contrib-weight--neg { color: var(--red); }
+
+.lad-contrib-track {
+  height: 4px;
+  background: var(--bg-surface);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-left: 1.2rem;
+}
+.lad-contrib-bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+  min-width: 2px;
+}
+.lad-contrib-bar--pos { background: var(--green); }
+.lad-contrib-bar--neg { background: var(--red); }
+
+/* ── Intercept row ──────────────────────────────────────────── */
+.lad-intercept-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0.75rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.lad-intercept-val {
+  font-family: 'Fira Code', monospace;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+/* ── Guide ──────────────────────────────────────────────────── */
+.lad-guide {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.lad-guide-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+.lad-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+.lad-guide-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  padding: 0.85rem;
+}
+.lad-guide-card-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 0.35rem;
+}
+.lad-guide-card-text {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── States ─────────────────────────────────────────────────── */
+.lad-state {
+  padding: 3rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+.lad-state--error { color: var(--red); }
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .lad-columns      { grid-template-columns: 1fr; }
+  .lad-stats-row    { grid-template-columns: repeat(2, 1fr); }
+  .lad-pred-row     { grid-template-columns: repeat(2, 1fr); }
+  .lad-guide-grid   { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Live-explanation notices (BI deep link) ────────────────── */
+.lad-notice {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.1rem;
+  background: rgba(249, 115, 22, 0.08);
+  border: 1px solid rgba(249, 115, 22, 0.35);
+  border-radius: 8px;
+  color: var(--orange);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+.lad-data-note {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}

@@ -1,0 +1,6 @@
+# Extra packages needed only to retrain the model and run the notebooks (the API itself needs only backend/requirements.txt)
+-r backend/requirements.txt
+optuna>=3.0
+matplotlib>=3.7
+jupyter
+nbconvert

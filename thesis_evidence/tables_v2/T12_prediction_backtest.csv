@@ -1,0 +1,6 @@
+method,accuracy,macro_F1,predicts_peak_days,predicts_abnormal_days,best
+App: month + day-of-week (with fallbacks),0.8352,0.4924,12,0,<-- best
+Day-of-week only,0.8297,0.4493,0,0,
+Month only,0.6236,0.192,0,0,
+"Weekend -> Low, weekday -> Normal",0.8297,0.4493,0,0,
+Always the majority label,0.6236,0.192,0,0,

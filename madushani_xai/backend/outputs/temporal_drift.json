@@ -1,0 +1,548 @@
+{
+  "years": [
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+  ],
+  "features": [
+    "Temperature",
+    "Humidity",
+    "Wind Speed",
+    "Rainfall",
+    "Solar Irradiance",
+    "GDP",
+    "Per Capita Energy Use",
+    "Electricity Price",
+    "Day of Week",
+    "Hour of Day",
+    "Month",
+    "Public Event"
+  ],
+  "shap_by_year": {
+    "2020": {
+      "Temperature": 159.9017,
+      "Humidity": 0.1604,
+      "Wind Speed": 0.2238,
+      "Rainfall": 0.0281,
+      "Solar Irradiance": 0.1024,
+      "GDP": 0.1247,
+      "Per Capita Energy Use": 0.1858,
+      "Electricity Price": 0.1396,
+      "Day of Week": 0.0486,
+      "Hour of Day": 0.1801,
+      "Month": 0.0104,
+      "Public Event": 0.0043
+    },
+    "2021": {
+      "Temperature": 157.869,
+      "Humidity": 0.1396,
+      "Wind Speed": 0.1183,
+      "Rainfall": 0.0631,
+      "Solar Irradiance": 0.1045,
+      "GDP": 0.121,
+      "Per Capita Energy Use": 0.1056,
+      "Electricity Price": 0.1974,
+      "Day of Week": 0.046,
+      "Hour of Day": 0.0293,
+      "Month": 0.1909,
+      "Public Event": 0.0
+    },
+    "2022": {
+      "Temperature": 160.4232,
+      "Humidity": 0.0695,
+      "Wind Speed": 0.2362,
+      "Rainfall": 0.1184,
+      "Solar Irradiance": 0.1244,
+      "GDP": 0.197,
+      "Per Capita Energy Use": 0.0548,
+      "Electricity Price": 0.0668,
+      "Day of Week": 0.0524,
+      "Hour of Day": 0.0863,
+      "Month": 0.0656,
+      "Public Event": 0.0
+    },
+    "2023": {
+      "Temperature": 153.5812,
+      "Humidity": 0.1812,
+      "Wind Speed": 0.3011,
+      "Rainfall": 0.0351,
+      "Solar Irradiance": 0.2014,
+      "GDP": 0.1295,
+      "Per Capita Energy Use": 0.1811,
+      "Electricity Price": 0.0831,
+      "Day of Week": 0.0082,
+      "Hour of Day": 0.0273,
+      "Month": 0.0732,
+      "Public Event": 0.0
+    },
+    "2024": {
+      "Temperature": 157.1228,
+      "Humidity": 0.0567,
+      "Wind Speed": 0.1259,
+      "Rainfall": 0.1373,
+      "Solar Irradiance": 0.1533,
+      "GDP": 0.2889,
+      "Per Capita Energy Use": 0.118,
+      "Electricity Price": 0.1375,
+      "Day of Week": 0.0456,
+      "Hour of Day": 0.1895,
+      "Month": 0.0701,
+      "Public Event": 0.0
+    },
+    "2025": {
+      "Temperature": 157.2116,
+      "Humidity": 0.112,
+      "Wind Speed": 0.0655,
+      "Rainfall": 0.2032,
+      "Solar Irradiance": 0.1645,
+      "GDP": 0.1916,
+      "Per Capita Energy Use": 0.0908,
+      "Electricity Price": 0.1214,
+      "Day of Week": 0.0394,
+      "Hour of Day": 0.0414,
+      "Month": 0.0108,
+      "Public Event": 0.0942
+    }
+  },
+  "rankings_by_year": {
+    "2020": [
+      {
+        "feature": "Temperature",
+        "shap": 159.9017,
+        "rank": 1
+      },
+      {
+        "feature": "Wind Speed",
+        "shap": 0.2238,
+        "rank": 2
+      },
+      {
+        "feature": "Per Capita Energy Use",
+        "shap": 0.1858,
+        "rank": 3
+      },
+      {
+        "feature": "Hour of Day",
+        "shap": 0.1801,
+        "rank": 4
+      },
+      {
+        "feature": "Humidity",
+        "shap": 0.1604,
+        "rank": 5
+      },
+      {
+        "feature": "Electricity Price",
+        "shap": 0.1396,
+        "rank": 6
+      },
+      {
+        "feature": "GDP",
+        "shap": 0.1247,
+        "rank": 7
+      },
+      {
+        "feature": "Solar Irradiance",
+        "shap": 0.1024,
+        "rank": 8
+      },
+      {
+        "feature": "Day of Week",
+        "shap": 0.0486,
+        "rank": 9
+      },
+      {
+        "feature": "Rainfall",
+        "shap": 0.0281,
+        "rank": 10
+      },
+      {
+        "feature": "Month",
+        "shap": 0.0104,
+        "rank": 11
+      },
+      {
+        "feature": "Public Event",
+        "shap": 0.0043,
+        "rank": 12
+      }
+    ],
+    "2021": [
+      {
+        "feature": "Temperature",
+        "shap": 157.869,
+        "rank": 1
+      },
+      {
+        "feature": "Electricity Price",
+        "shap": 0.1974,
+        "rank": 2
+      },
+      {
+        "feature": "Month",
+        "shap": 0.1909,
+        "rank": 3
+      },
+      {
+        "feature": "Humidity",
+        "shap": 0.1396,
+        "rank": 4
+      },
+      {
+        "feature": "GDP",
+        "shap": 0.121,
+        "rank": 5
+      },
+      {
+        "feature": "Wind Speed",
+        "shap": 0.1183,
+        "rank": 6
+      },
+      {
+        "feature": "Per Capita Energy Use",
+        "shap": 0.1056,
+        "rank": 7
+      },
+      {
+        "feature": "Solar Irradiance",
+        "shap": 0.1045,
+        "rank": 8
+      },
+      {
+        "feature": "Rainfall",
+        "shap": 0.0631,
+        "rank": 9
+      },
+      {
+        "feature": "Day of Week",
+        "shap": 0.046,
+        "rank": 10
+      },
+      {
+        "feature": "Hour of Day",
+        "shap": 0.0293,
+        "rank": 11
+      },
+      {
+        "feature": "Public Event",
+        "shap": 0.0,
+        "rank": 12
+      }
+    ],
+    "2022": [
+      {
+        "feature": "Temperature",
+        "shap": 160.4232,
+        "rank": 1
+      },
+      {
+        "feature": "Wind Speed",
+        "shap": 0.2362,
+        "rank": 2
+      },
+      {
+        "feature": "GDP",
+        "shap": 0.197,
+        "rank": 3
+      },
+      {
+        "feature": "Solar Irradiance",
+        "shap": 0.1244,
+        "rank": 4
+      },
+      {
+        "feature": "Rainfall",
+        "shap": 0.1184,
+        "rank": 5
+      },
+      {
+        "feature": "Hour of Day",
+        "shap": 0.0863,
+        "rank": 6
+      },
+      {
+        "feature": "Humidity",
+        "shap": 0.0695,
+        "rank": 7
+      },
+      {
+        "feature": "Electricity Price",
+        "shap": 0.0668,
+        "rank": 8
+      },
+      {
+        "feature": "Month",
+        "shap": 0.0656,
+        "rank": 9
+      },
+      {
+        "feature": "Per Capita Energy Use",
+        "shap": 0.0548,
+        "rank": 10
+      },
+      {
+        "feature": "Day of Week",
+        "shap": 0.0524,
+        "rank": 11
+      },
+      {
+        "feature": "Public Event",
+        "shap": 0.0,
+        "rank": 12
+      }
+    ],
+    "2023": [
+      {
+        "feature": "Temperature",
+        "shap": 153.5812,
+        "rank": 1
+      },
+      {
+        "feature": "Wind Speed",
+        "shap": 0.3011,
+        "rank": 2
+      },
+      {
+        "feature": "Solar Irradiance",
+        "shap": 0.2014,
+        "rank": 3
+      },
+      {
+        "feature": "Humidity",
+        "shap": 0.1812,
+        "rank": 4
+      },
+      {
+        "feature": "Per Capita Energy Use",
+        "shap": 0.1811,
+        "rank": 5
+      },
+      {
+        "feature": "GDP",
+        "shap": 0.1295,
+        "rank": 6
+      },
+      {
+        "feature": "Electricity Price",
+        "shap": 0.0831,
+        "rank": 7
+      },
+      {
+        "feature": "Month",
+        "shap": 0.0732,
+        "rank": 8
+      },
+      {
+        "feature": "Rainfall",
+        "shap": 0.0351,
+        "rank": 9
+      },
+      {
+        "feature": "Hour of Day",
+        "shap": 0.0273,
+        "rank": 10
+      },
+      {
+        "feature": "Day of Week",
+        "shap": 0.0082,
+        "rank": 11
+      },
+      {
+        "feature": "Public Event",
+        "shap": 0.0,
+        "rank": 12
+      }
+    ],
+    "2024": [
+      {
+        "feature": "Temperature",
+        "shap": 157.1228,
+        "rank": 1
+      },
+      {
+        "feature": "GDP",
+        "shap": 0.2889,
+        "rank": 2
+      },
+      {
+        "feature": "Hour of Day",
+        "shap": 0.1895,
+        "rank": 3
+      },
+      {
+        "feature": "Solar Irradiance",
+        "shap": 0.1533,
+        "rank": 4
+      },
+      {
+        "feature": "Electricity Price",
+        "shap": 0.1375,
+        "rank": 5
+      },
+      {
+        "feature": "Rainfall",
+        "shap": 0.1373,
+        "rank": 6
+      },
+      {
+        "feature": "Wind Speed",
+        "shap": 0.1259,
+        "rank": 7
+      },
+      {
+        "feature": "Per Capita Energy Use",
+        "shap": 0.118,
+        "rank": 8
+      },
+      {
+        "feature": "Month",
+        "shap": 0.0701,
+        "rank": 9
+      },
+      {
+        "feature": "Humidity",
+        "shap": 0.0567,
+        "rank": 10
+      },
+      {
+        "feature": "Day of Week",
+        "shap": 0.0456,
+        "rank": 11
+      },
+      {
+        "feature": "Public Event",
+        "shap": 0.0,
+        "rank": 12
+      }
+    ],
+    "2025": [
+      {
+        "feature": "Temperature",
+        "shap": 157.2116,
+        "rank": 1
+      },
+      {
+        "feature": "Rainfall",
+        "shap": 0.2032,
+        "rank": 2
+      },
+      {
+        "feature": "GDP",
+        "shap": 0.1916,
+        "rank": 3
+      },
+      {
+        "feature": "Solar Irradiance",
+        "shap": 0.1645,
+        "rank": 4
+      },
+      {
+        "feature": "Electricity Price",
+        "shap": 0.1214,
+        "rank": 5
+      },
+      {
+        "feature": "Humidity",
+        "shap": 0.112,
+        "rank": 6
+      },
+      {
+        "feature": "Public Event",
+        "shap": 0.0942,
+        "rank": 7
+      },
+      {
+        "feature": "Per Capita Energy Use",
+        "shap": 0.0908,
+        "rank": 8
+      },
+      {
+        "feature": "Wind Speed",
+        "shap": 0.0655,
+        "rank": 9
+      },
+      {
+        "feature": "Hour of Day",
+        "shap": 0.0414,
+        "rank": 10
+      },
+      {
+        "feature": "Day of Week",
+        "shap": 0.0394,
+        "rank": 11
+      },
+      {
+        "feature": "Month",
+        "shap": 0.0108,
+        "rank": 12
+      }
+    ]
+  },
+  "drift": {
+    "Temperature": -2.6901,
+    "Humidity": -0.0484,
+    "Wind Speed": -0.1583,
+    "Rainfall": 0.1751,
+    "Solar Irradiance": 0.0621,
+    "GDP": 0.0669,
+    "Per Capita Energy Use": -0.095,
+    "Electricity Price": -0.0182,
+    "Day of Week": -0.0092,
+    "Hour of Day": -0.1387,
+    "Month": 0.0004,
+    "Public Event": 0.0899
+  },
+  "model_comparison": {
+    "Linear Regression": {
+      "rmse": 1.4336187153988168e-08,
+      "mae": 7.244607086851058e-10,
+      "r2": 1.0,
+      "train_seconds": 0.02
+    },
+    "Random Forest": {
+      "rmse": 0.011733526856490838,
+      "mae": 0.005570328831237179,
+      "r2": 0.9999999963381284,
+      "train_seconds": 6.67
+    },
+    "XGBoost (tuned)": {
+      "rmse": 2.024844249072067,
+      "mae": 1.0511586031863245,
+      "r2": 0.9998909491106235,
+      "train_seconds": null
+    }
+  },
+  "model_performance": {
+    "train_rmse": 2.0437,
+    "test_rmse": 2.0248,
+    "train_mae": 1.0557,
+    "test_mae": 1.0512,
+    "train_r2": 0.9999,
+    "test_r2": 0.9999,
+    "train_size": 150885,
+    "test_size": 37722,
+    "optuna_trials": 50,
+    "best_val_rmse": 2.3066
+  },
+  "insights": {
+    "biggest_gainer": {
+      "feature": "Rainfall",
+      "change": 0.1751,
+      "from_year": "2020",
+      "to_year": "2025"
+    },
+    "biggest_loser": {
+      "feature": "Temperature",
+      "change": -2.6901,
+      "from_year": "2020",
+      "to_year": "2025"
+    },
+    "most_dominant": {
+      "feature": "Temperature",
+      "avg_shap": 157.6849
+    }
+  }
+}

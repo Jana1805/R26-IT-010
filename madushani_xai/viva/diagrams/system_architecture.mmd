@@ -1,0 +1,63 @@
+flowchart TB
+    subgraph DATA["1 · Data and preprocessing"]
+        direction LR
+        D[("load_forecasting_dataset_corrected.csv<br/>189,888 rows · 15-min · 2020-01-01 → 2025-05-31<br/>12 features → Load Demand (kW)")]
+        C["IQR cleaning on the target<br/>keep 960.45 – 2,039.84 kW<br/>1,281 rows removed → 188,607"]
+        S["Chronological 80 / 20 split<br/>train 150,885 · test 37,722<br/>test = 2024-05-01 → 2025-05-31"]
+        D --> C --> S
+    end
+
+    subgraph MODEL["2 · Model"]
+        direction LR
+        O["Optuna TPE<br/>50 trials · 10k-row subsample<br/>objective = validation RMSE"]
+        X["XGBoost regressor<br/>xgb_model.pkl<br/>test RMSE 2.02 kW · R² 0.99989"]
+        O --> X
+    end
+
+    subgraph XAI["3 · Explanations"]
+        direction LR
+        SG["SHAP TreeExplainer<br/>global importance"]
+        SD["SHAP per-year drift<br/>bootstrap 95% CIs"]
+        LS["LIME · 15 saved instances<br/>low / medium / high / peak"]
+        LL["LIME · live, any historical date<br/>day's highest-demand reading"]
+    end
+
+    subgraph API["4 · FastAPI backend · port 8000"]
+        direction LR
+        E1["/api/temporal-drift"]
+        E2["/api/anomaly-diagnosis"]
+        E3["/api/explain-date?date="]
+        E4["/api/v2/model-comparison<br/>/api/v2/xai-comparison<br/>/api/v2/temporal-drift<br/>/api/figures/*.png"]
+    end
+
+    subgraph UI["5 · React + Vite dashboard · port 5173"]
+        direction LR
+        P1["01 · SHAP Temporal Drift"]
+        P2["02 · LIME Anomaly Diagnosis"]
+        P3["03 · Model & XAI Comparison"]
+    end
+
+    BI["Behaviour Intelligence dashboard · port 3000<br/>abnormal-day row → 'LIME →' button"]
+
+    S --> O
+    X --> SG & SD & LS & LL
+    SG --> E1
+    LS --> E2
+    LL --> E3
+    SD --> E4
+    E1 --> P1
+    E2 --> P2
+    E3 --> P2
+    E4 --> P3
+    BI -- "opens /anomaly-diagnosis?source=bi&date=YYYY-MM-DD" --> P2
+
+    classDef data fill:#E8F1FD,stroke:#2A78D6,color:#0B0B0B
+    classDef model fill:#FDEEE7,stroke:#D95926,color:#0B0B0B
+    classDef xai fill:#E5F6EF,stroke:#199E70,color:#0B0B0B
+    classDef api fill:#F1F0FB,stroke:#6250D6,color:#0B0B0B
+    classDef ui fill:#F4F4F2,stroke:#52514E,color:#0B0B0B
+    class D,C,S data
+    class O,X model
+    class SG,SD,LS,LL xai
+    class E1,E2,E3,E4 api
+    class P1,P2,P3,BI ui

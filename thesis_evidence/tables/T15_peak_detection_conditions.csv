@@ -1,0 +1,5 @@
+condition,threshold,days
+peak_demand >= 90th percentile,2884.67,198
+peak_zscore > 2.0 (absolute z-score),2.0,69
+final_is_anomaly AND peak_demand >= 75th percentile,2819.01,39
+ANY (is_peak_demand_day),,281

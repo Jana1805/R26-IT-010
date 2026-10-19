@@ -1,0 +1,9 @@
+step,rows_after,detail
+0 raw,189793,
+1 remove NaN / negative,189793,dropna + demand >= 0
+2 remove extreme spikes,189793,demand <= median + 10*IQR = 5190.72 kW
+3 interpolate / ffill / bfill,189793,"linear, both directions"
+4 remove IQR outliers (factor 3),189102,"keep [485.49, 2928.49] kW; Q1=1532.49, Q3=1881.49"
+5 resample 15min mean + interpolate,189793,gaps left by step 4 are re-filled by linear interpolation
+6 add Date/Hour/TimeSlot,189793,"columns=['Timestamp', 'Load Demand (kW)', 'Date', 'Hour', 'TimeSlot']"
+7 daily 96-slot profiles,1977,"dropped incomplete days: [('2025-05-31', 1)]"

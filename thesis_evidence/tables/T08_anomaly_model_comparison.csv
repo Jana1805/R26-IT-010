@@ -1,0 +1,5 @@
+model,anomaly_count,anomaly_percentage,mean_anomaly_score,std_anomaly_score,mean_jaccard,std_jaccard,mean_symmetric_difference,rank,status,runtime_s_single_fit,overlap_with_isolation_forest
+Isolation Forest,60,3.03,0.1864,0.0586,0.7769,0.032,13.6,1.0,Best Model,1.279,60
+Local Outlier Factor,60,3.03,-1.253,1.3395,0.7769,0.032,13.6,2.0,Alternative,0.12,60
+One-Class SVM,75,3.79,0.036,0.0226,0.2812,0.0516,77.9,3.0,Alternative,0.162,30
+Z-Score,0,0.0,0.9333,0.5518,0.0,0.0,0.0,,Not applicable - flags no days,0.002,0

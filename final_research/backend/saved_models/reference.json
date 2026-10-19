@@ -1,0 +1,99 @@
+{
+  "ranges": {
+    "Temperature (\u00b0C)": {
+      "min": 19.06879227,
+      "p5": 24.716016172,
+      "p95": 31.2920856695,
+      "max": 37.12422945,
+      "mean": 28.00154421868823
+    },
+    "Humidity (%)": {
+      "min": 57.93057017,
+      "p5": 71.7741664875,
+      "p95": 88.2240628795,
+      "max": 101.0968317,
+      "mean": 79.99844684105909
+    },
+    "Wind Speed (m/s)": {
+      "min": -2.829436009,
+      "p5": 0.34797249570000005,
+      "p95": 3.64379198275,
+      "max": 6.301847743,
+      "mean": 1.996105682279628
+    },
+    "Rainfall (mm)": {
+      "min": 4.16e-06,
+      "p5": 0.2562893195,
+      "p95": 14.999401830999998,
+      "max": 59.21906086,
+      "mean": 5.014217270428964
+    },
+    "Solar Irradiance (W/m\u00b2)": {
+      "min": 53.55827665,
+      "p5": 167.526594875,
+      "p95": 332.23473090999994,
+      "max": 449.4972747,
+      "mean": 249.9383171953147
+    },
+    "GDP (LKR)": {
+      "min": 779.5582682,
+      "p5": 917.740173385,
+      "p95": 1082.7182106,
+      "max": 1251.690264,
+      "mean": 1000.0838039354187
+    },
+    "Per Capita Energy Use (kWh)": {
+      "min": 407.1116245,
+      "p5": 466.878567825,
+      "p95": 532.80432441,
+      "max": 592.3276785,
+      "mean": 499.9099853479493
+    },
+    "Electricity Price (LKR/kWh)": {
+      "min": 3.268386481,
+      "p5": 16.7714252865,
+      "p95": 33.215220723499996,
+      "max": 47.4203905,
+      "mean": 24.998520995930456
+    }
+  },
+  "typical": {
+    "Temperature (\u00b0C)": 28.0,
+    "Humidity (%)": 80.0,
+    "Wind Speed (m/s)": 2.0,
+    "Rainfall (mm)": 5.01,
+    "Solar Irradiance (W/m\u00b2)": 249.94,
+    "GDP (LKR)": 1000.08,
+    "Per Capita Energy Use (kWh)": 499.91,
+    "Electricity Price (LKR/kWh)": 25.0,
+    "Day of Week": 2,
+    "Hour of Day": 19,
+    "Month": 6,
+    "Public Event": 0,
+    "Poya Day": 0
+  },
+  "features": [
+    "Temperature (\u00b0C)",
+    "Humidity (%)",
+    "Wind Speed (m/s)",
+    "Rainfall (mm)",
+    "Solar Irradiance (W/m\u00b2)",
+    "GDP (LKR)",
+    "Per Capita Energy Use (kWh)",
+    "Electricity Price (LKR/kWh)",
+    "Day of Week",
+    "Hour of Day",
+    "Month",
+    "Public Event",
+    "Poya Day"
+  ],
+  "default_capacity_kw": 2400.0,
+  "demand_percentiles": {
+    "5": 995.0452,
+    "25": 1222.7112,
+    "50": 1406.44205,
+    "75": 1591.605075,
+    "95": 1908.5784449999996,
+    "99": 2120.287353
+  }
+}
