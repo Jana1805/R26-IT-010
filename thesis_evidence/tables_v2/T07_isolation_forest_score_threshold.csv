@@ -1,0 +1,4 @@
+method,flagged,TP,FP,FN,precision,recall,F1
+"contamination=""auto""",60,60,0,0,1.0,1.0,1.0
+largest score gap (threshold 0.0724),60,60,0,0,1.0,1.0,1.0
+contamination=0.03 (app),60,60,0,0,1.0,1.0,1.0

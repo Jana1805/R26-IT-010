@@ -1,0 +1,5 @@
+actual,Holiday / Low Demand Day,Normal Weekday Demand,Peak Demand Day
+Abnormal Demand Day,1,2,0
+Holiday / Low Demand Day,64,4,9
+Normal Weekday Demand,4,215,8
+Peak Demand Day,8,41,8

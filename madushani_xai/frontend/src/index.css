@@ -1,0 +1,42 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:          #030B15;
+  --bg-surface:  #080F1C;
+  --bg-card:     #0C1828;
+  --bg-hover:    #101F30;
+  --border:      #152235;
+  --border-soft: #0F1E2E;
+  --text:        #E2E8F0;
+  --text-muted:  #64748B;
+  --text-dim:    #334155;
+  --blue:        #3B82F6;
+  --blue-glow:   rgba(59, 130, 246, 0.15);
+  --orange:      #F97316;
+  --green:       #10B981;
+  --red:         #EF4444;
+  --cyan:        #06B6D4;
+  --purple:      #8B5CF6;
+}
+
+body {
+  font-family: 'Fira Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+code, .mono {
+  font-family: 'Fira Code', monospace;
+}
+
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #2D3F52; }

@@ -1,0 +1,5 @@
+behavior_label,0,1
+Normal Weekday Demand,1199,80
+Peak Demand Day,195,86
+Holiday / Low Demand Day,0,396
+Abnormal Demand Day,2,19

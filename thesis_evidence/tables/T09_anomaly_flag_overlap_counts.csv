@@ -1,0 +1,7 @@
+,Isolation Forest,Local Outlier Factor,One-Class SVM,Z-Score (|z|>=3.0),DBSCAN noise (knee eps),GMM minority component (k=2)
+Isolation Forest,60,60,30,0,60,36
+Local Outlier Factor,60,60,30,0,60,36
+One-Class SVM,30,30,75,0,30,16
+Z-Score (|z|>=3.0),0,0,0,0,0,0
+DBSCAN noise (knee eps),60,60,30,0,60,36
+GMM minority component (k=2),36,36,16,0,36,37

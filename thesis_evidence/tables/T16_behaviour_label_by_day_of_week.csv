@@ -1,0 +1,8 @@
+,Normal Weekday Demand,Peak Demand Day,Holiday / Low Demand Day,Abnormal Demand Day
+Mon,239,41,0,2
+Tue,239,42,0,1
+Wed,239,41,0,3
+Thu,231,49,0,3
+Fri,251,30,0,2
+Sat,37,39,199,7
+Sun,43,39,197,3

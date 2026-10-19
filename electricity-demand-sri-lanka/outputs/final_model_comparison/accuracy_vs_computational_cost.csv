@@ -1,0 +1,7 @@
+model_id,MAE,inference_ms,note
+cnn_transformer_mc,20.457324334378487,unavailable,No comparable measured batch-inference benchmark was supplied
+cnn_lstm_b,20.518584747834407,unavailable,No comparable measured batch-inference benchmark was supplied
+lstm,30.717722989849605,unavailable,No comparable measured batch-inference benchmark was supplied
+transformer,32.607367832279316,unavailable,No comparable measured batch-inference benchmark was supplied
+cnn_transformer_b,38.7968929372376,unavailable,No comparable measured batch-inference benchmark was supplied
+cnn,39.45579921879152,unavailable,No comparable measured batch-inference benchmark was supplied

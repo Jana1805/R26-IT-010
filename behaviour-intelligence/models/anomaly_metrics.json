@@ -1,0 +1,9 @@
+{
+  "total_days": 1977,
+  "isolation_forest_anomaly_count": 60,
+  "z_score_anomaly_count": 0,
+  "final_anomaly_count": 60,
+  "anomaly_percentage": 3.03,
+  "final_rule": "final_is_anomaly = Isolation Forest only; z-score columns are diagnostics",
+  "source": "data/processed/anomaly_results.csv (written by app.ml.anomaly_detection)"
+}

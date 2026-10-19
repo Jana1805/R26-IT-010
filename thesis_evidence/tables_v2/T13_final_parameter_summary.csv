@@ -1,0 +1,19 @@
+parameter,value,how chosen,evidence,reason
+IQR fence (cleaning),3 x IQR,fixed,notebook 01,"Removes only extreme readings (691 of 189,793); a tighter fence would cut normal evening peaks"
+Spike rule (cleaning),median + 10 x IQR,fixed,notebook 01,Safety net for impossible spikes; removes 0 readings on this data
+Features,96 x 15-min slots per day,design,notebooks 01-02,One complete day = one profile; keeps the daily shape
+Scaling,StandardScaler per slot,design,notebook 03,Every time slot gets equal weight; level differences between days stay visible
+K-Means k,2,silhouette sweep k=2..12,"Section 1, T01, F01","Best on silhouette, Davies-Bouldin AND Calinski-Harabasz; stable; = weekday / weekend"
+K-Means n_init / random_state,20 / 42,fixed,Section 1 (stability),Several starts give the same result; seed makes it repeatable
+GMM components / covariance,not used in production,BIC grid,"Section 2, T02, F02","BIC does not settle on a small, meaningful model; GMM(2) separates anomalies, not behaviour"
+Ward k,2 (comparison only),index sweep k=2..8,"Section 3, T03, F03","Agrees with K-Means (high ARI), which confirms the two regimes"
+DBSCAN eps,k-distance knee,knee method + grid,"Section 4, T04, F04",No setting gives 2+ clusters with little noise; at the knee its noise = the anomaly days
+DBSCAN min_samples,8,"grid {4, 8, 16}",Section 4,Same conclusion for all three values
+Isolation Forest contamination,0.03,stability grid,"Section 5, T05-T07, F05-F06",Most stable rate; validated P = R = 1.0 (honest note: equals the injected 3% rate)
+Isolation Forest n_estimators,300,stability grid,Section 5,Results do not depend on the number of trees in the tested range
+Isolation Forest max_samples,auto (256),stability grid,Section 5,"Same flagged days for 128, 256 and auto"
+LOF n_neighbors,20 (comparison only),stability grid,"Section 6, T08",Finds the same days as Isolation Forest for most settings
+One-Class SVM nu / gamma,0.03 / scale (comparison only),stability grid,"Section 6, T09",Least stable and least accurate detector
+Peak / anomaly / low percentiles,p90 / p75 / p25,sensitivity +-5,"Section 7, T11, F08","Labels change gradually, no sudden jumps; low rule catches only weekends"
+Signed peak z threshold,2.0,fixed,Section 7,Catches unusually HIGH peaks only (none on this data)
+Prediction method,month + day-of-week,back-test,"Section 8, T12, F09",Beats the baselines on accuracy

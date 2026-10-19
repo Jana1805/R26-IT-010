@@ -1,0 +1,734 @@
+{
+ "xgb_params": {
+  "n_estimators": 467,
+  "max_depth": 3,
+  "learning_rate": 0.023100156230873477,
+  "subsample": 0.9248065542026563,
+  "colsample_bytree": 0.89360931120407,
+  "min_child_weight": 1,
+  "reg_alpha": 0.7887265683166801,
+  "reg_lambda": 0.4664706404126634,
+  "random_state": 42
+ },
+ "xai_current": {
+  "path": "behaviour-intelligence/data/raw/load_forecasting_dataset_corrected.csv",
+  "columns": [
+   "Timestamp",
+   "Temperature (°C)",
+   "Humidity (%)",
+   "Wind Speed (m/s)",
+   "Rainfall (mm)",
+   "Solar Irradiance (W/m²)",
+   "GDP (LKR)",
+   "Per Capita Energy Use (kWh)",
+   "Electricity Price (LKR/kWh)",
+   "Day of Week",
+   "Hour of Day",
+   "Month",
+   "Season",
+   "Public Event",
+   "Load Demand (kW)"
+  ],
+  "rows": 189888,
+  "start": "2020-01-01 00:00:00",
+  "end": "2025-05-31 23:45:00",
+  "step_mode": "0 days 00:15:00",
+  "expected_15min_rows": 189888,
+  "missing_15min_slots": 0,
+  "duplicate_timestamps": 0,
+  "missing_values": {},
+  "target_stats": {
+   "count": 189888.0,
+   "mean": 1500.154,
+   "std": 199.927,
+   "min": 606.879,
+   "25%": 1365.223,
+   "50%": 1500.275,
+   "75%": 1635.071,
+   "max": 2412.423
+  },
+  "xai_features_present": [
+   "Temperature",
+   "Humidity",
+   "Wind Speed",
+   "Rainfall",
+   "Solar Irradiance",
+   "GDP",
+   "Per Capita Energy Use",
+   "Electricity Price",
+   "Day of Week",
+   "Hour of Day",
+   "Month",
+   "Public Event"
+  ],
+  "xai_features_missing": [],
+  "extra_columns": [
+   "Season"
+  ],
+  "Day of Week_matches_timestamp": true,
+  "Day of Week_match_rate": 1.0,
+  "Hour of Day_matches_timestamp": true,
+  "Hour of Day_match_rate": 1.0,
+  "Month_matches_timestamp": true,
+  "Month_match_rate": 1.0,
+  "model_features": [
+   "Temperature",
+   "Humidity",
+   "Wind Speed",
+   "Rainfall",
+   "Solar Irradiance",
+   "GDP",
+   "Per Capita Energy Use",
+   "Electricity Price",
+   "Day of Week",
+   "Hour of Day",
+   "Month",
+   "Public Event"
+  ],
+  "corr_with_target": {
+   "Temperature": 1.0,
+   "Humidity": -0.0014,
+   "Wind Speed": -0.0013,
+   "Rainfall": -0.0045,
+   "Solar Irradiance": 0.0017,
+   "GDP": 0.0012,
+   "Per Capita Energy Use": 0.0015,
+   "Electricity Price": 0.0028,
+   "Day of Week": -0.0005,
+   "Hour of Day": -0.0026,
+   "Month": -0.0014,
+   "Public Event": -0.005
+  },
+  "lr_full_fit": {
+   "r2": 1.0,
+   "max_abs_residual": 5.01075419379049e-07,
+   "resid_std": 2.289037929968976e-08,
+   "intercept": -1299.9999999953177,
+   "coefs": {
+    "Temperature": 99.99999999989456,
+    "Humidity": -1.7122732212721948e-12,
+    "Wind Speed": -9.94126989259954e-12,
+    "Rainfall": -2.3416586645307812e-11,
+    "Solar Irradiance": -8.868744235956234e-14,
+    "GDP": -5.206476354643453e-13,
+    "Per Capita Energy Use": -9.030492042677253e-13,
+    "Electricity Price": -1.846876126300698e-11,
+    "Day of Week": -2.4483905521123354e-11,
+    "Hour of Day": 4.429634298187712e-12,
+    "Month": 1.569318983800448e-11,
+    "Public Event": -1.4381464687774334e-10
+   }
+  },
+  "lr_temperature_only_r2": 1.0,
+  "split": {
+   "rows_after_iqr": 188607,
+   "iqr_removed": 1281,
+   "train": 150885,
+   "test": 37722,
+   "test_start": "2024-05-01 08:00:00",
+   "test_end": "2025-05-31 23:45:00"
+  },
+  "model_comparison": {
+   "Linear Regression": {
+    "rmse": 1.4336177955202584e-08,
+    "mae": 7.242281753716217e-10,
+    "mape": 6.999849493058176e-11,
+    "r2": 1.0,
+    "train_s": 0.04
+   },
+   "Linear Regression + one-hot calendar": {
+    "rmse": 1.4337579242541319e-08,
+    "mae": 8.390405254446722e-10,
+    "mape": 7.759980014756395e-11,
+    "r2": 1.0,
+    "train_s": 0.4
+   },
+   "XGBoost (current best params)": {
+    "rmse": 2.0298065136457883,
+    "mae": 1.05838912338301,
+    "mape": 0.07382593456704566,
+    "r2": 0.9998904139559343,
+    "train_s": 1.03
+   },
+   "Seasonal naive (same slot, 7 days earlier)": {
+    "rmse": 273.6208660167476,
+    "mae": 219.20035530810935,
+    "mape": 14.987988243678505,
+    "r2": -0.9912165522907883,
+    "coverage": 0.9931
+   }
+  },
+  "hourly_profile_kw": {
+   "0": 1498.1,
+   "1": 1505.2,
+   "2": 1502.8,
+   "3": 1502.7,
+   "4": 1498.4,
+   "5": 1498.4,
+   "6": 1504.3,
+   "7": 1499.7,
+   "8": 1497.1,
+   "9": 1499.2,
+   "10": 1503.8,
+   "11": 1502.8,
+   "12": 1497.3,
+   "13": 1499.1,
+   "14": 1496.9,
+   "15": 1497.6,
+   "16": 1499.3,
+   "17": 1499.1,
+   "18": 1499.4,
+   "19": 1501.7,
+   "20": 1500.6,
+   "21": 1500.5,
+   "22": 1498.6,
+   "23": 1501.2
+  },
+  "hour_range_kw": 8.3,
+  "dow_profile_kw": {
+   "0": 1500.3,
+   "1": 1500.3,
+   "2": 1499.6,
+   "3": 1500.4,
+   "4": 1500.8,
+   "5": 1499.7,
+   "6": 1499.9
+  },
+  "weekend_minus_weekday_kw": -0.5,
+  "Public Event_effect_kw": -4.6,
+  "Public Event_share": 0.0497,
+  "temperature_curve_kw": {
+   "23": 981.0,
+   "24": 1107.8,
+   "25": 1206.3,
+   "26": 1304.1,
+   "27": 1402.1,
+   "28": 1499.9,
+   "29": 1597.8,
+   "30": 1695.9,
+   "31": 1793.5,
+   "32": 1892.2,
+   "33": 2017.2
+  },
+  "temp_linear_vs_quadratic_r2": [
+   1.0,
+   1.0
+  ],
+  "temp_slope_by_hour_kw_per_c": {
+   "3": 100.0,
+   "9": 100.0,
+   "14": 100.0,
+   "19": 100.0
+  },
+  "shap_mean_abs_kw": {
+   "Temperature": 154.934,
+   "Solar Irradiance": 0.057,
+   "Rainfall": 0.038,
+   "Per Capita Energy Use": 0.037,
+   "Humidity": 0.034,
+   "Hour of Day": 0.029,
+   "Public Event": 0.015,
+   "Electricity Price": 0.013,
+   "GDP": 0.013,
+   "Wind Speed": 0.01,
+   "Month": 0.005,
+   "Day of Week": 0.0
+  },
+  "shap_share_pct": {
+   "Temperature": 99.84,
+   "Solar Irradiance": 0.04,
+   "Rainfall": 0.02,
+   "Per Capita Energy Use": 0.02,
+   "Humidity": 0.02,
+   "Hour of Day": 0.02,
+   "Public Event": 0.01,
+   "Electricity Price": 0.01,
+   "GDP": 0.01,
+   "Wind Speed": 0.01,
+   "Month": 0.0,
+   "Day of Week": 0.0
+  },
+  "shap_features_over_5pct": [
+   "Temperature"
+  ],
+  "elapsed_s": 2.6
+ },
+ "bi_current": {
+  "path": "behaviour-intelligence/data/raw/synthetic_realistic_load.csv",
+  "columns": [
+   "Timestamp",
+   "Load Demand (kW)",
+   "Temperature (°C)",
+   "Solar Irradiance (W/m²)"
+  ],
+  "rows": 189793,
+  "start": "2020-01-01 00:00:00",
+  "end": "2025-05-31 00:00:00",
+  "step_mode": "0 days 00:15:00",
+  "expected_15min_rows": 189793,
+  "missing_15min_slots": 0,
+  "duplicate_timestamps": 0,
+  "missing_values": {},
+  "target_stats": {
+   "count": 189793.0,
+   "mean": 1747.812,
+   "std": 349.743,
+   "min": 629.73,
+   "25%": 1532.49,
+   "50%": 1700.72,
+   "75%": 1881.49,
+   "max": 4365.2
+  },
+  "xai_features_present": [
+   "Temperature",
+   "Solar Irradiance"
+  ],
+  "xai_features_missing": [
+   "Humidity",
+   "Wind Speed",
+   "Rainfall",
+   "GDP",
+   "Per Capita Energy Use",
+   "Electricity Price",
+   "Day of Week",
+   "Hour of Day",
+   "Month",
+   "Public Event"
+  ],
+  "extra_columns": [],
+  "derived_from_timestamp": [
+   "Day of Week",
+   "Hour of Day",
+   "Month"
+  ],
+  "model_features": [
+   "Temperature",
+   "Solar Irradiance",
+   "Day of Week",
+   "Hour of Day",
+   "Month"
+  ],
+  "corr_with_target": {
+   "Temperature": 0.155,
+   "Solar Irradiance": -0.2431,
+   "Day of Week": -0.3392,
+   "Hour of Day": 0.3649,
+   "Month": -0.045
+  },
+  "lr_full_fit": {
+   "r2": 0.34506306879467685,
+   "max_abs_residual": 2270.977026666229,
+   "resid_std": 283.0405031925457,
+   "intercept": 986.9230261928803,
+   "coefs": {
+    "Temperature": 37.53990169535279,
+    "Solar Irradiance": -0.5438840944550094,
+    "Day of Week": -59.31429767249542,
+    "Hour of Day": 10.026695653519232,
+    "Month": -4.4679111830225215
+   }
+  },
+  "lr_temperature_only_r2": 0.024032935034031255,
+  "split": {
+   "rows_after_iqr": 175587,
+   "iqr_removed": 14206,
+   "train": 140469,
+   "test": 35118,
+   "test_start": "2024-04-28 06:30:00",
+   "test_end": "2025-05-31 00:00:00"
+  },
+  "model_comparison": {
+   "Linear Regression": {
+    "rmse": 210.6558607886612,
+    "mae": 166.08273452658804,
+    "mape": 9.883358915696723,
+    "r2": 0.29674596358788663,
+    "train_s": 0.02
+   },
+   "Linear Regression + one-hot calendar": {
+    "rmse": 118.25502235004807,
+    "mae": 70.32419749877911,
+    "mape": 4.242002243291081,
+    "r2": 0.7783823579859311,
+    "train_s": 0.29
+   },
+   "XGBoost (current best params)": {
+    "rmse": 117.01293075177703,
+    "mae": 70.73683140840569,
+    "mape": 4.259650793937868,
+    "r2": 0.7830134300475872,
+    "train_s": 0.82
+   },
+   "Seasonal naive (same slot, 7 days earlier)": {
+    "rmse": 153.5598789397323,
+    "mae": 93.81298611931483,
+    "mape": 5.64552052409988,
+    "r2": 0.607814284715602,
+    "coverage": 0.9642
+   }
+  },
+  "hourly_profile_kw": {
+   "0": 1565.8,
+   "1": 1565.8,
+   "2": 1570.9,
+   "3": 1583.0,
+   "4": 1609.1,
+   "5": 1654.6,
+   "6": 1716.4,
+   "7": 1762.4,
+   "8": 1765.8,
+   "9": 1728.4,
+   "10": 1670.4,
+   "11": 1618.6,
+   "12": 1584.3,
+   "13": 1571.3,
+   "14": 1570.2,
+   "15": 1582.3,
+   "16": 1654.8,
+   "17": 1877.1,
+   "18": 2245.3,
+   "19": 2481.6,
+   "20": 2329.9,
+   "21": 1959.8,
+   "22": 1691.7,
+   "23": 1588.1
+  },
+  "hour_range_kw": 915.8,
+  "dow_profile_kw": {
+   "0": 1843.3,
+   "1": 1843.2,
+   "2": 1841.3,
+   "3": 1842.1,
+   "4": 1842.9,
+   "5": 1510.3,
+   "6": 1510.6
+  },
+  "weekend_minus_weekday_kw": -332.2,
+  "temperature_curve_kw": {
+   "21": 1586.3,
+   "22": 1596.2,
+   "23": 1620.0,
+   "24": 1679.1,
+   "25": 1783.0,
+   "26": 1915.2,
+   "27": 2009.9,
+   "28": 1941.1,
+   "29": 1764.0,
+   "30": 1658.7,
+   "31": 1614.6
+  },
+  "temp_linear_vs_quadratic_r2": [
+   0.024032935034031255,
+   0.11395401424655605
+  ],
+  "temp_slope_by_hour_kw_per_c": {
+   "3": 0.35,
+   "9": -8.11,
+   "14": 4.12,
+   "19": -3.8
+  },
+  "shap_mean_abs_kw": {
+   "Day of Week": 118.02,
+   "Hour of Day": 103.165,
+   "Month": 76.507,
+   "Solar Irradiance": 21.418,
+   "Temperature": 14.459
+  },
+  "shap_share_pct": {
+   "Day of Week": 35.38,
+   "Hour of Day": 30.93,
+   "Month": 22.94,
+   "Solar Irradiance": 6.42,
+   "Temperature": 4.33
+  },
+  "shap_features_over_5pct": [
+   "Day of Week",
+   "Hour of Day",
+   "Month",
+   "Solar Irradiance"
+  ],
+  "elapsed_s": 1.7
+ },
+ "nn_fixed": {
+  "path": "electricity-demand-sri-lanka/data/electricity_demand_srilanka_fixed.csv",
+  "columns": [
+   "Timestamp",
+   "Unnamed: 0",
+   "Temperature (°C)",
+   "Humidity (%)",
+   "Wind Speed (m/s)",
+   "Rainfall (mm)",
+   "Solar Irradiance (W/m²)",
+   "GDP (LKR)",
+   "Per Capita Energy Use (kWh)",
+   "Electricity Price (LKR/kWh)",
+   "Day of Week",
+   "Hour of Day",
+   "Month",
+   "Season",
+   "Public Event",
+   "Load Demand (kW)",
+   "Poya Day"
+  ],
+  "rows": 189888,
+  "start": "2020-01-01 00:00:00",
+  "end": "2025-05-31 23:45:00",
+  "step_mode": "0 days 00:15:00",
+  "expected_15min_rows": 189888,
+  "missing_15min_slots": 0,
+  "duplicate_timestamps": 0,
+  "missing_values": {},
+  "target_stats": {
+   "count": 189888.0,
+   "mean": 1833.422,
+   "std": 325.183,
+   "min": 850.0,
+   "25%": 1596.821,
+   "50%": 1841.807,
+   "75%": 2084.16,
+   "max": 2350.0
+  },
+  "xai_features_present": [
+   "Temperature",
+   "Humidity",
+   "Wind Speed",
+   "Rainfall",
+   "Solar Irradiance",
+   "GDP",
+   "Per Capita Energy Use",
+   "Electricity Price",
+   "Day of Week",
+   "Hour of Day",
+   "Month",
+   "Public Event"
+  ],
+  "xai_features_missing": [],
+  "extra_columns": [
+   "Unnamed: 0",
+   "Season",
+   "Poya Day"
+  ],
+  "Day of Week_matches_timestamp": true,
+  "Day of Week_match_rate": 1.0,
+  "Hour of Day_matches_timestamp": true,
+  "Hour of Day_match_rate": 1.0,
+  "Month_matches_timestamp": true,
+  "Month_match_rate": 1.0,
+  "model_features": [
+   "Temperature",
+   "Humidity",
+   "Wind Speed",
+   "Rainfall",
+   "Solar Irradiance",
+   "GDP",
+   "Per Capita Energy Use",
+   "Electricity Price",
+   "Day of Week",
+   "Hour of Day",
+   "Month",
+   "Public Event"
+  ],
+  "corr_with_target": {
+   "Temperature": 0.0131,
+   "Humidity": 0.0013,
+   "Wind Speed": 0.0016,
+   "Rainfall": -0.0025,
+   "Solar Irradiance": -0.0043,
+   "GDP": -0.0043,
+   "Per Capita Energy Use": 0.002,
+   "Electricity Price": -0.0025,
+   "Day of Week": -0.099,
+   "Hour of Day": 0.0137,
+   "Month": -0.205,
+   "Public Event": -0.0641
+  },
+  "lr_full_fit": {
+   "r2": 0.056246763797856425,
+   "max_abs_residual": 1009.0892430211085,
+   "resid_std": 315.90502367502233,
+   "intercept": 1950.3388675040437,
+   "coefs": {
+    "Temperature": 2.040132249231884,
+    "Humidity": 0.10728747419287354,
+    "Wind Speed": 0.5567411328637246,
+    "Rainfall": -0.13891330399824692,
+    "Solar Irradiance": -0.026708596338990587,
+    "GDP": -0.0246667700760288,
+    "Per Capita Energy Use": 0.0360557730334119,
+    "Electricity Price": -0.161416147165953,
+    "Day of Week": -16.08572888102039,
+    "Hour of Day": 0.6485827728373827,
+    "Month": -19.211981838772576,
+    "Public Event": -95.33648156836175
+   }
+  },
+  "lr_temperature_only_r2": 0.00017280614516779202,
+  "split": {
+   "rows_after_iqr": 189848,
+   "iqr_removed": 40,
+   "train": 151878,
+   "test": 37970,
+   "test_start": "2024-05-01 11:30:00",
+   "test_end": "2025-05-31 23:45:00"
+  },
+  "model_comparison": {
+   "Linear Regression": {
+    "rmse": 407.2851315449791,
+    "mae": 359.4829952921007,
+    "mape": 16.305847749644084,
+    "r2": -2.298386227061918,
+    "train_s": 0.03
+   },
+   "Linear Regression + one-hot calendar": {
+    "rmse": 361.095473421117,
+    "mae": 348.2318593464172,
+    "mape": 16.695032915731474,
+    "r2": -1.5926774182670766,
+    "train_s": 0.36
+   },
+   "XGBoost (current best params)": {
+    "rmse": 359.305916901947,
+    "mae": 348.01055578917664,
+    "mape": 16.673327772541548,
+    "r2": -1.5670429473651901,
+    "train_s": 0.87
+   },
+   "Seasonal naive (same slot, 7 days earlier)": {
+    "rmse": 87.99517793784888,
+    "mae": 61.27452093494864,
+    "mape": 3.0621708921071162,
+    "r2": 0.8460349511334685,
+    "coverage": 1.0
+   }
+  },
+  "hourly_profile_kw": {
+   "0": 1545.4,
+   "1": 1562.7,
+   "2": 1602.7,
+   "3": 1656.1,
+   "4": 1721.9,
+   "5": 1794.3,
+   "6": 1870.6,
+   "7": 1941.9,
+   "8": 2003.5,
+   "9": 2052.2,
+   "10": 2085.6,
+   "11": 2104.6,
+   "12": 2105.9,
+   "13": 2091.3,
+   "14": 2061.3,
+   "15": 2014.4,
+   "16": 1955.2,
+   "17": 1885.4,
+   "18": 1811.3,
+   "19": 1736.1,
+   "20": 1668.4,
+   "21": 1612.6,
+   "22": 1570.6,
+   "23": 1548.1
+  },
+  "hour_range_kw": 560.5,
+  "dow_profile_kw": {
+   "0": 1797.1,
+   "1": 1838.1,
+   "2": 1894.9,
+   "3": 1932.6,
+   "4": 1922.6,
+   "5": 1755.2,
+   "6": 1692.9
+  },
+  "weekend_minus_weekday_kw": -153.1,
+  "Public Event_effect_kw": -95.9,
+  "Public Event_share": 0.0497,
+  "Poya Day_effect_kw": -214.5,
+  "Poya Day_share": 0.0313,
+  "temperature_curve_kw": {
+   "23": 1822.3,
+   "24": 1825.3,
+   "25": 1826.2,
+   "26": 1826.6,
+   "27": 1833.1,
+   "28": 1833.3,
+   "29": 1837.2,
+   "30": 1836.8,
+   "31": 1838.2,
+   "32": 1844.6,
+   "33": 1838.3
+  },
+  "temp_linear_vs_quadratic_r2": [
+   0.00017280614516779202,
+   0.000180527927315155
+  ],
+  "temp_slope_by_hour_kw_per_c": {
+   "3": 5.99,
+   "9": 1.1,
+   "14": -0.51,
+   "19": 2.51
+  },
+  "shap_mean_abs_kw": {
+   "Hour of Day": 185.578,
+   "Month": 78.193,
+   "Day of Week": 75.527,
+   "Public Event": 8.959,
+   "Temperature": 2.713,
+   "Per Capita Energy Use": 0.2,
+   "Rainfall": 0.115,
+   "Humidity": 0.082,
+   "Solar Irradiance": 0.077,
+   "GDP": 0.055,
+   "Wind Speed": 0.055,
+   "Electricity Price": 0.032
+  },
+  "shap_share_pct": {
+   "Hour of Day": 52.78,
+   "Month": 22.24,
+   "Day of Week": 21.48,
+   "Public Event": 2.55,
+   "Temperature": 0.77,
+   "Per Capita Energy Use": 0.06,
+   "Rainfall": 0.03,
+   "Humidity": 0.02,
+   "Solar Irradiance": 0.02,
+   "GDP": 0.02,
+   "Wind Speed": 0.02,
+   "Electricity Price": 0.01
+  },
+  "shap_features_over_5pct": [
+   "Hour of Day",
+   "Month",
+   "Day of Week"
+  ],
+  "elapsed_s": 2.1
+ },
+ "cross_dataset_dates": {
+  "xai_current_vs_bi_current": {
+   "overlap_days": 1978,
+   "daily_mean_corr": 0.0093,
+   "daily_peak_corr": 0.0024,
+   "mean_abs_peak_diff_kw": 637.1
+  },
+  "nn_fixed_vs_bi_current": {
+   "overlap_days": 1978,
+   "daily_mean_corr": 0.2727,
+   "daily_peak_corr": 0.207,
+   "mean_abs_peak_diff_kw": 507.2
+  },
+  "xai_current_vs_nn_fixed": {
+   "overlap_days": 1978,
+   "daily_mean_corr": 0.1058,
+   "daily_peak_corr": 0.0094,
+   "mean_abs_peak_diff_kw": 226.1
+  }
+ },
+ "example_2025_01_25_daily_peak_kw": {
+  "xai_current": 1894.85,
+  "bi_current": 2951.82,
+  "nn_fixed": 2350.0
+ },
+ "bi_anomaly_dates_covered": {
+  "xai_current": 60,
+  "bi_current": 60,
+  "nn_fixed": 60
+ },
+ "bi_anomaly_dates_total": 60
+}

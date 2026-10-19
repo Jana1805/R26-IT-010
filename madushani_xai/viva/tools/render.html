@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Diagram render</title>
+<style>
+  html, body { margin: 0; background: #ffffff; }
+  #out { display: inline-block; padding: 24px; background: #ffffff; }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+</head>
+<body>
+<div id="out"></div>
+<script>
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'base',
+    flowchart: { htmlLabels: true, curve: 'basis', nodeSpacing: 40, rankSpacing: 50, padding: 14, useMaxWidth: false },
+    themeVariables: {
+      fontFamily: 'Segoe UI, Arial, sans-serif',
+      fontSize: '17px',
+      primaryColor: '#F4F4F2',
+      primaryBorderColor: '#52514E',
+      primaryTextColor: '#0B0B0B',
+      lineColor: '#52514E',
+      clusterBkg: '#FCFCFB',
+      clusterBorder: '#B8B7B0',
+      edgeLabelBackground: '#FFFFFF',
+    },
+  })
+  // Called from render_diagrams.mjs: renders one diagram and returns its pixel box.
+  window.renderDiagram = async (src) => {
+    const { svg } = await mermaid.render('d' + Date.now(), src)
+    const out = document.getElementById('out')
+    out.innerHTML = svg
+    const r = out.getBoundingClientRect()
+    return { x: r.x, y: r.y, width: Math.ceil(r.width), height: Math.ceil(r.height) }
+  }
+</script>
+</body>
+</html>

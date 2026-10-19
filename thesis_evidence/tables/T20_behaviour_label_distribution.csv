@@ -1,0 +1,5 @@
+behavior_label,risk_level,days,percent,mean_demand_kw,mean_peak_kw,weekend_pct
+Normal Weekday Demand,Normal,1279,64.69,1812.25,2675.72,6.25
+Peak Demand Day,Medium,281,14.21,1780.96,2691.13,27.76
+Holiday / Low Demand Day,Low,396,20.03,1505.66,2241.86,100.0
+Abnormal Demand Day,High,21,1.06,1513.9,2742.16,47.62

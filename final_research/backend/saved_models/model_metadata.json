@@ -1,0 +1,135 @@
+{
+  "model_type": "GradientBoostingRegressor",
+  "feature_names": [
+    "Temperature (\u00b0C)",
+    "Humidity (%)",
+    "Wind Speed (m/s)",
+    "Rainfall (mm)",
+    "Solar Irradiance (W/m\u00b2)",
+    "GDP (LKR)",
+    "Per Capita Energy Use (kWh)",
+    "Electricity Price (LKR/kWh)",
+    "Day of Week",
+    "Hour of Day",
+    "Month",
+    "Public Event",
+    "Poya Day"
+  ],
+  "target_column": "Load Demand (kW)",
+  "model_performance": {
+    "train_r2": 0.8278199472093739,
+    "test_r2": 0.8237240455045933,
+    "train_mae": 91.06283601367524,
+    "test_mae": 91.76852729662471,
+    "train_rmse": 114.22849250872251,
+    "test_rmse": 115.07719914361772,
+    "chronological_test_r2": 0.8260875548617025,
+    "chronological_test_mae": 91.65410806883953
+  },
+  "model_comparison": {
+    "Linear Regression": {
+      "test_r2": 0.43791786026865753,
+      "test_mae": 160.11237533256906,
+      "test_rmse": 205.49092091653256
+    },
+    "Random Forest": {
+      "test_r2": 0.7768376814196614,
+      "test_mae": 102.85738326721808,
+      "test_rmse": 129.48014529382385
+    },
+    "Gradient Boosting": {
+      "test_r2": 0.8250417654954348,
+      "test_mae": 91.51421301295329,
+      "test_rmse": 114.6462725912858
+    },
+    "Gradient Boosting (Optuna-tuned)": {
+      "test_r2": 0.8237240455045933,
+      "test_mae": 91.76852729662471,
+      "test_rmse": 115.07719914361772
+    }
+  },
+  "feature_importances": {
+    "Temperature (\u00b0C)": 0.039393989301367956,
+    "Humidity (%)": 0.0003809063270572481,
+    "Wind Speed (m/s)": 0.0036082594537276266,
+    "Rainfall (mm)": 0.01420247918864866,
+    "Solar Irradiance (W/m\u00b2)": 4.811676880492224e-05,
+    "GDP (LKR)": 0.013268964159865324,
+    "Per Capita Energy Use (kWh)": 0.010698694511948397,
+    "Electricity Price (LKR/kWh)": 0.04880568909310244,
+    "Day of Week": 0.058275728882060174,
+    "Hour of Day": 0.7798091102299992,
+    "Month": 0.013989567712302744,
+    "Public Event": 0.008059564461541015,
+    "Poya Day": 0.0094589299095744
+  },
+  "hyperparameters": {
+    "n_estimators": 250,
+    "max_depth": 3,
+    "learning_rate": 0.09835741753336463,
+    "subsample": 0.8602615976200904,
+    "min_samples_leaf": 39,
+    "max_features": 0.8694849120337964
+  },
+  "optuna": {
+    "n_trials": 20,
+    "cv_folds": 3,
+    "search_rows": 20000,
+    "search_space": {
+      "n_estimators": [
+        100,
+        300,
+        "int-step50"
+      ],
+      "max_depth": [
+        3,
+        7,
+        "int"
+      ],
+      "learning_rate": [
+        0.03,
+        0.2,
+        "log-float"
+      ],
+      "subsample": [
+        0.6,
+        1.0,
+        "float"
+      ],
+      "min_samples_leaf": [
+        5,
+        80,
+        "log-int"
+      ],
+      "max_features": [
+        0.5,
+        1.0,
+        "float"
+      ]
+    },
+    "initial_params": {
+      "n_estimators": 300,
+      "max_depth": 5,
+      "learning_rate": 0.08,
+      "subsample": 0.8
+    },
+    "initial_cv_rmse": 118.0892118649785,
+    "best_cv_rmse": 116.65053126629307,
+    "best_params": {
+      "n_estimators": 250,
+      "max_depth": 3,
+      "learning_rate": 0.09835741753336463,
+      "subsample": 0.8602615976200904,
+      "min_samples_leaf": 39,
+      "max_features": 0.8694849120337964
+    },
+    "tuned_params_deployed": true
+  },
+  "data_info": {
+    "total_samples": 189888,
+    "train_samples": 151910,
+    "test_samples": 37978,
+    "source": "notebooks/load_forecasting_dataset_corrected.csv"
+  },
+  "deployment_decision": "Gradient Boosting (Optuna-tuned) deployed. Gradient Boosting was the best of three families on test R2; its parameters were then tuned with Optuna (20 trials, 3-fold CV on training data only) and the tuned parameters beat the initial ones in cross-validation."
+}

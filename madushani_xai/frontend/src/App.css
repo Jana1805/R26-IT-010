@@ -1,0 +1,213 @@
+/* ── Layout ─────────────────────────────────────────────── */
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────── */
+.sidebar {
+  width: 256px;
+  min-width: 256px;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.sidebar-brand {
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.brand-wordmark {
+  font-family: 'Fira Code', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+
+.brand-wordmark span {
+  color: var(--blue);
+}
+
+.brand-meta {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.brand-meta strong {
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+/* ── Nav ─────────────────────────────────────────────────── */
+.nav-group {
+  padding: 16px 12px 8px;
+}
+
+.nav-group-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-dim);
+  padding: 0 8px;
+  margin-bottom: 6px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  border-left: 2px solid transparent;
+}
+
+.nav-item:hover:not(.nav-item--disabled) {
+  background: var(--bg-hover);
+  color: #CBD5E1;
+  cursor: pointer;
+}
+
+.nav-item--active {
+  background: var(--bg-card);
+  color: #93C5FD;
+  border-left-color: var(--blue);
+}
+
+.nav-item--disabled {
+  cursor: not-allowed;
+  opacity: 0.38;
+}
+
+.nav-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.nav-item--active .nav-icon {
+  opacity: 1;
+  color: var(--blue);
+}
+
+.nav-number {
+  font-family: 'Fira Code', monospace;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--text-dim);
+  min-width: 18px;
+}
+
+.nav-item--active .nav-number {
+  color: #60A5FA;
+}
+
+.nav-label {
+  flex: 1;
+  line-height: 1;
+}
+
+.nav-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+}
+
+.nav-badge {
+  font-size: 8.5px;
+  font-weight: 600;
+  background: var(--border);
+  color: var(--text-dim);
+  padding: 2px 5px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+/* ── Sidebar Footer ──────────────────────────────────────── */
+.sidebar-footer {
+  margin-top: auto;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.sidebar-footer-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+
+.sidebar-footer-text {
+  font-size: 10.5px;
+  color: #334155;
+  line-height: 1.7;
+}
+
+/* ── Main Content ─────────────────────────────────────────── */
+.main {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--bg);
+}
+
+/* Standalone full-page view (no sidebar) — used for the focused
+   Behaviour Intelligence -> LIME anomaly deep link */
+.main--focused {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+/* ── Coming Soon ─────────────────────────────────────────── */
+.coming-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 12px;
+  color: var(--text-muted);
+}
+
+.coming-soon-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--text-dim);
+}
+
+.coming-soon h2 {
+  font-family: 'Fira Code', monospace;
+  font-size: 16px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.coming-soon p {
+  font-size: 13px;
+  color: var(--text-dim);
+}

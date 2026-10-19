@@ -1,0 +1,18 @@
+flowchart TB
+    A["① Pick a prediction to explain<br/>f(x) for one 15-min row x"]
+    B["② Base value φ₀ = E[f(X)]<br/>= 1,500.50 kW (average prediction over training data)"]
+    C["③ Shapley value of each feature i<br/>φᵢ = Σ over feature subsets S without i of<br/>|S|! (12 − |S| − 1)! / 12! × [ f(S ∪ {i}) − f(S) ]<br/><i>average extra contribution of i, over every order features could be added</i>"]
+    D["④ TreeExplainer computes this exactly for trees<br/>walks each of the 467 trees once, sharing each split<br/>by how much training data went each way (tree_path_dependent)<br/>polynomial time, no sampling, no randomness"]
+    E["⑤ Sum over trees → φ₁ … φ₁₂ in kW"]
+    F["⑥ Additivity check: φ₀ + Σ φᵢ = f(x)<br/>max error 0.007 kW on 2,000 test rows"]
+    G["Local: why this row got this prediction"]
+    H["Global: mean |φᵢ| over many rows<br/>(bar chart, beeswarm)"]
+    I["Drift: mean |φᵢ| per year<br/>+ 20 bootstrap resamples → 95% CI"]
+
+    A --> B --> C --> D --> E --> F
+    F --> G & H & I
+
+    classDef step fill:#E8F1FD,stroke:#2A78D6,color:#0B0B0B
+    classDef out fill:#E5F6EF,stroke:#199E70,color:#0B0B0B
+    class A,B,C,D,E,F step
+    class G,H,I out
